@@ -1,11 +1,20 @@
 // import Image from "next/image";
 
+// import Link from 'next/link'
+// import InvoiceStatus from '@/app/ui/invoices/InvoiceStatus'
+
 import Link from 'next/link'
-import InvoiceStatus from '@/app/ui/invoices/InvoiceStatus'
 
 export default function Home () {
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-base-200">
+      <h1 className="text-4xl font-bold text-primary">Добро пожаловать в тему Cupcake!</h1>
+      <button className="btn btn-primary mt-4">Кнопка</button>
+      <Link href={'/dashboard'}>
+        <span>Dashboard</span>
+      </Link>
+    </div>
+    /*<div>
       <main>
         <div className={'flex flex-col'}>
           <span>Hello next!</span>
@@ -21,7 +30,9 @@ export default function Home () {
           <span className={'bg-amber-950'}>Dashboard</span>
         </Link>
       </footer>
-    </div>
+    </div>*/
+
+
     /*<div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
