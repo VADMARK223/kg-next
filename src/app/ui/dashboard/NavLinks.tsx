@@ -19,7 +19,6 @@ const links = [
 
 const NavLinks = (): JSX.Element => {
   const pathname = usePathname()
-  console.log(pathname)
 
   return (
     <div className={'flex gap-3'}>

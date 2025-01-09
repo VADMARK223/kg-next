@@ -3,17 +3,25 @@
 // import Link from 'next/link'
 // import InvoiceStatus from '@/app/ui/invoices/InvoiceStatus'
 
-import Link from 'next/link'
+// import Link from 'next/link'
+
+// "use client"
+import { HomeIcon } from '@heroicons/react/24/solid'
 
 export default function Home () {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-base-200">
+    <div>
+      <HomeIcon className={'size-6 text-blue-500'}/>
+    </div>
+    /*<div className="flex flex-col items-center justify-center min-h-screen bg-base-200">
       <h1 className="text-4xl font-bold text-primary">Добро пожаловать в тему Cupcake!</h1>
       <button className="btn btn-primary mt-4">Кнопка</button>
       <Link href={'/dashboard'}>
         <span>Dashboard</span>
       </Link>
-    </div>
+    </div>*/
+
+
     /*<div>
       <main>
         <div className={'flex flex-col'}>
