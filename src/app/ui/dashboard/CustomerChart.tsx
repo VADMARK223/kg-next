@@ -10,7 +10,7 @@ import { Customer } from '@/app/lib/definitions'
 const CustomerChart = async ({ customers }: { customers: Customer[] }): Promise<JSX.Element> => {
   return (
     <div>
-      customers: {customers.length}
+      Customers: {customers.length}
     </div>
   )
 }

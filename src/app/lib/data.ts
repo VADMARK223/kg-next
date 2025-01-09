@@ -7,7 +7,11 @@ import { Customer, Revenue } from '@/app/lib/definitions'
 
 export async function fetchRevenues() {
   try {
+    console.log('Start fetching...:')
+    await new Promise(resolve => setTimeout(resolve, 3000))
     const data = await sql<Revenue>`SELECT * FROM revenue`;
+
+    console.log('End fetching. 3 sec')
     return data.rows;
   } catch (error) {
     console.error(`Database error: ${error}`);

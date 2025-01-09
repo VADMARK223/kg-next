@@ -5,18 +5,20 @@
  * @since 09.01.2025
  */
 import { JSX } from 'react'
-import { fetchCustomers, fetchRevenues } from '@/app/lib/data'
+import { fetchCustomers } from '@/app/lib/data'
 import RevenueChart from '@/app/ui/dashboard/RevenueChart'
 import CustomerChart from '@/app/ui/dashboard/CustomerChart'
+import {Suspense} from 'react'
+import {RevenueChartSkeleton} from '@/app/ui/skeletons'
 
 const Page = async (): Promise<JSX.Element> => {
-  // const revenue = await fetchRevenues()
-  // const customers = await fetchCustomers()
+  //
+  const customers = await fetchCustomers()
 
-  const data = await Promise.all([
-    fetchRevenues(),
-    fetchCustomers()
-  ])
+  // const data = await Promise.all([
+  //   fetchRevenues(),
+  //   fetchCustomers()
+  // ])
 
   return (
     <main>
@@ -24,10 +26,13 @@ const Page = async (): Promise<JSX.Element> => {
         Dashboard
       </h1>
       <div>
-        <RevenueChart revenue={data[0]}/>
+        {/*<CustomerChart customers={data[1]}/>*/}
+        <CustomerChart customers={customers}/>
       </div>
       <div>
-        <CustomerChart customers={data[1]}/>
+        <Suspense fallback={<RevenueChartSkeleton/>}>
+          <RevenueChart/>
+        </Suspense>
       </div>
     </main>
   )

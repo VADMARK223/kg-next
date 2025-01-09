@@ -5,9 +5,10 @@
  * @since 09.01.2025
  */
 import { JSX } from 'react'
-import { Revenue } from '@/app/lib/definitions'
+import { fetchRevenues } from '@/app/lib/data'
 
-const RevenueChart = async ({ revenue }: { revenue: Revenue[] }): Promise<JSX.Element> => {
+const RevenueChart = async (): Promise<JSX.Element> => {
+  const revenue = await fetchRevenues()
   return (
     <div>
       <span>Revenue: {revenue.length}</span>
