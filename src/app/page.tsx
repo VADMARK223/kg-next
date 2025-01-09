@@ -1,8 +1,28 @@
-import Image from "next/image";
+// import Image from "next/image";
 
-export default function Home() {
+import Link from 'next/link'
+import InvoiceStatus from '@/app/ui/invoices/InvoiceStatus'
+
+export default function Home () {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div>
+      <main>
+        <div className={'flex flex-col'}>
+          <span>Hello world!</span>
+          <InvoiceStatus status={'success'}/>
+          <InvoiceStatus status={'error'}/>
+        </div>
+      </main>
+
+      <footer>
+        <Link
+          href={'/dashboard'}
+        >
+          <span className={'bg-amber-950'}>Dashboard</span>
+        </Link>
+      </footer>
+    </div>
+    /*<div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
@@ -96,6 +116,6 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
-    </div>
-  );
+    </div>*/
+  )
 }
