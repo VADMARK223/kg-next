@@ -5,7 +5,7 @@
  * @since 08.01.2025
  */
 
-const customers = [
+/*const customers = [
   {
     id: 'd6e15727-9fe1-4961-8c5b-ea44a9bd81aa',
     name: 'Evil Rabbit',
@@ -18,8 +18,9 @@ const customers = [
     email: 'delba@oliveira.com',
     image_url: '/customers/delba-de-oliveira.png',
   }
-]
+]*/
 
+/*
 const invoices = [
   {
     customer_id: customers[0].id,
@@ -33,4 +34,4 @@ const invoices = [
     status: 'pending',
     date: '2022-11-14',
   },
-];
+];*/
