@@ -8,7 +8,7 @@ export default function Home () {
     <div>
       <main>
         <div className={'flex flex-col'}>
-          <span>Hello world!</span>
+          <span>Hello next!</span>
           <InvoiceStatus status={'success'}/>
           <InvoiceStatus status={'error'}/>
         </div>
