@@ -23,7 +23,7 @@ const Menu = (): JSX.Element => {
       {links.map((link) => {
         return (
           <Link key={link.name} href={link.href}>
-            <button className={clsx('btn', 'btn-sm', { 'btn-primary': pathname === link.href }) }>
+            <button className={clsx('btn', { 'btn-primary': pathname === link.href }) }>
               {link.name}
             </button>
           </Link>

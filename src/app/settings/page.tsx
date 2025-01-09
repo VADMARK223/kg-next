@@ -4,14 +4,13 @@
  * @author Markitanov Vadim
  * @since 09.01.2025
  */
-"use client"
 import { JSX } from 'react'
-import { Button } from 'react-daisyui'
+import ThemeSwitcher from '@/app/ui/settings/ThemeSwitcher'
 
 const Page = (): JSX.Element => {
   return (
     <div>
-      <Button loading={true}>asd</Button>
+      <ThemeSwitcher/>
     </div>
   )
 }
