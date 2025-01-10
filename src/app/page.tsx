@@ -1,7 +1,8 @@
 import { fetchTags, fetchWords } from '@/app/lib/api'
-import { Tag, Word } from '@/app/lib/model'
 import Filter from '@/app/ui/home/filter/Filter'
 import WordsTable from '@/app/ui/home/word/WordsTable'
+import { Tag } from '@/app/lib/model/entity/Tag'
+import { Word } from '@/app/lib/model/word'
 
 export default async function Home () {
   const tags: Tag[] = await fetchTags()

@@ -4,7 +4,8 @@
  * @author Markitanov Vadim
  * @since 08.01.2025
  */
-import { Tag, Word } from '@/app/lib/model'
+import { Tag } from '@/app/lib/model/entity/Tag'
+import { WordEntity } from '@/app/lib/model/word'
 
 const tags: Tag[] = [
   {
@@ -26,7 +27,7 @@ const tags: Tag[] = [
   }
 ]
 
-const words: Word[] = [
+const words: WordEntity[] = [
   { id: 1, ru: 'Ноль', kg: 'Нөл', tag: 1 },
   { id: 2, ru: 'Один', kg: 'Бир', tag: 1 },
   { id: 3, ru: 'Два', kg: 'Эки', tag: 1 },

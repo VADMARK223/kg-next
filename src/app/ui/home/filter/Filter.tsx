@@ -7,8 +7,9 @@
 'use client'
 import { JSX } from 'react'
 import TagSelect from '@/app/ui/home/filter/TagSelect'
-import { Tag, Word } from '@/app/lib/model'
 import ValueViewer from '@/app/ui/common/ValueViewer'
+import { Tag } from '@/app/lib/model/entity/Tag'
+import { Word } from '@/app/lib/model/word'
 
 interface FilterProps {
   tags: Tag[]

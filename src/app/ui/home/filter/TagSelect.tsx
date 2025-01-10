@@ -6,7 +6,7 @@
  */
 'use client'
 import { JSX, useState } from 'react'
-import { Tag } from '@/app/lib/model'
+import { Tag } from '@/app/lib/model/entity/Tag'
 
 interface TagSelectProps {
   data: Tag[]

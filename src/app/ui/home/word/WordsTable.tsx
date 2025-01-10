@@ -5,7 +5,7 @@
  * @since 10.01.2025
  */
 import { JSX } from 'react'
-import { Word } from '@/app/lib/model'
+import { Word } from '@/app/lib/model/word'
 
 interface WordsTableProps {
   words: Word[]
@@ -29,7 +29,7 @@ const WordsTable = ({ words }: WordsTableProps): JSX.Element => {
             <th>{tag.id}</th>
             <th>{tag.ru}</th>
             <th>{tag.kg}</th>
-            <th>{tag.tag}</th>
+            <th>{tag.tagname}</th>
           </tr>
         ))}
         </tbody>

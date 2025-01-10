@@ -6,7 +6,7 @@
  */
 import { db } from '@vercel/postgres'
 import { tags, words } from '@/app/lib/data'
-import { Word } from '@/app/lib/model'
+import { WordEntity } from '@/app/lib/model/word'
 
 const client = await db.connect()
 
@@ -36,11 +36,11 @@ async function initWords () {
           id  SERIAL PRIMARY KEY,
           ru  VARCHAR(20) NOT NULL,
           kg  VARCHAR(20) NOT NULL,
-          tag INTEGER NOT NULL REFERENCES tags(id)
+          tag INTEGER     NOT NULL REFERENCES tags (id)
       );`
 
   await Promise.all(
-    words.map(async (word:Word) => {
+    words.map(async (word:WordEntity) => {
       await client.sql`INSERT INTO words (id, ru, kg, tag)
                        VALUES (${word.id}, ${word.ru}, ${word.kg}, ${word.tag});`
     })
