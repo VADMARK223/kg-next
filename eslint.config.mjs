@@ -14,9 +14,8 @@ const eslintConfig = [
     {
         files: ["**/*.{js,ts,jsx,tsx}"], // Укажите, к каким файлам применяется настройка
         rules: {
-            "@typescript-eslint/no-unused-vars": [
-                "warn"
-            ]
+            "@typescript-eslint/no-unused-vars": ["warn"],
+            "no-console": ["warn", {"allow": ["warn", "error"]}]
         }
     }
 ];

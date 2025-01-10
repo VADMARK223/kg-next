@@ -14,6 +14,5 @@ export async function fetchTags (): Promise<Tag[]> {
 
 export async function fetchWords (): Promise<Word[]> {
   const data = await sql<Word>`SELECT words.id, words.ru, words.kg, t.name AS tagname FROM words JOIN tags t on t.id = words.tag;`
-  console.log('words:', data.rows)
   return data.rows
 }
