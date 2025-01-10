@@ -2,6 +2,12 @@
  * @author Markitanov Vadim
  * @since 08.01.2025
  */
+export type Tag = {
+  id: number;
+  name: string;
+  color?: string;
+}
+
 export type Customer = {
   id: string;
   name: string;

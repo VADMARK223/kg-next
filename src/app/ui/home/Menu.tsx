@@ -11,7 +11,10 @@ import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
 const links = [
-  { name: 'Дом', href: '/' },
+  { name: 'Словарь', href: '/' },
+  { name: 'Числительные', href: '/numerals' },
+  { name: 'О программе', href: '/about' },
+  { name: 'Пересоздать БД', href: '/flyway' },
   { name: 'Настройки', href: '/settings' }
 ]
 
@@ -19,11 +22,13 @@ const Menu = (): JSX.Element => {
   const pathname = usePathname()
 
   return (
-    <div className={'flex gap-3'}>
+    <div className={'flex flex-wrap gap-3'}>
       {links.map((link) => {
         return (
           <Link key={link.name} href={link.href}>
-            <button className={clsx('btn', { 'btn-primary': pathname === link.href }) }>
+            <button className={clsx('btn', { 'btn-primary': pathname === link.href }) }
+                    disabled={link.href === '/settings'}
+            >
               {link.name}
             </button>
           </Link>
