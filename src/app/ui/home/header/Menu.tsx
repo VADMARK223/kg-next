@@ -12,8 +12,8 @@ import clsx from 'clsx'
 
 const links = [
   { name: 'Словарь', href: '/' },
-  { name: 'Числительные', href: '/numerals' },
   { name: 'О программе', href: '/about' },
+  { name: 'Числительные', href: '/numerals' },
   { name: 'Пересоздать БД', href: '/flyway' },
   { name: 'Настройки', href: '/settings' }
 ]
@@ -27,7 +27,7 @@ const Menu = (): JSX.Element => {
         return (
           <Link key={link.name} href={link.href}>
             <button className={clsx('btn', { 'btn-primary': pathname === link.href }) }
-                    disabled={link.href === '/settings'}
+                    disabled={link.href === '/settings' || link.href === '/numerals' || link.href === '/flyway'}
             >
               {link.name}
             </button>

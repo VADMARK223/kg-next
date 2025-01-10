@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { inter } from './ui/fonts'
 import './ui/globals.css'
-import Header from '@/app/ui/home/Header'
+import Header from '@/app/ui/home/header/Header'
 
 export const metadata: Metadata = {
   title: 'Изучение кыргызского языка',

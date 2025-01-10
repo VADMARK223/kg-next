@@ -1,38 +1,51 @@
 /**
+ * Данные заполнители.
+ *
  * @author Markitanov Vadim
- * @since 09.01.2025
+ * @since 08.01.2025
  */
-import { sql } from '@vercel/postgres'
-import { Customer, Revenue, Tag } from '@/app/lib/definitions'
+import { Tag, Word } from '@/app/lib/model'
 
-export async function fetchTags (): Promise<Tag[]> {
-  const data = await sql<Tag>`SELECT *
-                              FROM tags`
-  return data.rows
-}
-
-export async function fetchRevenues () {
-  try {
-    console.log('Start fetching...:')
-    await new Promise(resolve => setTimeout(resolve, 3000))
-    const data = await sql<Revenue>`SELECT *
-                                    FROM revenue`
-
-    console.log('End fetching. 3 sec')
-    return data.rows
-  } catch (error) {
-    console.error(`Database error: ${error}`)
-    throw new Error('Failed to fetch revenues.')
+const tags: Tag[] = [
+  {
+    id: 1,
+    name: 'Числительные'
+  },
+  {
+    id: 2,
+    name: 'Цвета'
+  },
+  {
+    id: 3,
+    name: 'Фрукты'
+  },
+  {
+    id: 4,
+    name: 'Овощи',
+    color: 'green'
   }
-}
+]
 
-export async function fetchCustomers () {
-  try {
-    const data = await sql<Customer>`SELECT *
-                                     FROM customers`
-    return data.rows
-  } catch (error) {
-    console.error(`Database error: ${error}`)
-    throw new Error('Failed to fetch revenues.')
-  }
-}
+const words: Word[] = [
+  { id: 1, ru: 'Ноль', kg: 'Нөл', tag: 1 },
+  { id: 2, ru: 'Один', kg: 'Бир', tag: 1 },
+  { id: 3, ru: 'Два', kg: 'Эки', tag: 1 },
+  { id: 4, ru: 'Три', kg: 'Үч', tag: 1 },
+  { id: 5, ru: 'Четыре', kg: 'Төрт', tag: 1 },
+  { id: 6, ru: 'Пять', kg: 'Беш', tag: 1 },
+  { id: 7, ru: 'Шесть', kg: 'Алты', tag: 1 },
+  { id: 8, ru: 'Семь', kg: 'Жети', tag: 1 },
+  { id: 9, ru: 'Восемь', kg: 'Сегиз', tag: 1 },
+  { id: 10, ru: 'Девять', kg: 'Тогуз', tag: 1 },
+  { id: 11, ru: 'Десять', kg: 'Он', tag: 1 },
+  { id: 12, ru: 'Двадцать', kg: 'Жыйырма', tag: 1 },
+  { id: 13, ru: 'Тридцать', kg: 'Кырк', tag: 1 },
+  { id: 14, ru: 'Пятьдесят', kg: 'Тогуз', tag: 1 },
+  { id: 15, ru: 'Шестьдесят', kg: 'Элүү', tag: 1 },
+  { id: 16, ru: 'Семьдесят', kg: 'Жетимиш', tag: 1 },
+  { id: 17, ru: 'Восемьдесят', kg: 'Сексен', tag: 1 },
+  { id: 18, ru: 'Девяносто', kg: 'Токсон', tag: 1 },
+  { id: 19, ru: 'Тысяча', kg: 'Миң', tag: 1 }
+]
+
+export { tags, words }

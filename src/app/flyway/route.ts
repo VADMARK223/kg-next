@@ -1,14 +1,17 @@
 /**
+ * Страница пересоздания таблиц и их заполнение.
+ *
  * @author Markitanov Vadim
  * @since 10.01.2025
  */
 import { db } from '@vercel/postgres'
-import { tags } from '@/app/lib/placeholder-data'
+import { tags, words } from '@/app/lib/data'
+import { Word } from '@/app/lib/model'
 
 const client = await db.connect()
 
-async function createTags () {
-  await client.sql`DROP TABLE IF EXISTS tags;`
+async function initTags () {
+  await client.sql`DROP TABLE IF EXISTS tags CASCADE;`
   await client.sql`
       CREATE TABLE tags
       (
@@ -25,10 +28,30 @@ async function createTags () {
   )
 }
 
+async function initWords () {
+  await client.sql`DROP TABLE IF EXISTS words CASCADE;`
+  await client.sql`
+      CREATE TABLE words
+      (
+          id  SERIAL PRIMARY KEY,
+          ru  VARCHAR(20) NOT NULL,
+          kg  VARCHAR(20) NOT NULL,
+          tag INTEGER NOT NULL REFERENCES tags(id)
+      );`
+
+  await Promise.all(
+    words.map(async (word:Word) => {
+      await client.sql`INSERT INTO words (id, ru, kg, tag)
+                       VALUES (${word.id}, ${word.ru}, ${word.kg}, ${word.tag});`
+    })
+  )
+}
+
 export async function GET () {
   try {
     await client.sql`BEGIN`
-    await createTags()
+    await initTags()
+    await initWords()
     await client.sql`COMMIT`
 
     return Response.json({ message: 'Готово' })
