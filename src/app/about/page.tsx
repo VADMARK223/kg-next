@@ -6,8 +6,7 @@
  */
 import { JSX } from 'react'
 import ValueViewer from '@/app/ui/common/ValueViewer'
-
-const VERSION = '1.0.5'
+import { APP_VERSION } from '@/app/lib/utils'
 
 const Page = (): JSX.Element => {
   return (
@@ -54,7 +53,7 @@ const Page = (): JSX.Element => {
         </a>
       </span>
       }/>
-      <ValueViewer name={'Версия'} value={VERSION}/>
+      <ValueViewer name={'Версия'} value={APP_VERSION}/>
     </div>
   )
 }

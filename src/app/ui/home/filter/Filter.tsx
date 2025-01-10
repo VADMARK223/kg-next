@@ -7,18 +7,26 @@
 'use client'
 import { JSX } from 'react'
 import TagSelect from '@/app/ui/home/filter/TagSelect'
-import { Tag } from '@/app/lib/model'
+import { Tag, Word } from '@/app/lib/model'
+import ValueViewer from '@/app/ui/common/ValueViewer'
 
 interface FilterProps {
   tags: Tag[]
+  words: Word[]
 }
 
-const Filter = ({ tags }: FilterProps): JSX.Element => {
+const Filter = ({ tags, words }: FilterProps): JSX.Element => {
+
   return (
-    <div>
+    <div className={'flex items-center gap-3'}>
+      <ValueViewer name={'Слов'} value={words.length}/>
       <TagSelect data={tags} callback={(value: number) => {
         console.log('value:', value)
       }}/>
+      <button className={'btn btn-primary btn-disabled'}
+              onClick={() => {}}>
+        Применить
+      </button>
     </div>
   )
 }

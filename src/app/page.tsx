@@ -11,8 +11,7 @@ export default async function Home () {
   return (
     <div>
       <div className={'flex items-center gap-3'}>
-        <Filter tags={tags}/>
-        <ValueViewer name={'Слов'} value={words.length}/>
+        <Filter tags={tags} words={words} />
       </div>
 
       <div>

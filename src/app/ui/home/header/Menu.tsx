@@ -9,6 +9,7 @@ import { JSX } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
+import { isDevMode } from '@/app/lib/utils'
 
 const links = [
   { name: 'Словарь', href: '/' },
@@ -24,12 +25,21 @@ const Menu = (): JSX.Element => {
   return (
     <div className={'flex flex-wrap gap-3'}>
       {links.map((link) => {
+        if (link.href === '/flyway' && !isDevMode()) {
+          return null
+        }
+
         return (
           <Link key={link.name} href={link.href}>
-            <button className={clsx('btn', { 'btn-primary': pathname === link.href }) }
-                    disabled={link.href === '/settings' || link.href === '/numerals' || link.href === '/flyway'}
+            {/*<button className={clsx('btn', { 'btn-primary': pathname === link.href })}
+                    disabled={link.href === '/settings' || link.href === '/numerals'}
+            >*/}
+            <button className={clsx('btn btn-primary', { 'text-gray-350': pathname !== link.href })}
+                    disabled={link.href === '/settings' || link.href === '/numerals'}
             >
+              <span className={clsx({'border-b-3' : pathname === link.href})}>
               {link.name}
+              </span>
             </button>
           </Link>
         )
