@@ -11,12 +11,20 @@ import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { isDevMode } from '@/app/lib/utils'
 
-const links = [
-  { name: 'Словарь', href: '/' },
-  { name: 'О программе', href: '/about' },
-  { name: 'Числительные', href: '/numerals' },
-  { name: 'Пересоздать БД', href: '/flyway' },
-  { name: 'Настройки', href: '/settings' }
+type LinkData = {
+  name: string
+  href: string
+  available?: boolean
+}
+
+const defaultLinkData: Partial<LinkData> = { available: true }
+
+const links: LinkData[] = [
+  { ...defaultLinkData, name: 'Словарь', href: '/' },
+  { ...defaultLinkData, name: 'О программе', href: '/about' },
+  { ...defaultLinkData, name: 'Числительные', href: '/numerals', available: false },
+  { ...defaultLinkData, name: 'Пересоздать БД', href: '/flyway' },
+  { ...defaultLinkData, name: 'Настройки', href: '/settings', available: false }
 ]
 
 const Menu = (): JSX.Element => {
@@ -31,13 +39,11 @@ const Menu = (): JSX.Element => {
 
         return (
           <Link key={link.name} href={link.href}>
-            {/*<button className={clsx('btn', { 'btn-primary': pathname === link.href })}
-                    disabled={link.href === '/settings' || link.href === '/numerals'}
-            >*/}
             <button className={clsx('btn btn-primary', { 'text-gray-350': pathname !== link.href })}
-                    disabled={link.href === '/settings' || link.href === '/numerals'}
+              // disabled={link.href === '/settings' || link.href === '/numerals'}
+                    disabled={!link.available}
             >
-              <span className={clsx({'border-b-3' : pathname === link.href})}>
+              <span className={clsx({ 'border-b-3': pathname === link.href })}>
               {link.name}
               </span>
             </button>
