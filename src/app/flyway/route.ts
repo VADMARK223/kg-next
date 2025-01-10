@@ -10,6 +10,7 @@ import { WordEntity } from '@/app/lib/model/word'
 
 const client = await db.connect()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function initTags () {
   await client.sql`DROP TABLE IF EXISTS tags CASCADE;`
   await client.sql`
@@ -35,7 +36,7 @@ async function initWords () {
       (
           id  SERIAL PRIMARY KEY,
           ru  VARCHAR(20) NOT NULL,
-          kg  VARCHAR(20) NOT NULL,
+          kg  VARCHAR(40) NOT NULL,
           tag INTEGER     NOT NULL REFERENCES tags (id)
       );`
 
@@ -50,7 +51,7 @@ async function initWords () {
 export async function GET () {
   try {
     await client.sql`BEGIN`
-    await initTags()
+    // await initTags()
     await initWords()
     await client.sql`COMMIT`
 
