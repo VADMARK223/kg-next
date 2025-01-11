@@ -20,11 +20,15 @@ interface WordsTableProps {
 interface TableRowProps {
   id: number
   value: number | string
+  word: Word
+  needColored?: boolean
 }
 
-const TableRow = ({ id, value }: TableRowProps): JSX.Element => (<th>
-  {!isDevMode() ? <>{value}</> : <Link href={`/word/${id}`}><>{value}</>
-  </Link>}
+const TableRow = ({ id, value, word, needColored = false }: TableRowProps): JSX.Element => (<th>
+  {!isDevMode() ? <>{value}</> :
+    <Link href={`/word/${id}`}>
+      <span style={{ color: needColored ? word.color : undefined }}>{value}</span>
+    </Link>}
 </th>)
 
 const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
@@ -45,11 +49,11 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
         </tr>
         </thead>
         <tbody>
-        {words.map((tag) => (
-          <tr key={tag.id} className={clsx({ 'cursor-pointer hover:bg-gray-800': isDevMode() })}>
-            <TableRow id={tag.id} value={tag.ru}/>
-            <TableRow id={tag.id} value={tag.kg}/>
-            <TableRow id={tag.id} value={tag.tagname}/>
+        {words.map((word) => (
+          <tr key={word.id} className={clsx({ 'cursor-pointer hover:bg-gray-800': isDevMode() })}>
+            <TableRow id={word.id} value={word.ru} word={word}/>
+            <TableRow id={word.id} value={word.kg} word={word}/>
+            <TableRow id={word.id} value={word.tagname} word={word} needColored={true}/>
           </tr>
         ))}
         </tbody>

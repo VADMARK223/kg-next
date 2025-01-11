@@ -8,23 +8,14 @@ import { Tag } from '@/app/lib/model/entity/Tag'
 import { WordEntity } from '@/app/lib/model/word'
 
 const tags: Tag[] = [
-  {
-    id: 1,
-    name: 'Числительные'
-  },
-  {
-    id: 2,
-    name: 'Цвета'
-  },
-  {
-    id: 3,
-    name: 'Фрукты'
-  },
-  {
-    id: 4,
-    name: 'Овощи',
-    color: 'green'
-  }
+  { id: 1, name: 'Числительные', color: '#808080' },
+  { id: 2, name: 'Цвета', color: '#F59E0B' },
+  { id: 3, name: 'Фрукты', color: '#4CAF50' },
+  { id: 4, name: 'Овощи', color: '#EF4444' },
+  { id: 5, name: 'Дом', color: '#D8B384' },
+  { id: 6, name: 'Животные', color: '#FB923C' },
+  { id: 7, name: 'Строения', color: '#6B7280' },
+  { id: 8, name: 'Природа', color: '#1E3A8A' },
 ]
 
 const words: WordEntity[] = [
@@ -85,6 +76,16 @@ const words: WordEntity[] = [
   { id: 0, ru: 'Чеснок', kg: 'Сарымсак', tag: 4 },
   { id: 0, ru: 'Горох', kg: 'Буурчак', tag: 4 },
   { id: 0, ru: 'Огурец', kg: 'Бадыраң', tag: 4 },
+  // Дом
+  { id: 0, ru: 'Дверь', kg: 'Эшик', tag: 5 },
+  { id: 0, ru: 'Окно', kg: 'Терезе', tag: 5 },
+  // Животные
+  { id: 0, ru: 'Осёл', kg: 'Эшек', tag: 6 },
+  { id: 0, ru: 'Свинья', kg: 'Чочко', tag: 6 },
+  // Строения
+  { id: 0, ru: 'Аптека', kg: 'Дарыкана', tag: 7 },
+  // Природа
+  { id: 0, ru: 'Море', kg: 'Деңиз', tag: 8 }
 ]
 
 export { tags, words }

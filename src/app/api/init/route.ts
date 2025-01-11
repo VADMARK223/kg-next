@@ -55,7 +55,7 @@ async function initWords () {
 export async function GET () {
   try {
     await client.sql`BEGIN`
-    // await initTags()
+    await initTags()
     await initWords()
     await client.sql`COMMIT`
 

@@ -2,26 +2,28 @@
  * @author Markitanov Vadim
  * @since 09.01.2025
  */
-import { sql } from '@vercel/postgres'
+import { db, sql } from '@vercel/postgres'
 import { Tag } from '@/app/lib/model/entity/Tag'
 import { Word } from '@/app/lib/model/word'
 
 export async function fetchTags (): Promise<Tag[]> {
   const data = await sql<Tag>`SELECT *
-                              FROM tags`
+                              FROM tags ORDER BY id`
   return data.rows
 }
 
 export async function fetchWords (tagId ?: number): Promise<Word[]> {
-  const query = tagId === undefined || tagId === 0 ?
-    sql<Word>`SELECT words.id, words.ru, words.kg, t.name AS tagname
-              FROM words
-                       JOIN tags t on t.id = words.tag;` :
-    sql<Word>`SELECT words.id, words.ru, words.kg, t.name AS tagname
-              FROM words
-                       JOIN tags t on t.id = words.tag
-              WHERE words.tag = ${tagId};`
+  const baseQuery = `
+      SELECT words.id, words.ru, words.kg, t.name AS tagname, t.color AS color
+      FROM words
+               JOIN tags t ON t.id = words.tag
+  `
 
-  const data = await query
+  const conditionalQuery = tagId && tagId !== 0 ? `WHERE words.tag = $1` : ''
+  const query = `${baseQuery} ${conditionalQuery}`
+
+  const params = tagId && tagId !== 0 ? [tagId] : []
+
+  const data = await db.query<Word>(query, params) // Предполагаем, что `db.query` — это метод вашей SQL-библиотеки
   return data.rows
 }
