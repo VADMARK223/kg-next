@@ -40,7 +40,6 @@ const Menu = (): JSX.Element => {
         return (
           <Link key={link.name} href={link.href}>
             <button className={clsx('btn btn-primary', { 'text-gray-350': pathname !== link.href })}
-              // disabled={link.href === '/settings' || link.href === '/numerals'}
                     disabled={!link.available}
             >
               <span className={clsx({ 'border-b-3': pathname === link.href })}>

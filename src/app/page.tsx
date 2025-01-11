@@ -3,6 +3,9 @@ import Filter from '@/app/ui/home/filter/Filter'
 import WordsTable from '@/app/ui/home/word/WordsTable'
 import { Tag } from '@/app/lib/model/entity/Tag'
 import { Word } from '@/app/lib/model/word'
+// import dynamic from 'next/dynamic'
+
+// const WordsTable = dynamic(()=>import('@/app/ui/home/word/WordsTable'), {ssr: false})
 
 export default async function Home () {
   const tags: Tag[] = await fetchTags()
