@@ -25,7 +25,7 @@ interface TableRowProps {
 }
 
 const TableRow = ({ id, value, word, needColored = false }: TableRowProps): JSX.Element => (<th>
-  {!isDevMode() ? <>{value}</> :
+  {!isDevMode() ? <span style={{ color: needColored ? word.color : undefined }}>{value}</span> :
     <Link href={`/word/${id}`}>
       <span style={{ color: needColored ? word.color : undefined }}>{value}</span>
     </Link>}
