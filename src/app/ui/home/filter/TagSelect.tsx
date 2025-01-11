@@ -18,7 +18,7 @@ const TagSelect = ({ data, callback }: TagSelectProps): JSX.Element => {
 
   return (
     <select
-      className={'select'}
+      className={'select w-40'}
       defaultValue={''}
       value={value ?? undefined}
       onChange={event => {
@@ -29,7 +29,7 @@ const TagSelect = ({ data, callback }: TagSelectProps): JSX.Element => {
         }
       }}
     >
-      <option value={''} disabled>Выберите категорию</option>
+      <option value={''}>Все категории</option>
       {data.map((tag) => (<option key={tag.id} value={tag.id}>{tag.name}</option>))}
     </select>
   )

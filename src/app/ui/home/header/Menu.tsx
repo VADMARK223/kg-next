@@ -1,5 +1,5 @@
 /**
- * Компонент
+ * Компонент главного меню.
  *
  * @author Markitanov Vadim
  * @since 09.01.2025
@@ -23,7 +23,8 @@ const links: LinkData[] = [
   { ...defaultLinkData, name: 'Словарь', href: '/' },
   { ...defaultLinkData, name: 'О программе', href: '/about' },
   { ...defaultLinkData, name: 'Числительные', href: '/numerals', available: false },
-  { ...defaultLinkData, name: 'Пересоздать БД', href: '/flyway' },
+  { ...defaultLinkData, name: 'Пересоздать БД', href: '/api/init' },
+  { ...defaultLinkData, name: 'Тест', href: '/api/test' },
   { ...defaultLinkData, name: 'Настройки', href: '/settings', available: false }
 ]
 
@@ -33,7 +34,7 @@ const Menu = (): JSX.Element => {
   return (
     <div className={'flex flex-wrap gap-3'}>
       {links.map((link) => {
-        if (link.href === '/flyway' && !isDevMode()) {
+        if ((link.href === '/api/init' || link.href === '/api/test') && !isDevMode()) {
           return null
         }
 

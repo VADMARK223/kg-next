@@ -1,11 +1,8 @@
-import { fetchTags, fetchWords } from '@/app/lib/api'
+import { fetchTags, fetchWords } from '@/app/api/api'
 import Filter from '@/app/ui/home/filter/Filter'
 import WordsTable from '@/app/ui/home/word/WordsTable'
 import { Tag } from '@/app/lib/model/entity/Tag'
 import { Word } from '@/app/lib/model/word'
-// import dynamic from 'next/dynamic'
-
-// const WordsTable = dynamic(()=>import('@/app/ui/home/word/WordsTable'), {ssr: false})
 
 export default async function Home () {
   const tags: Tag[] = await fetchTags()
@@ -14,11 +11,11 @@ export default async function Home () {
   return (
     <div>
       <div className={'flex items-center gap-3'}>
-        <Filter tags={tags} words={words} />
+        <Filter tags={tags} />
       </div>
 
       <div>
-        <WordsTable words={words}/>
+        <WordsTable initWords={words}/>
       </div>
     </div>
   )

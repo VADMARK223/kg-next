@@ -5,14 +5,16 @@
  * @since 10.01.2025
  */
 'use client'
-import { JSX } from 'react'
+import { JSX, useEffect } from 'react'
 import { Word } from '@/app/lib/model/word'
 import clsx from 'clsx'
 import { isDevMode } from '@/app/lib/utils'
 import Link from 'next/link'
+import { $words, wordsUpdated } from '@/app/lib/effector/word'
+import { useUnit } from 'effector-react'
 
 interface WordsTableProps {
-  words: Word[]
+  initWords: Word[]
 }
 
 interface TableRowProps {
@@ -25,14 +27,18 @@ const TableRow = ({ id, value }: TableRowProps): JSX.Element => (<th>
   </Link>}
 </th>)
 
-const WordsTable = ({ words }: WordsTableProps): JSX.Element | null => {
-  return (
-    <div>
+const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
+  const words = useUnit($words)
 
+  useEffect(() => {
+    wordsUpdated(initWords)
+  }, [initWords])
+
+  return (
+    <div className={'max-w-full sm:max-w-2xl'}>
       <table className={clsx('table', { 'table-zebra': !isDevMode() })}>
         <thead>
         <tr>
-          <th>ID</th>
           <th>Русский</th>
           <th>Кыргызский</th>
           <th>Категория</th>
@@ -41,7 +47,6 @@ const WordsTable = ({ words }: WordsTableProps): JSX.Element | null => {
         <tbody>
         {words.map((tag) => (
           <tr key={tag.id} className={clsx({ 'cursor-pointer hover:bg-gray-800': isDevMode() })}>
-            <TableRow id={tag.id} value={tag.id}/>
             <TableRow id={tag.id} value={tag.ru}/>
             <TableRow id={tag.id} value={tag.kg}/>
             <TableRow id={tag.id} value={tag.tagname}/>

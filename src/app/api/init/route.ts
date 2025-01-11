@@ -1,11 +1,15 @@
 /**
+ * @author Markitanov Vadim
+ * @since 11.01.2025
+ */
+/**
  * Страница пересоздания таблиц и их заполнение.
  *
  * @author Markitanov Vadim
  * @since 10.01.2025
  */
 import { db } from '@vercel/postgres'
-import { tags, words } from '@/app/lib/data'
+import { tags, words } from '@/app/lib/model/data'
 import { WordEntity } from '@/app/lib/model/word'
 
 const client = await db.connect()
@@ -42,8 +46,8 @@ async function initWords () {
 
   await Promise.all(
     words.map(async (word:WordEntity) => {
-      await client.sql`INSERT INTO words (id, ru, kg, tag)
-                       VALUES (${word.id}, ${word.ru}, ${word.kg}, ${word.tag});`
+      await client.sql`INSERT INTO words (ru, kg, tag)
+                       VALUES (${word.ru}, ${word.kg}, ${word.tag});`
     })
   )
 }
