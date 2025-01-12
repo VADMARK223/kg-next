@@ -7,6 +7,8 @@ import { Tag } from '@/app/lib/model/entity/Tag'
 import { Word, WordEntity } from '@/app/lib/model/word'
 import { TAGS, WORDS } from '@/app/lib/model/data'
 
+export const IS_REMOTE_MODE = false
+
 export async function fetchTags (): Promise<Tag[]> {
   const data = await sql<Tag>`SELECT *
                               FROM tags
@@ -56,4 +58,15 @@ export const fetchWordsLocal = (tagId?: number): Word[] => {
   })
 
   return result
+}
+
+export const fetchWordsByTag = async (tagId: number): Promise<Word[]> => {
+  const response = await fetch(`/api/word`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ tagId: tagId })
+  })
+  return await response.json() as Word[]
 }

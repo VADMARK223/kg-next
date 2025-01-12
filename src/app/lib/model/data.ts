@@ -16,7 +16,8 @@ const TAGS: Tag[] = [
   { id: 6, name: 'Животные', color: '#FB923C' },
   { id: 7, name: 'Строения', color: '#6B7280' },
   { id: 8, name: 'Природа', color: '#1E3A8A' },
-  { id: 9, name: 'Еда', color: '#9A3412' }
+  { id: 9, name: 'Еда и напитки', color: '#9A3412' },
+  { id: 10, name: 'Человеческое тело', color: '#F5D7B6' }
 ]
 
 const createWord = (ru: string, kg: string, tag: number): WordEntity => {
@@ -82,22 +83,38 @@ const WORDS: WordEntity[] = [
   { id: 0, ru: 'Горох', kg: 'Буурчак', tag: 4 },
   { id: 0, ru: 'Огурец', kg: 'Бадыраң', tag: 4 },
   // Дом
-  { id: 0, ru: 'Дверь', kg: 'Эшик', tag: 5 },
-  { id: 0, ru: 'Окно', kg: 'Терезе', tag: 5 },
+  createWord('Дом', 'үй', 5),
+  createWord('Дверь', 'Эшик', 5),
+  createWord('Окно', 'Терезе', 5),
   createWord('Ложка', 'Кашык', 5),
   createWord('Нож', 'Бычак', 5),
   // Животные
-  { id: 0, ru: 'Осёл', kg: 'Эшек', tag: 6 },
-  { id: 0, ru: 'Свинья', kg: 'Чочко', tag: 6 },
+  createWord('Кошка', 'Мышык', 6),
+  createWord('Собака', 'Ит', 6),
+  createWord('Корова', 'Уй', 6),
+  createWord('Осёл', 'Эшек', 6),
+  createWord('Свинья', 'Чочко', 6),
+  createWord('Поросёнок', 'Торпой', 6),
+  createWord('Слон', 'Пил', 6),
   // Строения
-  { id: 0, ru: 'Аптека', kg: 'Дарыкана', tag: 7 },
-  { id: 0, ru: 'Типография', kg: 'Басманкана', tag: 7 },
+  createWord('Магазин', 'Дүкөн', 7),
+  createWord('Аптека', 'Дарыкана', 7),
+  createWord('Школа', 'Мектеп', 7),
+  createWord('Больница', 'Оорукана', 7),
+  createWord('Гостиница', 'Мейманкана', 7),
+  createWord('Типография', 'Басманкана', 7),
   // Природа
   createWord('Море', 'Деңиз', 8),
   createWord('Гора', 'Тоо', 8),
-  // Еда
+  createWord('Лес', 'Токой', 8),
+  createWord('Озеро', 'Көл', 8),
+  // Еда и напитки
+  createWord('Мясо', 'Эт', 9),
   createWord('Хлеб', 'Нан', 9),
   createWord('Соль', 'Туз', 9),
+  // Человеческое тело
+  createWord('Палец', 'Бармак', 10),
+  createWord('Рука', 'Кол', 10)
 ]
 
 export { TAGS, WORDS }

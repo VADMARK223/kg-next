@@ -1,5 +1,4 @@
-import { fetchWords, fetchWordsLocal } from '@/app/api/api'
-import { IS_REMOTE_MODE } from '@/app/lib/utils'
+import { fetchWords, fetchWordsLocal, IS_REMOTE_MODE } from '@/app/api/api'
 
 /**
  * @author Markitanov Vadim

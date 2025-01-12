@@ -5,15 +5,14 @@
  * @since 10.01.2025
  */
 'use client'
-import { JSX, useEffect, useState } from 'react'
-import {use} from 'react'
+import { JSX, use, useEffect, useState } from 'react'
 
 interface WordPageProps {
-  params: Promise<{id: string}>
+  params: Promise<{ id: string }>
 }
 
 const WordPage = ({ params }: WordPageProps): JSX.Element => {
-  const {id} = use(params)
+  const { id } = use(params)
   const [wordId, setWordId] = useState('')
 
   useEffect(() => {
