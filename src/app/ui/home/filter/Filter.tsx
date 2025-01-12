@@ -12,6 +12,7 @@ import { Tag } from '@/app/lib/model/entity/Tag'
 import { Word } from '@/app/lib/model/word'
 import { $words, wordsUpdated } from '@/app/lib/effector/word'
 import { useUnit } from 'effector-react'
+import { IS_REMOTE_MODE } from '@/app/lib/utils'
 
 interface FilterProps {
   tags: Tag[]
@@ -57,6 +58,7 @@ const Filter = ({ tags }: FilterProps): JSX.Element => {
         Применить
       </button>
       <ValueViewer name={'Слов'} value={words.length}/>
+      <ValueViewer name={'Режим'} value={IS_REMOTE_MODE ? 'Remote' : 'Local'}/>
     </div>
   )
 }
