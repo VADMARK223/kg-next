@@ -7,7 +7,7 @@
 import { Tag } from '@/app/lib/model/entity/Tag'
 import { WordEntity } from '@/app/lib/model/word'
 
-const tags: Tag[] = [
+const TAGS: Tag[] = [
   { id: 1, name: 'Числительные', color: '#808080' },
   { id: 2, name: 'Цвета', color: '#F59E0B' },
   { id: 3, name: 'Фрукты', color: '#4CAF50' },
@@ -15,10 +15,14 @@ const tags: Tag[] = [
   { id: 5, name: 'Дом', color: '#D8B384' },
   { id: 6, name: 'Животные', color: '#FB923C' },
   { id: 7, name: 'Строения', color: '#6B7280' },
-  { id: 8, name: 'Природа', color: '#1E3A8A' },
+  { id: 8, name: 'Природа', color: '#1E3A8A' }
 ]
 
-const words: WordEntity[] = [
+const createWord = (ru: string, kg: string, tag: number): WordEntity => {
+  return { id: 0, ru: ru, kg: kg, tag: tag }
+}
+
+const WORDS: WordEntity[] = [
   // Числительные
   { id: 0, ru: 'Ноль', kg: 'Нөл', tag: 1 },
   { id: 0, ru: 'Один', kg: 'Бир', tag: 1 },
@@ -84,8 +88,10 @@ const words: WordEntity[] = [
   { id: 0, ru: 'Свинья', kg: 'Чочко', tag: 6 },
   // Строения
   { id: 0, ru: 'Аптека', kg: 'Дарыкана', tag: 7 },
+  { id: 0, ru: 'Типография', kg: 'Басманкана', tag: 7 },
   // Природа
-  { id: 0, ru: 'Море', kg: 'Деңиз', tag: 8 }
+  createWord('Море', 'Деңиз', 8),
+  createWord('Гора', 'Тоо', 8)
 ]
 
-export { tags, words }
+export { TAGS, WORDS }

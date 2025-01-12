@@ -12,7 +12,7 @@ interface WordEntity {
 
 interface Word extends Omit<WordEntity, 'tag'> {
   tagname: string
-  color: string
+  color?: string
 }
 
 export type { WordEntity, Word }

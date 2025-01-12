@@ -4,12 +4,18 @@
  */
 import { db, sql } from '@vercel/postgres'
 import { Tag } from '@/app/lib/model/entity/Tag'
-import { Word } from '@/app/lib/model/word'
+import { Word, WordEntity } from '@/app/lib/model/word'
+import { TAGS, WORDS } from '@/app/lib/model/data'
 
 export async function fetchTags (): Promise<Tag[]> {
   const data = await sql<Tag>`SELECT *
-                              FROM tags ORDER BY id`
+                              FROM tags
+                              ORDER BY id`
   return data.rows
+}
+
+export const fetchTagsLocal = (): Tag[] => {
+  return TAGS
 }
 
 export async function fetchWords (tagId ?: number): Promise<Word[]> {
@@ -26,4 +32,28 @@ export async function fetchWords (tagId ?: number): Promise<Word[]> {
 
   const data = await db.query<Word>(query, params) // Предполагаем, что `db.query` — это метод вашей SQL-библиотеки
   return data.rows
+}
+
+export const fetchWordsLocal = (tagId?: number): Word[] => {
+  const result: Word[] = []
+  let id = 0
+  WORDS.forEach((word: WordEntity) => {
+    if (tagId && word.tag !== tagId) {
+      return
+    }
+
+    const tag = TAGS.find(tag => tag.id === word.tag)
+    if (tag === undefined) {
+      throw new Error(`У слова '${word.ru}' не найден тег '${word.tag}'!`)
+    }
+    result.push({
+      id: id++,
+      ru: word.ru,
+      kg: word.kg,
+      tagname: tag.name,
+      color: tag.color
+    })
+  })
+
+  return result
 }

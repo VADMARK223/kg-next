@@ -9,7 +9,7 @@
  * @since 10.01.2025
  */
 import { db } from '@vercel/postgres'
-import { tags, words } from '@/app/lib/model/data'
+import { TAGS, WORDS } from '@/app/lib/model/data'
 import { WordEntity } from '@/app/lib/model/word'
 
 const client = await db.connect()
@@ -26,7 +26,7 @@ async function initTags () {
       );`
 
   await Promise.all(
-    tags.map(async (tag) => {
+    TAGS.map(async (tag) => {
       await client.sql`INSERT INTO tags (id, name, color)
                        VALUES (${tag.id}, ${tag.name}, ${tag.color});`
     })
@@ -45,7 +45,7 @@ async function initWords () {
       );`
 
   await Promise.all(
-    words.map(async (word:WordEntity) => {
+    WORDS.map(async (word:WordEntity) => {
       await client.sql`INSERT INTO words (ru, kg, tag)
                        VALUES (${word.ru}, ${word.kg}, ${word.tag});`
     })
