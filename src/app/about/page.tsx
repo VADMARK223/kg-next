@@ -6,11 +6,13 @@
  */
 import { JSX } from 'react'
 import ValueViewer from '@/app/ui/common/ValueViewer'
-import { APP_VERSION } from '@/app/lib/utils'
+import { APP_VERSION, isDevMode } from '@/app/lib/utils'
+import { IS_REMOTE_MODE } from '@/app/api/api'
 
 const Page = (): JSX.Element => {
   return (
     <div className={'flex flex-col'}>
+      <ValueViewer name={'Версия'} value={APP_VERSION}/>
       <ValueViewer name={'Инстаграм автора'} value={
         <span>
         <a
@@ -53,7 +55,7 @@ const Page = (): JSX.Element => {
         </a>
       </span>
       }/>
-      <ValueViewer name={'Версия'} value={APP_VERSION}/>
+      {isDevMode() ? <ValueViewer name={'Режим'} value={IS_REMOTE_MODE ? 'Remote' : 'Local'}/> : null}
     </div>
   )
 }

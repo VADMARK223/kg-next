@@ -28,6 +28,8 @@ const createWord = (ru: string, kg: string, tag: number): WordEntity => {
 
 const WORDS: WordEntity[] = [
   // Разное
+  createWord('Работа', 'Иш, жумуш', 1),
+  createWord('Внутренний', 'Ички', 1),
   createWord('Входить', 'Кирүү', 1),
   createWord('Выходить', 'Чыгуу', 1),
   createWord('Играть', 'Ойноо', 1),
@@ -106,6 +108,7 @@ const WORDS: WordEntity[] = [
   createWord('Слон', 'Пил', 7),
   createWord('Лев', 'Арстан', 7),
   createWord('Тигр', 'Жолборс', 7),
+  createWord('Верблюд', 'Төө', 7),
   // Строения
   createWord('Магазин', 'Дүкөн', 8),
   createWord('Аптека', 'Дарыкана', 8),
@@ -133,6 +136,8 @@ const WORDS: WordEntity[] = [
   createWord('Рука', 'Кол', 11),
   createWord('Волос', 'Чач', 11),
   // Материал
+  createWord('Золото', 'Алтын', 12),
+  createWord('Серебро', 'Күмүш', 12),
   createWord('Уголь', 'Көмүр', 12),
   createWord('Железо', 'Темир', 12),
   createWord('Песок', 'Кум', 12),
