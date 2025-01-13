@@ -9,15 +9,45 @@ import { TAGS, WORDS } from '@/app/lib/model/data'
 
 export const IS_REMOTE_MODE = false
 
-export async function fetchTags (): Promise<Tag[]> {
+// Tags
+export const fetchTagsCommon = async () => {
+  return IS_REMOTE_MODE ? await fetchTags() : fetchTagsLocal()
+}
+
+export const fetchTagsByIdCommon = async (id:number) => {
+  return IS_REMOTE_MODE ? await fetchTagsById(id) : fetchTagsByIdLocal(id)
+}
+
+async function fetchTagsById (id:number): Promise<Tag> {
+  const data = await sql<Tag>`SELECT *
+                              FROM tags
+                              WHERE tags.id=${id}`
+  return data.rows[0]
+}
+
+export const fetchTagsByIdLocal = (id: number): Tag => {
+    const tag = TAGS.find(tag => tag.id === id)
+    if (tag === undefined) {
+      throw new Error(`Не найден тег '${id}'!`)
+    }
+
+  return tag
+}
+
+async function fetchTags (): Promise<Tag[]> {
   const data = await sql<Tag>`SELECT *
                               FROM tags
                               ORDER BY id`
   return data.rows
 }
 
-export const fetchTagsLocal = (): Tag[] => {
+const fetchTagsLocal = (): Tag[] => {
   return TAGS
+}
+
+// Words
+export const fetchWordsCommon = async () => {
+  return IS_REMOTE_MODE ? await fetchWords() : fetchWordsLocal()
 }
 
 export async function fetchWords (tagId ?: number): Promise<Word[]> {

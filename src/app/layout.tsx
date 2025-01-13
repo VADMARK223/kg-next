@@ -4,7 +4,7 @@ import './ui/globals.css'
 import Header from '@/app/ui/home/header/Header'
 
 export const metadata: Metadata = {
-  title: 'Изучение кыргызского языка',
+  title: 'Портал кыргызского языка',
   description: 'Сайт для изучения кыргызского языка'
 }
 
