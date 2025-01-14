@@ -14,6 +14,7 @@ interface QuizPageProps {
 }
 
 // Случайное перемешивание массива
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5)
 
 const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
