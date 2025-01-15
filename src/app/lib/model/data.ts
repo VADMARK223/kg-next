@@ -20,6 +20,7 @@ const TAGS: Tag[] = [
   { id: 10, name: 'Еда и напитки', color: '#9A3412' },
   { id: 11, name: 'Человеческое тело', color: '#F5D7B6' },
   { id: 12, name: 'Материал', color: '#2C3E50' },
+  { id: 13, name: 'Птицы', color: '#87CEEB' },
 ]
 
 const createWord = (ru: string, kg: string, tag: number): WordEntity => {
@@ -28,14 +29,16 @@ const createWord = (ru: string, kg: string, tag: number): WordEntity => {
 
 const WORDS: WordEntity[] = [
   // Разное
-  createWord('Большой>', 'Чоң', 1),
-  createWord('Маленький>', 'Кичине', 1),
+  createWord('Большой', 'Чоң', 1),
+  createWord('Маленький', 'Кичине', 1),
   createWord('Работа', 'Иш, жумуш', 1),
   createWord('Внутренний', 'Ички', 1),
   createWord('Входить', 'Кирүү', 1),
   createWord('Выходить', 'Чыгуу', 1),
   createWord('Играть', 'Ойноо', 1),
   createWord('Игра', 'Оюн', 1),
+  createWord('Начальник, Сумка', 'Баштык', 1),
+  createWord('Яд', 'Уу', 1),
   // Числительные
   createWord('Ноль', 'Нөл', 2),
   { id: 0, ru: 'Один', kg: 'Бир', tag: 2 },
@@ -105,6 +108,7 @@ const WORDS: WordEntity[] = [
   createWord('Собака', 'Ит', 7),
   createWord('Корова', 'Уй', 7),
   createWord('Осёл', 'Эшек', 7),
+  createWord('Олень', 'Бугу', 7),
   createWord('Свинья', 'Чочко', 7),
   createWord('Поросёнок', 'Торпой', 7),
   createWord('Слон', 'Пил', 7),
@@ -131,6 +135,7 @@ const WORDS: WordEntity[] = [
   createWord('Мясо', 'Эт', 10),
   createWord('Хлеб', 'Нан', 10),
   createWord('Соль', 'Туз', 10),
+  createWord('Гриб', 'Козу карын', 10),
   // Человеческое тело
   createWord('Голова', 'Баш', 11),
   createWord('Глаз', 'Көз', 11),
@@ -144,6 +149,10 @@ const WORDS: WordEntity[] = [
   createWord('Железо', 'Темир', 12),
   createWord('Песок', 'Кум', 12),
   createWord('Древесина', 'Жыгач', 12),
+  // Птицы
+  createWord('Курица', 'Тоок', 13),
+  createWord('Ворона', 'Карга', 13),
+  createWord('Орёл', 'Бүркүт', 13),
 ]
 
 export { TAGS, WORDS }

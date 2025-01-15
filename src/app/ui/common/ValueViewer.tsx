@@ -8,7 +8,7 @@ import { JSX } from 'react'
 
 interface ValueViewerProps {
   name: string
-  value: string | number | JSX.Element | null
+  value?: string | number | JSX.Element | null
 }
 
 const ValueViewer = ({ name, value }: ValueViewerProps): JSX.Element => {
