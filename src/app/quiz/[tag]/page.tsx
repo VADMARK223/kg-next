@@ -13,6 +13,12 @@ interface QuizPageProps {
   params: Promise<{ tag: string }>
 }
 
+export interface History {
+  question: string,
+  correct: string,
+  answer: string,
+}
+
 // Случайное перемешивание массива
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5)
@@ -25,7 +31,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   const [words, setWords] = useState<Word[]>([])
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([])
   const [currentQuestion, setCurrentQuestion] = useState<Word | null>(null)
-  const [history, setHistory] = useState<{ question: string; correct: string; answer: string }[]>([]) // История ответов
+  const [history, setHistory] = useState<History[]>([]) // История ответов
 
   const totalSteps = 5
 
@@ -83,9 +89,46 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       setCurrentStep(currentStep + 1)
       setCurrentQuestion(generateQuestion())
     } else {
-      alert(`Опрос завершён! Ваш результат: ${score + (isCorrect ? 1 : 0)}/${totalSteps}`)
-      showResults()
+      showResultsNew(`Опрос завершён! Ваш результат: ${score + (isCorrect ? 1 : 0)}/${totalSteps}`)
     }
+  }
+
+  const showResultsNew = (title:string) => {
+    const overlay = document.createElement('div')
+    overlay.className = 'quiz-overlay'
+
+    const alertBox = document.createElement('div')
+    alertBox.className = 'quiz-alert'
+
+    const messageParagraph = document.createElement('p')
+    messageParagraph.className = 'message'
+
+    const resultMessage = `<b>${title}</b><br>` + history
+      .map(
+        (entry, index) =>
+          `<span style={{textColor:'red'}}>Вопрос #${index + 1} как переводится: "${entry.question}"<br>Ваш ответ: ${entry.answer}<br>Правильный ответ: ${entry.correct}</span>`
+      )
+      .join('<br><br>')
+
+    messageParagraph.innerHTML = resultMessage
+
+    const closeButton = document.createElement('button')
+    closeButton.textContent = 'OK'
+    closeButton.onclick = () => {
+      document.body.removeChild(overlay)
+      document.body.removeChild(alertBox)
+    }
+    alertBox.appendChild(messageParagraph)
+    alertBox.appendChild(closeButton)
+
+    document.body.appendChild(overlay)
+    document.body.appendChild(alertBox)
+
+    // Сброс состояния для нового опроса
+    setCurrentStep(0)
+    setScore(0)
+    setHistory([])
+    setCurrentQuestion(generateQuestion())
   }
 
   const showResults = () => {

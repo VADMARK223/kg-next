@@ -21,7 +21,6 @@ interface FilterProps {
 const Filter = ({ tags }: FilterProps): JSX.Element => {
   const words = useUnit($words)
   const [selectedTag, setSelectedTag] = useState<number>(0)
-  // const [applyBtnDisabled, setApplyBtnDisabled] = useState<boolean>(true)
 
   const handlerApply = async (tagId: number/*selectedData: SelectedData*/) => {
     const newWords = IS_REMOTE_MODE ? await fetchWordsByTag(tagId) : fetchWordsLocal(tagId)
