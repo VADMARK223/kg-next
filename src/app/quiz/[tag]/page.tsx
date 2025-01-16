@@ -93,7 +93,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     }
   }
 
-  const showResultsNew = (title:string) => {
+  const showResultsNew = (title: string) => {
     const overlay = document.createElement('div')
     overlay.className = 'quiz-overlay'
 
@@ -103,10 +103,14 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     const messageParagraph = document.createElement('p')
     messageParagraph.className = 'message'
 
+    const isCorrect = (entry: History): boolean => {
+      return entry.answer === entry.correct
+    }
+
     const resultMessage = `<b>${title}</b><br>` + history
       .map(
         (entry, index) =>
-          `<span style={{textColor:'red'}}>Вопрос #${index + 1} как переводится: "${entry.question}"<br>Ваш ответ: ${entry.answer}<br>Правильный ответ: ${entry.correct}</span>`
+          `<span class="${isCorrect(entry) ? 'green-text' : 'red-text'}">Вопрос #${index + 1} как переводится: "${entry.question}"<br>Ваш ответ: ${entry.answer}<br>Правильный ответ: ${entry.correct}</span>`
       )
       .join('<br><br>')
 

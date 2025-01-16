@@ -40,7 +40,14 @@ body {
 
 .quiz-alert .message {
     color: black;
-    font-size: 18px;
+    font-size: 15px;
+}
+
+.red-text {
+    color: red;
+}
+.green-text {
+    color: green;
 }
 
 .quiz-alert button {
