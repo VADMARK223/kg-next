@@ -39,9 +39,10 @@ const WORDS: WordEntity[] = [
   createWord('Игра', 'Оюн', 1),
   createWord('Начальник, Сумка', 'Баштык', 1),
   createWord('Яд', 'Уу', 1),
+  createWord('Дорога', 'Жол', 1),
   // Числительные
   createWord('Ноль', 'Нөл', 2),
-  { id: 0, ru: 'Один', kg: 'Бир', tag: 2 },
+  createWord('Один', 'Бир', 2),
   { id: 0, ru: 'Два', kg: 'Эки', tag: 2 },
   { id: 0, ru: 'Три', kg: 'Үч', tag: 2 },
   { id: 0, ru: 'Четыре', kg: 'Төрт', tag: 2 },
@@ -90,12 +91,12 @@ const WORDS: WordEntity[] = [
   { id: 0, ru: 'Абрикос', kg: 'Өрүк', tag: 4 },
   { id: 0, ru: 'Персик', kg: 'Шабдалы', tag: 4 },
   // Овощи
-  { id: 0, ru: 'Картофель', kg: 'Картөшкө', tag: 5 },
-  { id: 0, ru: 'Морковь', kg: 'Сабиз', tag: 5 },
-  { id: 0, ru: 'Лук', kg: 'Пияз', tag: 5 },
-  { id: 0, ru: 'Чеснок', kg: 'Сарымсак', tag: 5 },
-  { id: 0, ru: 'Горох', kg: 'Буурчак', tag: 5 },
-  { id: 0, ru: 'Огурец', kg: 'Бадыраң', tag: 5 },
+  createWord('Картофель', 'Картөшкө', 5),
+  createWord('Морковь', 'Сабиз', 5),
+  createWord('Лук', 'Пияз', 5),
+  createWord('Чеснок', 'Сарымсак', 5),
+  createWord('Горох', 'Буурчак', 5),
+  createWord('Огурец', 'Бадыраң', 5),
   // Дом
   createWord('Дом', 'Үй', 6),
   createWord('Этаж', 'Кабат', 6),
@@ -107,6 +108,7 @@ const WORDS: WordEntity[] = [
   createWord('Кошка', 'Мышык', 7),
   createWord('Собака', 'Ит', 7),
   createWord('Корова', 'Уй', 7),
+  createWord('Медведь', 'Аюу', 7),
   createWord('Осёл', 'Эшек', 7),
   createWord('Олень', 'Бугу', 7),
   createWord('Свинья', 'Чочко', 7),
@@ -135,6 +137,7 @@ const WORDS: WordEntity[] = [
   createWord('Мясо', 'Эт', 10),
   createWord('Хлеб', 'Нан', 10),
   createWord('Соль', 'Туз', 10),
+  createWord('Кукуруза', 'Жүгөрү', 10),
   createWord('Гриб', 'Козу карын', 10),
   // Человеческое тело
   createWord('Голова', 'Баш', 11),
@@ -151,6 +154,7 @@ const WORDS: WordEntity[] = [
   createWord('Древесина', 'Жыгач', 12),
   // Птицы
   createWord('Курица', 'Тоок', 13),
+  createWord('Голубь', 'Көгүчкөн', 13),
   createWord('Ворона', 'Карга', 13),
   createWord('Орёл', 'Бүркүт', 13),
 ]

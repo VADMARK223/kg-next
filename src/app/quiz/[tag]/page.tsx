@@ -83,9 +83,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       setCurrentStep(currentStep + 1)
       setCurrentQuestion(generateQuestion())
     } else {
-      // Отобразить результаты
       alert(`Опрос завершён! Ваш результат: ${score + (isCorrect ? 1 : 0)}/${totalSteps}`)
-      console.log('История ответов:', history) // Временно для отладки
       showResults()
     }
   }
