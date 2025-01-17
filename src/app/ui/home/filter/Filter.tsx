@@ -24,7 +24,7 @@ const Filter = ({ tags }: FilterProps): JSX.Element => {
   const [selectedTag, setSelectedTag] = useState<number>(0)
   const searchString = useUnit($searchString)
 
-  const handlerApply = async (tagId: number/*selectedData: SelectedData*/) => {
+  const handlerApply = async (tagId: number) => {
     const newWords = IS_REMOTE_MODE ? await fetchWordsByTag(tagId) : fetchWordsLocal(tagId)
     wordsUpdated(newWords)
   }

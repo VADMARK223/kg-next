@@ -51,8 +51,8 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
         <tr>
           <th>Русский</th>
           <th>Кыргызский</th>
-          <th>Категория</th>
           <th>Английский</th>
+          <th>Категория</th>
         </tr>
         </thead>
         <tbody>
@@ -60,8 +60,8 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
           <tr key={word.id} className={clsx({ 'cursor-pointer hover:bg-gray-800': isDevMode() })}>
             <TableRow id={word.id} value={word.ru} word={word}/>
             <TableRow id={word.id} value={word.kg} word={word}/>
-            <TableRow id={word.id} value={word.tagname} word={word} needColored={true}/>
             <TableRow id={word.id} value={word.en} word={word}/>
+            <TableRow id={word.id} value={word.tagname} word={word} needColored={true}/>
           </tr>
         ))}
         </tbody>
