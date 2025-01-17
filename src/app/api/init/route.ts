@@ -41,6 +41,7 @@ async function initWords () {
           id  SERIAL PRIMARY KEY,
           ru  VARCHAR(20) NOT NULL,
           kg  VARCHAR(40) NOT NULL,
+          en  VARCHAR(30),
           tag INTEGER     NOT NULL REFERENCES tags (id)
       );`
 

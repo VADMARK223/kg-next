@@ -14,22 +14,22 @@ export const fetchTagsCommon = async () => {
   return IS_REMOTE_MODE ? await fetchTags() : fetchTagsLocal()
 }
 
-export const fetchTagsByIdCommon = async (id:number) => {
+export const fetchTagsByIdCommon = async (id: number) => {
   return IS_REMOTE_MODE ? await fetchTagsById(id) : fetchTagsByIdLocal(id)
 }
 
-async function fetchTagsById (id:number): Promise<Tag> {
+async function fetchTagsById (id: number): Promise<Tag> {
   const data = await sql<Tag>`SELECT *
                               FROM tags
-                              WHERE tags.id=${id}`
+                              WHERE tags.id = ${id}`
   return data.rows[0]
 }
 
 export const fetchTagsByIdLocal = (id: number): Tag => {
-    const tag = TAGS.find(tag => tag.id === id)
-    if (tag === undefined) {
-      throw new Error(`Не найден тег '${id}'!`)
-    }
+  const tag = TAGS.find(tag => tag.id === id)
+  if (tag === undefined) {
+    throw new Error(`Не найден тег '${id}'!`)
+  }
 
   return tag
 }
@@ -82,6 +82,7 @@ export const fetchWordsLocal = (tagId?: number): Word[] => {
       id: id++,
       ru: word.ru,
       kg: word.kg,
+      en: word.en,
       tagname: tag.name,
       color: tag.color
     })

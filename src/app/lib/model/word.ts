@@ -7,6 +7,7 @@ interface WordEntity {
   id: number
   ru: string
   kg: string
+  en?: string
   tag: number
 }
 

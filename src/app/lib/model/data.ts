@@ -23,17 +23,17 @@ const TAGS: Tag[] = [
   { id: 13, name: 'Птицы', color: '#87CEEB' },
   { id: 14, name: 'Город и село', color: '#8B4513' },
   { id: 15, name: 'Профессии', color: '#FFD700' },
-  { id: 16, name: 'Одежда', color: '#FFC0CB' },
+  { id: 16, name: 'Одежда', color: '#FFC0CB' }
 ]
 
-const createWord = (ru: string, kg: string, tag: number): WordEntity => {
-  return { id: 0, ru: ru, kg: kg, tag: tag }
+const createWord = (ru: string, kg: string, tag: number, en?: string): WordEntity => {
+  return { id: 0, ru: ru, kg: kg, tag: tag, en: en }
 }
 
 const WORDS: WordEntity[] = [
   // Разное
-  createWord('Большой', 'Чоң', 1),
-  createWord('Маленький', 'Кичине', 1),
+  createWord('Большой', 'Чоң', 1, 'Big'),
+  createWord('Маленький', 'Кичине', 1, 'Small'),
   createWord('Работа', 'Иш, жумуш', 1),
   createWord('Внутренний', 'Ички', 1),
   createWord('Входить', 'Кирүү', 1),
@@ -215,7 +215,7 @@ const WORDS: WordEntity[] = [
   createWord('Одежда', 'Кийим', 16),
   createWord('Обувь', 'Бут кийим', 16),
   createWord('Рубашка', 'Көйнөк', 16),
-  createWord('Шуба', 'Тон', 16),
+  createWord('Шуба', 'Тон', 16)
 ]
 
 export { TAGS, WORDS }

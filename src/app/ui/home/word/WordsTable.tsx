@@ -19,7 +19,7 @@ interface WordsTableProps {
 
 interface TableRowProps {
   id: number
-  value: number | string
+  value?: number | string
   word: Word
   needColored?: boolean
 }
@@ -51,6 +51,7 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
           <th>Русский</th>
           <th>Кыргызский</th>
           <th>Категория</th>
+          <th>Английский</th>
         </tr>
         </thead>
         <tbody>
@@ -59,6 +60,7 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
             <TableRow id={word.id} value={word.ru} word={word}/>
             <TableRow id={word.id} value={word.kg} word={word}/>
             <TableRow id={word.id} value={word.tagname} word={word} needColored={true}/>
+            <TableRow id={word.id} value={word.en} word={word}/>
           </tr>
         ))}
         </tbody>
