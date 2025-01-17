@@ -8,9 +8,10 @@
 import { JSX, use, useEffect, useState } from 'react'
 import { fetchTagsByIdCommon, fetchWordsLocal } from '@/app/api/api'
 import { Word } from '@/app/lib/model/word'
+import { LANGUAGE_MODE } from '@/app/ui/home/filter/Filter'
 
 interface QuizPageProps {
-  params: Promise<{ tag: string }>
+  params: Promise<{ tag: string, mode: string }>
 }
 
 export interface History {
@@ -28,7 +29,7 @@ const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5)
 const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   const [currentStep, setCurrentStep] = useState(0)
   const [score, setScore] = useState(0)
-  const { tag } = use(params)
+  const { tag, mode } = use(params)
 
   const [tagName, setTagName] = useState<string>('')
   const [words, setWords] = useState<Word[]>([])
@@ -60,12 +61,18 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
 
     const currentWord = words[Math.floor(Math.random() * words.length)]
     const incorrectAnswers = shuffleArray(
-      words.filter((word) => word.kg !== currentWord.kg)
+      words.filter((word) => {
+        if (mode === LANGUAGE_MODE.KG) {
+          return (word.kg !== currentWord.kg)
+        } else {
+          return (word.en !== currentWord.en)
+        }
+      })
     )
       .slice(0, 3)
-      .map((word) => word.kg)
+      .map((word) => mode === LANGUAGE_MODE.KG ? word.kg : word.en)
 
-    const options = shuffleArray([currentWord.kg, ...incorrectAnswers])
+    const options = shuffleArray([mode === LANGUAGE_MODE.KG ? currentWord.kg : currentWord.en, ...incorrectAnswers])
     setShuffledOptions(options)
     return currentWord
   }
@@ -81,7 +88,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       ...prev,
       {
         question: currentQuestion.ru,
-        correct: currentQuestion.kg,
+        correct: mode === LANGUAGE_MODE.KG ? currentQuestion.kg : currentQuestion.en,
         answer: answer
       }
     ])
@@ -138,7 +145,8 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
 
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Опрос по категории: <span>{`"${tagName}".`}</span></h1>
+      <h1>Опрос по категории: <span>{`"${tagName}".`}</span> Режим: {mode === LANGUAGE_MODE.KG ? 'Кыргызский' : 'Английский'}
+      </h1>
       <h1>Вопрос {currentStep + 1} из {TOTAL_STEPS}.</h1>
       <h2>Как перевести слово: <span className={'font-bold underline'}>{currentQuestion?.ru}</span>?</h2>
       <div>
@@ -163,14 +171,3 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
 }
 
 export default QuizPage
-
-interface ResultItemProps {
-  index: number,
-  entry: History
-}
-
-const ResultItem = ({ index, entry }: ResultItemProps): JSX.Element => {
-  return (
-    <span
-      className="${isCorrect(entry) ? 'green-text' : 'red-text'}">${index + 1}) Как переводится: ${entry.question}?<br/>Ваш ответ: ${entry.answer}<br/>Правильный ответ: ${entry.correct}</span>)
-}

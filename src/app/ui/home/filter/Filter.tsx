@@ -19,6 +19,11 @@ interface FilterProps {
   tags: Tag[]
 }
 
+export const enum LANGUAGE_MODE {
+  KG = 'kg',
+  EN = 'en'
+}
+
 const Filter = ({ tags }: FilterProps): JSX.Element => {
   const words = useUnit($words)
   const [selectedTag, setSelectedTag] = useState<number>(0)
@@ -71,19 +76,20 @@ const Filter = ({ tags }: FilterProps): JSX.Element => {
       }}/>
       <Link
         href={{
-          pathname: `/quiz/${selectedTag}`,
-          query: { country: 'kg' }
+          pathname: `/quiz/${LANGUAGE_MODE.KG}/${selectedTag}`
         }}>
         <button className={'btn btn-primary'}>
-          Учить <Image src="/kg.png" alt="Kyrgyzstan" width={40} height={24} priority/>
+          Учить <Image src={`/${LANGUAGE_MODE.KG}.png`} alt="Kyrgyzstan" width={40} height={24} priority/>
         </button>
       </Link>
-      {/*<Link
-        href={{ pathname: `/quiz/${selectedTag}`, query: { country: 'gb' } }}>
+      <Link
+        href={{
+          pathname: `/quiz/${LANGUAGE_MODE.EN}/${selectedTag}`
+        }}>
         <button className={'btn btn-primary'}>
-          Учить Учить <Image src="/gb.png" alt="Great Britain" width={20} height={14} priority/>
+          Учить <Image src={`/${LANGUAGE_MODE.EN}.png`} alt="Great Britain" width={40} height={24} priority/>
         </button>
-      </Link>*/}
+      </Link>
       <ValueViewer name={'Слов'} value={words.length}/>
 
     </div>

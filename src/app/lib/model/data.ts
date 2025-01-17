@@ -71,6 +71,12 @@ const WORDS: WordEntity[] = [
   createWord('Промежуток', 'Ара', 1, 'Interval'),
   createWord('Копейка', 'Тыйын', 1, 'Kopeyka'),
   createWord('Колокол', 'Коңгуроо', 1, 'Bell'),
+  createWord('Спасибо', 'Рахмат, ыракмат', 1, 'Thank you'),
+  createWord('Он', 'Ал', 1, 'He'),
+  createWord('Польза', 'Пайда', 1, 'Benefit'),
+  createWord('Любовь', 'Сүйүү', 1, 'Love'),
+  createWord('Лекарство', 'Дары', 1, 'Medicine'),
+  createWord('Пена', 'Көбүк', 1, 'Foam'),
   // Числительные
   createWord('Ноль', 'Нөл', 2, 'Zero'),
   createWord('Один', 'Бир', 2, 'One'),
@@ -83,6 +89,9 @@ const WORDS: WordEntity[] = [
   createWord('Восемь', 'Сегиз', 2, 'Eight'),
   createWord('Девять', 'Тогуз', 2, 'Nine'),
   createWord('Десять', 'Он', 2, 'Ten'),
+  createWord('Одиннадцать', 'Он бир', 2, 'Eleven'),
+  createWord('Пятнадцать', 'Он беш', 2, 'Fifteen'),
+  createWord('Шестнадцать', 'Он алты', 2, 'Sixteen'),
   createWord('Двадцать', 'Жыйырма', 2, 'Twenty'),
   createWord('Тридцать', 'Отуз', 2, 'Thirty'),
   createWord('Сорок', 'Кырк', 2, 'Forty'),
@@ -164,6 +173,7 @@ const WORDS: WordEntity[] = [
   createWord('Мыло', 'Самын', 6, 'Soap'),
   createWord('Стакан', 'Стакан', 6, 'Cup'),
   createWord('Зеркало', 'Күзгү', 6, 'Mirror'),
+  createWord('Тарелка', 'Табак', 6, 'Plate'),
   // Животные
   createWord('Животное', 'Айбан', 7, 'Animal'),
   createWord('Кошка', 'Мышык', 7, 'Cat'),
@@ -242,6 +252,7 @@ const WORDS: WordEntity[] = [
   createWord('Яд', 'Уу', 11, 'Poison'),
   createWord('Мёд', 'Бал', 11, 'Honey'),
   createWord('Суп', 'Сорпо', 11, 'Soup'),
+  createWord('Состав', 'Курама', 11, 'Compound'),
   // Человеческое тело
   createWord('Человек', 'Адам', 12, 'Human'),
   createWord('Голова', 'Баш', 12, 'Head'),
@@ -269,6 +280,7 @@ const WORDS: WordEntity[] = [
   createWord('Бумага', 'Кагаз', 13, 'Paper'),
   createWord('Стекло', 'Айнек', 13, 'Glass'),
   createWord('Табак', 'Тамеки', 13, 'Tobacco'),
+  createWord('Кирпич', 'Кыш', 13, 'Brick'),
   // Птицы
   createWord('Птицы', 'Куштар', 14, 'Birds'),
   createWord('Курица', 'Тоок', 14, 'Hen'),
