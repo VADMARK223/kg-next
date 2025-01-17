@@ -27,6 +27,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   const [currentStep, setCurrentStep] = useState(0)
   const [score, setScore] = useState(0)
   const { tag } = use(params)
+
   const [tagName, setTagName] = useState<string>('')
   const [words, setWords] = useState<Word[]>([])
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([])
@@ -165,10 +166,11 @@ export default QuizPage
 
 interface ResultItemProps {
   index: number,
-  entry:History
+  entry: History
 }
 
-const ResultItem = ({ index, entry }:ResultItemProps):JSX.Element =>{
+const ResultItem = ({ index, entry }: ResultItemProps): JSX.Element => {
   return (
-    <span className="${isCorrect(entry) ? 'green-text' : 'red-text'}">${index + 1}) Как переводится: ${entry.question}?<br/>Ваш ответ: ${entry.answer}<br/>Правильный ответ: ${entry.correct}</span>)
+    <span
+      className="${isCorrect(entry) ? 'green-text' : 'red-text'}">${index + 1}) Как переводится: ${entry.question}?<br/>Ваш ответ: ${entry.answer}<br/>Правильный ответ: ${entry.correct}</span>)
 }
