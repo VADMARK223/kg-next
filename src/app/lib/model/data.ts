@@ -26,7 +26,7 @@ const TAGS: Tag[] = [
   { id: 10, name: 'Природа', color: '#1E3A8A' },
   { id: 11, name: 'Еда и напитки', color: '#9A3412' },
   { id: 12, name: 'Человеческое тело', color: '#F5D7B6' },
-  { id: 13, name: 'Материал', color: '#2C3E50' },
+  { id: 13, name: 'Материалы и вещества', color: '#2C3E50' },
   { id: 14, name: 'Птицы', color: '#87CEEB' },
   { id: 15, name: 'Город и село', color: '#8B4513' },
   { id: 16, name: 'Профессии', color: '#FFD700' },
@@ -257,7 +257,9 @@ const WORDS: WordEntity[] = [
   createWord('Нога', 'Бут', 12, 'Leg'),
   createWord('Внутренность', 'Ич', 12, 'Interior'),
   createWord('Борода', 'Сакал', 12, 'Beard'),
-  // Материал
+  // Материалы и вещества
+  createWord('Материал', 'Материал', 13, 'Material'),
+  createWord('Вещество', 'Зат', 13, 'Substance'),
   createWord('Золото', 'Алтын', 13, 'Gold'),
   createWord('Серебро', 'Күмүш', 13, 'Silver'),
   createWord('Уголь', 'Көмүр', 13, 'Coal'),
@@ -266,6 +268,7 @@ const WORDS: WordEntity[] = [
   createWord('Древесина', 'Жыгач', 13, 'Wood'),
   createWord('Бумага', 'Кагаз', 13, 'Paper'),
   createWord('Стекло', 'Айнек', 13, 'Glass'),
+  createWord('Табак', 'Тамеки', 13, 'Tobacco'),
   // Птицы
   createWord('Птицы', 'Куштар', 14, 'Birds'),
   createWord('Курица', 'Тоок', 14, 'Hen'),
