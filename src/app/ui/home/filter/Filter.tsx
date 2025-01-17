@@ -75,7 +75,7 @@ const Filter = ({ tags }: FilterProps): JSX.Element => {
           query: { country: 'kg' }
         }}>
         <button className={'btn btn-primary'}>
-          Учить <Image src="/kg.png" alt="Kyrgyzstan" width={20} height={14} className={'kg-image'} priority/>
+          Учить <Image src="/kg.png" alt="Kyrgyzstan" width={40} height={24} priority/>
         </button>
       </Link>
       {/*<Link
@@ -85,6 +85,7 @@ const Filter = ({ tags }: FilterProps): JSX.Element => {
         </button>
       </Link>*/}
       <ValueViewer name={'Слов'} value={words.length}/>
+
     </div>
   )
 }

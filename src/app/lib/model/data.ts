@@ -153,6 +153,7 @@ const WORDS: WordEntity[] = [
   // Дом
   createWord('Дом', 'Үй', 6, 'House'),
   createWord('Этаж', 'Кабат', 6, 'Floor'),
+  createWord('Квартира', 'Батир', 6, 'Apartment'),
   createWord('Дверь', 'Эшик', 6, 'Door'),
   createWord('Окно', 'Терезе', 6, 'Window'),
   createWord('Ложка', 'Кашык', 6, 'Spoon'),
@@ -162,6 +163,7 @@ const WORDS: WordEntity[] = [
   createWord('Подушка', 'Жаздык', 6, 'Pillow'),
   createWord('Мыло', 'Самын', 6, 'Soap'),
   createWord('Стакан', 'Стакан', 6, 'Cup'),
+  createWord('Зеркало', 'Күзгү', 6, 'Mirror'),
   // Животные
   createWord('Животное', 'Айбан', 7, 'Animal'),
   createWord('Кошка', 'Мышык', 7, 'Cat'),

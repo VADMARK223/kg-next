@@ -19,6 +19,8 @@ export interface History {
   answer: string,
 }
 
+const TOTAL_STEPS = 5
+
 // Случайное перемешивание массива
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5)
@@ -33,8 +35,6 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([])
   const [currentQuestion, setCurrentQuestion] = useState<Word | null>(null)
   const [history, setHistory] = useState<History[]>([]) // История ответов
-
-  const totalSteps = 5
 
   useEffect(() => {
     const tagId: number = Number(tag)
@@ -86,15 +86,15 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       }
     ])
 
-    if (currentStep < totalSteps - 1) {
+    if (currentStep < TOTAL_STEPS - 1) {
       setCurrentStep(currentStep + 1)
       setCurrentQuestion(generateQuestion())
     } else {
-      showResultsNew(`Ваш результат: ${score + (isCorrect ? 1 : 0)}/${totalSteps}`)
+      showResults(`Ваш результат: ${score + (isCorrect ? 1 : 0)}/${TOTAL_STEPS}`)
     }
   }
 
-  const showResultsNew = (title: string) => {
+  const showResults = (title: string) => {
     const overlay = document.createElement('div')
     overlay.className = 'quiz-overlay'
 
@@ -112,13 +112,13 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       .map(
         (entry, index) =>
           isCorrect(entry)
-            ? `<span class="green-text">${index + 1}) Как переводится: "${entry.question}?<br>Правильный ответ: ${entry.correct}</span>`
-            : `<span class="red-text">${index + 1}) Как переводится: "${entry.question}?<br>Ваш ответ: ${entry.answer}<br>Правильный ответ: ${entry.correct}</span>`
+            ? `<span class="green-text">${index + 1}) Как переводится: "${entry.question}?"<br>Правильный ответ: ${entry.correct}</span>`
+            : `<span class="red-text">${index + 1}) Как переводится: "${entry.question}?"<br>Ваш ответ: ${entry.answer}<br>Правильный ответ: ${entry.correct}</span>`
       )
       .join('<br><br>')
 
     const closeButton = document.createElement('button')
-    closeButton.textContent = 'OK'
+    closeButton.textContent = 'Понятно!'
     closeButton.onclick = () => {
       document.body.removeChild(overlay)
       document.body.removeChild(alertBox)
@@ -138,9 +138,9 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
 
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Опрос по категории: {tagName}</h1>
-      <h1>Вопрос {currentStep + 1} из {totalSteps}</h1>
-      <h2><b>Как перевести слово:</b> <span style={{ textDecoration: 'underline' }}>{currentQuestion?.ru}</span>?</h2>
+      <h1>Опрос по категории: <span>{`"${tagName}".`}</span></h1>
+      <h1>Вопрос {currentStep + 1} из {TOTAL_STEPS}.</h1>
+      <h2>Как перевести слово: <span className={'font-bold underline'}>{currentQuestion?.ru}</span>?</h2>
       <div>
         {shuffledOptions.map((option, index) => (
           <button
