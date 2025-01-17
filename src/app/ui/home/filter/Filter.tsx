@@ -13,6 +13,7 @@ import { $searchString, $words, searchStringUpdated, wordsUpdated } from '@/app/
 import { useUnit } from 'effector-react'
 import Link from 'next/link'
 import { fetchWordsByTag, fetchWordsLocal, IS_REMOTE_MODE } from '@/app/api/api'
+import Image from 'next/image'
 
 interface FilterProps {
   tags: Tag[]
@@ -52,25 +53,37 @@ const Filter = ({ tags }: FilterProps): JSX.Element => {
                onChange={e => {
                  searchStringUpdated(e.target.value)
                }}/>
-        <kbd className="kbd kbd-lg cursor-pointer hover:bg-gray-500 transition-colors" onClick={() => handleAddCharacter('ө')}>
+        <kbd className="kbd kbd-lg cursor-pointer hover:bg-gray-500 transition-colors"
+             onClick={() => handleAddCharacter('ө')}>
           Ө
         </kbd>
-        <kbd className="kbd kbd-lg cursor-pointer hover:bg-gray-500 transition-colors" onClick={() => handleAddCharacter('ү')}>
+        <kbd className="kbd kbd-lg cursor-pointer hover:bg-gray-500 transition-colors"
+             onClick={() => handleAddCharacter('ү')}>
           Ү
         </kbd>
-        <kbd className="kbd kbd-lg cursor-pointer hover:bg-gray-500 transition-colors" onClick={() => handleAddCharacter('ң')}>
+        <kbd className="kbd kbd-lg cursor-pointer hover:bg-gray-500 transition-colors"
+             onClick={() => handleAddCharacter('ң')}>
           Ң
         </kbd>
       </label>
       <TagSelect data={tags} callback={(value: number) => {
         setSelectedTag(value)
       }}/>
-      <Link href={{
-        pathname: `/quiz/${selectedTag}`
-      }}
-      >
-        <button className={'btn btn-primary'}>Учить</button>
+      <Link
+        href={{
+          pathname: `/quiz/${selectedTag}`,
+          query: { country: 'kg' }
+        }}>
+        <button className={'btn btn-primary'}>
+          Учить <Image src="/kg.png" alt="Kyrgyzstan" width={20} height={14} priority/>
+        </button>
       </Link>
+      {/*<Link
+        href={{ pathname: `/quiz/${selectedTag}`, query: { country: 'gb' } }}>
+        <button className={'btn btn-primary'}>
+          Учить Учить <Image src="/gb.png" alt="Great Britain" width={20} height={14} priority/>
+        </button>
+      </Link>*/}
       <ValueViewer name={'Слов'} value={words.length}/>
     </div>
   )

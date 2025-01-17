@@ -35,8 +35,9 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
   let words = useUnit($words)
   const searchString = useUnit($searchString)
 
+  const searchStringLowerCase = searchString.toLowerCase()
   words = words.filter((word) =>
-    word.ru.toLowerCase().includes(searchString) || word.kg.toLowerCase().includes(searchString)
+    word.ru.toLowerCase().includes(searchStringLowerCase) || word.kg.toLowerCase().includes(searchStringLowerCase) || word.en?.toLowerCase().includes(searchStringLowerCase)
   )
 
   useEffect(() => {
