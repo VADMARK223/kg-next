@@ -10,7 +10,7 @@ import { Word } from '@/app/lib/model/word'
 import clsx from 'clsx'
 import { isDevMode } from '@/app/lib/utils'
 import Link from 'next/link'
-import { $words, wordsUpdated } from '@/app/lib/effector/word'
+import { $searchString, $words, wordsUpdated } from '@/app/lib/effector/word'
 import { useUnit } from 'effector-react'
 
 interface WordsTableProps {
@@ -32,7 +32,12 @@ const TableRow = ({ id, value, word, needColored = false }: TableRowProps): JSX.
 </th>)
 
 const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
-  const words = useUnit($words)
+  let words = useUnit($words)
+  const searchString = useUnit($searchString)
+
+  words = words.filter((word) =>
+    word.ru.toLowerCase().includes(searchString) || word.kg.toLowerCase().includes(searchString)
+  )
 
   useEffect(() => {
     wordsUpdated(initWords)

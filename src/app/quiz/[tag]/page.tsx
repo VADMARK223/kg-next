@@ -89,7 +89,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       setCurrentStep(currentStep + 1)
       setCurrentQuestion(generateQuestion())
     } else {
-      showResultsNew(`Опрос завершён! Ваш результат: ${score + (isCorrect ? 1 : 0)}/${totalSteps}`)
+      showResultsNew(`Ваш результат: ${score + (isCorrect ? 1 : 0)}/${totalSteps}`)
     }
   }
 
@@ -107,14 +107,14 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       return entry.answer === entry.correct
     }
 
-    const resultMessage = `<b>${title}</b><br>` + history
+    messageParagraph.innerHTML = `<b>${title}</b><br>` + history
       .map(
         (entry, index) =>
-          `<span class="${isCorrect(entry) ? 'green-text' : 'red-text'}">Вопрос #${index + 1} как переводится: "${entry.question}"<br>Ваш ответ: ${entry.answer}<br>Правильный ответ: ${entry.correct}</span>`
+          isCorrect(entry)
+            ? `<span class="green-text">${index + 1}) Как переводится: "${entry.question}?<br>Правильный ответ: ${entry.correct}</span>`
+            : `<span class="red-text">${index + 1}) Как переводится: "${entry.question}?<br>Ваш ответ: ${entry.answer}<br>Правильный ответ: ${entry.correct}</span>`
       )
       .join('<br><br>')
-
-    messageParagraph.innerHTML = resultMessage
 
     const closeButton = document.createElement('button')
     closeButton.textContent = 'OK'
@@ -128,22 +128,6 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     document.body.appendChild(overlay)
     document.body.appendChild(alertBox)
 
-    // Сброс состояния для нового опроса
-    setCurrentStep(0)
-    setScore(0)
-    setHistory([])
-    setCurrentQuestion(generateQuestion())
-  }
-
-  const showResults = () => {
-    const resultMessage = history
-      .map(
-        (entry, index) =>
-          `Вопрос ${index + 1}: "${entry.question}"\nВаш ответ: ${entry.answer}\nПравильный ответ: ${entry.correct}\n`
-      )
-      .join('\n')
-
-    alert(`Результаты:\n\n${resultMessage}`)
     // Сброс состояния для нового опроса
     setCurrentStep(0)
     setScore(0)
@@ -178,3 +162,13 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
 }
 
 export default QuizPage
+
+interface ResultItemProps {
+  index: number,
+  entry:History
+}
+
+const ResultItem = ({ index, entry }:ResultItemProps):JSX.Element =>{
+  return (
+    <span className="${isCorrect(entry) ? 'green-text' : 'red-text'}">${index + 1}) Как переводится: ${entry.question}?<br/>Ваш ответ: ${entry.answer}<br/>Правильный ответ: ${entry.correct}</span>)
+}
