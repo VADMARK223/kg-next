@@ -82,7 +82,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       return
     }
 
-    const isCorrect = answer === currentQuestion.kg
+    const isCorrect = mode === LANGUAGE_MODE.KG ? answer === currentQuestion.kg : answer === currentQuestion.en
     setScore((prev) => prev + (isCorrect ? 1 : 0))
     setHistory((prev) => [
       ...prev,
@@ -93,11 +93,11 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       }
     ])
 
-    if (currentStep < TOTAL_STEPS - 1) {
+    if (currentStep <= TOTAL_STEPS - 1) {
       setCurrentStep(currentStep + 1)
       setCurrentQuestion(generateQuestion())
     } else {
-      showResults(`Ваш результат: ${score + (isCorrect ? 1 : 0)}/${TOTAL_STEPS}`)
+      showResults(`Ваш результат: ${score}/${TOTAL_STEPS}`)
     }
   }
 
@@ -145,8 +145,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
 
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Опрос по категории: <span>{`"${tagName}".`}</span> Режим: {mode === LANGUAGE_MODE.KG ? 'Кыргызский' : 'Английский'}
-      </h1>
+      <h1>Опрос по категории: <span>{`"${tagName}".`}</span> Режим: {mode === LANGUAGE_MODE.KG ? 'Кыргызский' : 'Английский'}</h1>
       <h1>Вопрос {currentStep + 1} из {TOTAL_STEPS}.</h1>
       <h2>Как перевести слово: <span className={'font-bold underline'}>{currentQuestion?.ru}</span>?</h2>
       <div>

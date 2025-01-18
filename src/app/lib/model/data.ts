@@ -77,6 +77,9 @@ const WORDS: WordEntity[] = [
   createWord('Любовь', 'Сүйүү', 1, 'Love'),
   createWord('Лекарство', 'Дары', 1, 'Medicine'),
   createWord('Пена', 'Көбүк', 1, 'Foam'),
+  createWord('Сон', 'Уйку', 1, 'Dream'),
+  createWord('Мусор', 'Таштанды, Шыпырынды', 1, 'Garbage'),
+  createWord('Тетрадь', 'Дептер', 1, 'Notebook'),
   // Числительные
   createWord('Ноль', 'Нөл', 2, 'Zero'),
   createWord('Один', 'Бир', 2, 'One'),
@@ -138,6 +141,7 @@ const WORDS: WordEntity[] = [
   createWord('Смородина', 'Карагат', 4, 'Currant'),
   createWord('Ежевика', 'Бүлдүркөн', 4, 'Blackberry'),
   createWord('Облепиха', 'Чычырканак', 4, 'Guelder-rose'),
+  createWord('Апельсин', 'Апельсин', 4, 'Orange'),
   createWord('Вишня', 'Чие', 4, 'Cherry'),
   // Овощи
   createWord('Овощи', 'Жашылчалар', 5, 'Vegetables'),
@@ -220,6 +224,7 @@ const WORDS: WordEntity[] = [
   createWord('Магазин', 'Дүкөн', 9, 'Shop'),
   createWord('Аптека', 'Дарыкана', 9, 'Pharmacy'),
   createWord('Школа', 'Мектеп', 9, 'School'),
+  createWord('Столовая', 'Ашкана', 9, 'Dining room'),
   createWord('Больница', 'Оорукана', 9, 'Hospital'),
   createWord('Гостиница', 'Мейманкана', 9, 'Hotel'),
   createWord('Библиотека', 'Китепкана', 9, 'Library'),
@@ -247,6 +252,7 @@ const WORDS: WordEntity[] = [
   createWord('Долина', 'Өрөөн', 10, 'Valley'),
   // Еда и напитки
   createWord('Еда', 'Тамак', 11, 'Food'),
+  createWord('Пища', 'Аш', 11, 'Food'),
   createWord('Вода', 'Суу', 11, 'Water'),
   createWord('Молоко', 'Сүт', 11, 'Milk'),
   createWord('Пиво', 'Сыра', 11, 'Beer'),
@@ -264,6 +270,7 @@ const WORDS: WordEntity[] = [
   createWord('Голова', 'Баш', 12, 'Head'),
   createWord('Ухо', 'Кулак', 12, 'Ear'),
   createWord('Губа', 'Эрин', 12, 'Lip'),
+  createWord('Рот', 'Ооз', 12, 'Mouth'),
   createWord('Глаз', 'Көз', 12, 'Eye'),
   createWord('Нос', 'Мурун', 12, 'Nose'),
   createWord('Палец', 'Бармак', 12, 'Finger'),
@@ -314,6 +321,7 @@ const WORDS: WordEntity[] = [
   createWord('Цыплёнок', 'Жөжө', 14, 'Chicken'),
   // Город и село
   createWord('Город', 'Шаар', 15, 'City'),
+  createWord('Флаг', 'Желек', 15, 'Flag'),
   createWord('Село, деревня', 'Айыл', 15, 'Village'),
   createWord('Улица', 'Көчө', 15, 'Street'),
   createWord('Площадь', 'Аянт', 15, 'Square'),
