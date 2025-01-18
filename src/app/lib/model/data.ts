@@ -193,7 +193,7 @@ const WORDS: WordEntity[] = [
   createWord('Бык', 'Бука', 7, 'Bull'),
   createWord('Черепаха', 'Ташбака', 7, 'Turtle'),
   createWord('Кролик', 'Кролик', 7, 'Rabbit'),
-  createWord('Лошадь', 'Жалкы', 7, 'Horse'),
+  createWord('Лошадь', 'Жылкы', 7, 'Horse'),
   createWord('Жеребёнок', 'Кулун', 7, 'Foal'),
   createWord('Ягнёнок', 'Козу', 7, 'Lamb'),
   createWord('Телёнок', 'Музоо', 7, 'Calf'),
@@ -265,6 +265,7 @@ const WORDS: WordEntity[] = [
   createWord('Мёд', 'Бал', 11, 'Honey'),
   createWord('Суп', 'Сорпо', 11, 'Soup'),
   createWord('Состав', 'Курама', 11, 'Compound'),
+  createWord('Бутылка', 'Бөтөлкө', 11, 'Bottle'),
   // Человеческое тело
   createWord('Человек', 'Адам', 12, 'Human'),
   createWord('Голова', 'Баш', 12, 'Head'),
