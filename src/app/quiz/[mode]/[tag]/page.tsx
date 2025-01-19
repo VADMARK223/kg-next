@@ -16,14 +16,15 @@ interface QuizPageProps {
   params: Promise<{ tag: string, mode: string }>
 }
 
-const TOTAL_STEPS = 5
-const ANSWERS_COUNT = 5
+const MAX_STEPS_COUNT = 5 // Максимальное число вопросов
+const ANSWERS_COUNT = 5 // Максимальное число ответов
 
 // Случайное перемешивание массива
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5)
 
 const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
+  const [totalSteps, setTotalSteps] = useState<number>(MAX_STEPS_COUNT)
   const [currentStep, setCurrentStep] = useState(0)
   const [score, setScore] = useState(0)
   const { tag, mode } = use(params)
@@ -36,13 +37,13 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   const [title, setTitle] = useState<string>('')
 
   useEffect(() => {
-    if (currentStep === TOTAL_STEPS) {
-      setTitle(`Ваши результаты: ${score}/${TOTAL_STEPS}`)
+    if (currentStep === totalSteps) {
+      setTitle(`Ваши результаты: ${score}/${totalSteps}`)
     } else {
-      setTitle(`Вопрос ${currentStep + 1} из ${TOTAL_STEPS}.`)
+      setTitle(`Вопрос ${currentStep + 1} из ${totalSteps}.`)
     }
 
-  }, [score, currentStep])
+  }, [score, currentStep, totalSteps])
 
   useEffect(() => {
     const tagId: number = Number(tag)
@@ -56,9 +57,11 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   }, [tag])
 
   useEffect(() => {
-    if (words.length > 0) {
-      setCurrentQuestion(generateQuestion())
+    if (words.length === 0) {
+      return
     }
+    setCurrentQuestion(generateQuestion())
+    setTotalSteps(Math.min(MAX_STEPS_COUNT, words.length))
   }, [words])
 
   const generateQuestion = () => {
@@ -107,7 +110,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       }
     ])
 
-    if (currentStep - 1 <= TOTAL_STEPS) {
+    if (currentStep - 1 <= totalSteps) {
       setCurrentStep(currentStep + 1)
     }
 
@@ -126,7 +129,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       <h1>Опрос по категории: <span>{`"${tagName}".`}</span></h1>
       <h1>Язык: {mode === LANGUAGE_MODE.KG ? 'Кыргызский' : 'Английский'}</h1>
       <h1>{title}</h1>
-      {currentStep === TOTAL_STEPS
+      {currentStep === totalSteps
         ? <>
           {history.map((history, index) => (
             <ResultItem isCorrect={history.answer === history.correct} key={index} index={index} history={history}/>
