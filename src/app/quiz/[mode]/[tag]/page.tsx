@@ -8,19 +8,16 @@
 import { JSX, use, useEffect, useState } from 'react'
 import { fetchTagsByIdCommon, fetchWordsLocal } from '@/app/api/api'
 import { Word } from '@/app/lib/model/word'
-import { LANGUAGE_MODE } from '@/app/ui/home/filter/Filter'
+import ResultItem from '@/app/ui/quiz/ResultItem'
+import { QuizHistory } from '@/app/lib/model/QuizHistory'
+import { LANGUAGE_MODE } from '@/app/lib/utils'
 
 interface QuizPageProps {
   params: Promise<{ tag: string, mode: string }>
 }
 
-export interface History {
-  question: string,
-  correct: string,
-  answer: string,
-}
-
 const TOTAL_STEPS = 5
+const ANSWERS_COUNT = 5
 
 // Случайное перемешивание массива
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -35,7 +32,17 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   const [words, setWords] = useState<Word[]>([])
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([])
   const [currentQuestion, setCurrentQuestion] = useState<Word | null>(null)
-  const [history, setHistory] = useState<History[]>([]) // История ответов
+  const [history, setHistory] = useState<QuizHistory[]>([])
+  const [title, setTitle] = useState<string>('')
+
+  useEffect(() => {
+    if (currentStep === TOTAL_STEPS) {
+      setTitle(`Ваши результаты: ${score}/${TOTAL_STEPS}`)
+    } else {
+      setTitle(`Вопрос ${currentStep + 1} из ${TOTAL_STEPS}.`)
+    }
+
+  }, [score, currentStep])
 
   useEffect(() => {
     const tagId: number = Number(tag)
@@ -69,7 +76,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
         }
       })
     )
-      .slice(0, 3)
+      .slice(0, ANSWERS_COUNT - 1)
       .map((word) => mode === LANGUAGE_MODE.KG ? word.kg : word.en)
 
     const options = shuffleArray([mode === LANGUAGE_MODE.KG ? currentWord.kg : currentWord.en, ...incorrectAnswers])
@@ -77,13 +84,20 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     return currentWord
   }
 
+  const isCorrect = (currentQuestion: Word | null, answer: string): boolean => {
+    if (currentQuestion == null) {
+      throw new Error('Current question was not found.')
+    }
+
+    return mode === LANGUAGE_MODE.KG ? answer === currentQuestion.kg : answer === currentQuestion.en
+  }
+
   const handleAnswer = (answer: string) => {
     if (currentQuestion == null) {
       return
     }
 
-    const isCorrect = mode === LANGUAGE_MODE.KG ? answer === currentQuestion.kg : answer === currentQuestion.en
-    setScore((prev) => prev + (isCorrect ? 1 : 0))
+    setScore((prev) => prev + (isCorrect(currentQuestion, answer) ? 1 : 0))
     setHistory((prev) => [
       ...prev,
       {
@@ -93,50 +107,14 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       }
     ])
 
-    if (currentStep <= TOTAL_STEPS - 1) {
+    if (currentStep - 1 <= TOTAL_STEPS) {
       setCurrentStep(currentStep + 1)
-      setCurrentQuestion(generateQuestion())
-    } else {
-      showResults(`Ваш результат: ${score}/${TOTAL_STEPS}`)
     }
+
+    setCurrentQuestion(generateQuestion())
   }
 
-  const showResults = (title: string) => {
-    const overlay = document.createElement('div')
-    overlay.className = 'quiz-overlay'
-
-    const alertBox = document.createElement('div')
-    alertBox.className = 'quiz-alert'
-
-    const messageParagraph = document.createElement('p')
-    messageParagraph.className = 'message'
-
-    const isCorrect = (entry: History): boolean => {
-      return entry.answer === entry.correct
-    }
-
-    messageParagraph.innerHTML = `<b>${title}</b><br>` + history
-      .map(
-        (entry, index) =>
-          isCorrect(entry)
-            ? `<span class="green-text">${index + 1}) Как переводится: "${entry.question}?"<br>Правильный ответ: ${entry.correct}</span>`
-            : `<span class="red-text">${index + 1}) Как переводится: "${entry.question}?"<br>Ваш ответ: ${entry.answer}<br>Правильный ответ: ${entry.correct}</span>`
-      )
-      .join('<br><br>')
-
-    const closeButton = document.createElement('button')
-    closeButton.textContent = 'Понятно!'
-    closeButton.onclick = () => {
-      document.body.removeChild(overlay)
-      document.body.removeChild(alertBox)
-    }
-    alertBox.appendChild(messageParagraph)
-    alertBox.appendChild(closeButton)
-
-    document.body.appendChild(overlay)
-    document.body.appendChild(alertBox)
-
-    // Сброс состояния для нового опроса
+  const handlerDone = (): void => {
     setCurrentStep(0)
     setScore(0)
     setHistory([])
@@ -145,26 +123,37 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
 
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Опрос по категории: <span>{`"${tagName}".`}</span> Режим: {mode === LANGUAGE_MODE.KG ? 'Кыргызский' : 'Английский'}</h1>
-      <h1>Вопрос {currentStep + 1} из {TOTAL_STEPS}.</h1>
-      <h2>Как перевести слово: <span className={'font-bold underline'}>{currentQuestion?.ru}</span>?</h2>
-      <div>
-        {shuffledOptions.map((option, index) => (
-          <button
-            className={'btn btn-primary'}
-            key={index}
-            onClick={() => handleAnswer(option)}
-            style={{
-              margin: '10px',
-              padding: '10px 20px',
-              fontSize: '16px',
-              cursor: 'pointer'
-            }}
-          >
-            {option}
-          </button>
-        ))}
-      </div>
+      <h1>Опрос по категории: <span>{`"${tagName}".`}</span></h1>
+      <h1>Язык: {mode === LANGUAGE_MODE.KG ? 'Кыргызский' : 'Английский'}</h1>
+      <h1>{title}</h1>
+      {currentStep === TOTAL_STEPS
+        ? <>
+          {history.map((history, index) => (
+            <ResultItem isCorrect={history.answer === history.correct} key={index} index={index} history={history}/>
+          ))}
+          <button className={'btn btn-primary'} onClick={handlerDone}>Понятно!</button>
+        </>
+        : <>
+          <h2>Как перевести слово: <span className={'font-bold underline'}>{currentQuestion?.ru}</span>?</h2>
+          <div>
+            {shuffledOptions.map((option, index) => (
+              <button
+                className={'btn btn-primary'}
+                key={index}
+                onClick={() => handleAnswer(option)}
+                style={{
+                  margin: '10px',
+                  padding: '10px 20px',
+                  fontSize: '16px',
+                  cursor: 'pointer'
+                }}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        </>}
+
     </div>
   )
 }

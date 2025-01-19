@@ -1,5 +1,5 @@
 /**
- * Компонент
+ * Компонент фильтра.
  *
  * @author Markitanov Vadim
  * @since 10.01.2025
@@ -13,15 +13,11 @@ import { $searchString, $words, searchStringUpdated, wordsUpdated } from '@/app/
 import { useUnit } from 'effector-react'
 import Link from 'next/link'
 import { fetchWordsByTag, fetchWordsLocal, IS_REMOTE_MODE } from '@/app/api/api'
-import Image from 'next/image'
+import LanguageButton from '@/app/ui/common/LanguageButton'
+import { LANGUAGE_MODE } from '@/app/lib/utils'
 
 interface FilterProps {
   tags: Tag[]
-}
-
-export const enum LANGUAGE_MODE {
-  KG = 'kg',
-  EN = 'en'
 }
 
 const Filter = ({ tags }: FilterProps): JSX.Element => {
@@ -78,17 +74,13 @@ const Filter = ({ tags }: FilterProps): JSX.Element => {
         href={{
           pathname: `/quiz/${LANGUAGE_MODE.KG}/${selectedTag}`
         }}>
-        <button className={'btn btn-primary'}>
-          Учить <Image src={`/${LANGUAGE_MODE.KG}.png`} alt="Kyrgyzstan" width={40} height={24} priority/>
-        </button>
+        <LanguageButton isKg={true}/>
       </Link>
       <Link
         href={{
           pathname: `/quiz/${LANGUAGE_MODE.EN}/${selectedTag}`
         }}>
-        <button className={'btn btn-primary'}>
-          Учить <Image src={`/${LANGUAGE_MODE.EN}.png`} alt="Great Britain" width={40} height={24} priority/>
-        </button>
+        <LanguageButton isKg={false}/>
       </Link>
       <ValueViewer name={'Слов'} value={words.length}/>
 
