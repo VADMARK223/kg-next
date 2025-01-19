@@ -575,6 +575,7 @@ const time = (tag: number): WordEntity[] => {
     createWord('Время', 'Убакыт', tag, 'Time'),
     createWord('Секунда', 'Секунда', tag, 'Second'),
     createWord('Вчера', 'Кечээ', tag, 'Yesterday'),
+    createWord('Вечер', 'Кеч', tag, 'Evening'),
     createWord('Сегодня', 'Бүгүн', tag, 'Today'),
     createWord('Завтра', 'Эртең', tag, 'Tomorrow'),
     createWord('Минута', 'Минута', tag, 'Minute'),
@@ -602,7 +603,6 @@ const time = (tag: number): WordEntity[] => {
     createWord('Октябрь', 'Тогуздун айы', tag, 'October'),
     createWord('Ноябрь', 'Жетинин айы', tag, 'November'),
     createWord('Декабрь', 'Бештин айы', tag, 'December')
-
   ]
 }
 // Страны

@@ -21,13 +21,19 @@ interface TableRowProps {
   id: number
   value?: number | string
   word: Word
-  needColored?: boolean
+  isTag?: boolean
 }
 
-const TableRow = ({ id, value, word, needColored = false }: TableRowProps): JSX.Element => (<th>
-  {!isDevMode() ? <span style={{ color: needColored ? word.color : undefined }}>{value}</span> :
+const TableRow = ({ id, value, word, isTag = false }: TableRowProps): JSX.Element => (<th>
+  {!isDevMode() ? <span style={{
+      color: isTag ? word.color : undefined,
+      textDecoration: isTag ? 'underline' : undefined
+    }}>{value}</span> :
     <Link href={`/word/${id}`}>
-      <span style={{ color: needColored ? word.color : undefined }}>{value}</span>
+      <span style={{
+        color: isTag ? word.color : undefined,
+        textDecoration: isTag ? 'underline' : undefined
+      }}>{value}</span>
     </Link>}
 </th>)
 
@@ -61,7 +67,7 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
             <TableRow id={word.id} value={word.ru} word={word}/>
             <TableRow id={word.id} value={word.kg} word={word}/>
             <TableRow id={word.id} value={word.en} word={word}/>
-            <TableRow id={word.id} value={word.tagname} word={word} needColored={true}/>
+            <TableRow id={word.id} value={word.tagname} word={word} isTag={true}/>
           </tr>
         ))}
         </tbody>
