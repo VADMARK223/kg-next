@@ -11,6 +11,7 @@ import { Word } from '@/app/lib/model/word'
 import ResultItem from '@/app/ui/quiz/ResultItem'
 import { QuizHistory } from '@/app/lib/model/QuizHistory'
 import { LANGUAGE_MODE } from '@/app/lib/utils'
+import Image from 'next/image'
 
 interface QuizPageProps {
   params: Promise<{ tag: string, mode: string }>
@@ -138,14 +139,16 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
       <h1>Опрос по категории: <span>{`"${tagName}".`}</span></h1>
-      <h1>Язык: {mode === LANGUAGE_MODE.KG ? 'Кыргызский' : 'Английский'}</h1>
+      <h1>Язык: {mode === LANGUAGE_MODE.KG ? <Image src={`/${LANGUAGE_MODE.KG}.png`} alt="Kyrgyzstan" width={40} height={24} priority style={{ display: 'inline' }}/> : <Image src={`/${LANGUAGE_MODE.EN}.png`} alt="Kyrgyzstan" width={40} height={24} priority style={{ display: 'inline' }}/>}</h1>
       <h1>{title}</h1>
       {currentStep === totalSteps
         ? <>
           {history.map((history, index) => (
             <ResultItem isCorrect={history.answer === history.correct} key={index} index={index} history={history}/>
           ))}
-          <button className={'btn btn-primary'} onClick={handlerDone}>Понятно!</button>
+          <div className={'pt-3'}>
+            <button className={'btn btn-primary'} onClick={handlerDone}>Понятно! Еще раз!</button>
+          </div>
         </>
         : <>
           <h2>Как перевести слово: <span className={'font-bold underline'}>{currentQuestion?.ru}</span>?</h2>

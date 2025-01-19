@@ -14,7 +14,7 @@ import { useUnit } from 'effector-react'
 import Link from 'next/link'
 import { fetchWordsByTag, fetchWordsLocal, IS_REMOTE_MODE } from '@/app/api/api'
 import LanguageButton from '@/app/ui/common/LanguageButton'
-import { LANGUAGE_MODE } from '@/app/lib/utils'
+import { isDevMode, LANGUAGE_MODE } from '@/app/lib/utils'
 
 interface FilterProps {
   tags: Tag[]
@@ -39,7 +39,7 @@ const Filter = ({ tags }: FilterProps): JSX.Element => {
   }
 
   return (
-    <div className={'flex flex-wrap items-center gap-3'}>
+    <div className={'flex flex-wrap items-center gap-3 max-h-[300px]'}>
       <label className="input">
         <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g strokeLinejoin={'round'} strokeLinecap="round" strokeWidth="2.5" fill="none" stroke="currentColor">
@@ -82,8 +82,7 @@ const Filter = ({ tags }: FilterProps): JSX.Element => {
         }}>
         <LanguageButton isKg={false}/>
       </Link>
-      <ValueViewer name={'Слов'} value={words.length}/>
-
+      {(isDevMode() ?? false) && <ValueViewer name={'Слов'} value={words.length} />}
     </div>
   )
 }

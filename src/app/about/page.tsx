@@ -4,15 +4,20 @@
  * @author Markitanov Vadim
  * @since 10.01.2025
  */
+'use client'
 import { JSX } from 'react'
 import ValueViewer from '@/app/ui/common/ValueViewer'
 import { APP_VERSION, isDevMode } from '@/app/lib/utils'
 import { IS_REMOTE_MODE } from '@/app/api/api'
+import { useUnit } from 'effector-react'
+import { $words } from '@/app/lib/effector/word'
 
 const Page = (): JSX.Element => {
+  const words = useUnit($words)
   return (
     <div className={'flex flex-col'}>
       <ValueViewer name={'Версия'} value={APP_VERSION}/>
+      <ValueViewer name={'Слов в словаре'} value={words.length} />
       <ValueViewer name={'Инстаграм автора'} value={
         <span>
         <a

@@ -10,7 +10,7 @@ export default async function Home () {
   const words: Word[] = await fetchWordsCommon()
 
   return (
-    <div>
+    <div className={'max-w-screen'}>
       <div className={'flex items-center gap-3'}>
         <Filter tags={tags}/>
       </div>
