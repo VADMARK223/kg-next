@@ -25,16 +25,18 @@ interface TableRowProps {
 }
 
 const TableRow = ({ id, value, word, isTag = false }: TableRowProps): JSX.Element => (<th>
-  {!isDevMode() ? <span style={{
+  {!isDevMode()
+    ? <span style={{
       color: isTag ? word.color : undefined,
       textDecoration: isTag ? 'underline' : undefined
-    }}>{value}</span> :
-    <Link href={`/word/${id}`}>
+    }}>{value}</span>
+    : <Link href={`/word/${id}`}>
       <span style={{
         color: isTag ? word.color : undefined,
         textDecoration: isTag ? 'underline' : undefined
       }}>{value}</span>
-    </Link>}
+    </Link>
+  }
 </th>)
 
 const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {

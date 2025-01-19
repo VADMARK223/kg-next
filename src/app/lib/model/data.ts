@@ -69,6 +69,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Лопата', 'Күрөк', tag, 'Shovel'),
     createWord('Хорошо', 'Жакшы', tag, 'Fine'),
     createWord('Плохо', 'Жаман', tag, 'Badly'),
+    createWord('Кино', 'Кино', tag, 'Movie'),
     createWord('Полёт', 'Учуу', tag, 'Flight'),
     createWord('Да', 'Ооба', tag, 'Yes'),
     createWord('Нет', 'Жок', tag, 'No'),

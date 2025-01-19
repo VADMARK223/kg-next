@@ -58,7 +58,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     setWords(words)
   }, [tag])
 
-  const generateQuestion = useCallback(() => {
+  const generateQuestion = () => {
     if (words.length === 0) {
       throw new Error('Массив WORDS пуст. Добавьте слова в массив.')
     }
@@ -86,7 +86,37 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     setShuffledOptions(options)
     setUsedQuestions((prev: Word[]) => [...prev, currentWord])
     return currentWord
-  }, [words, mode, usedQuestions])
+  }
+
+  // const generateQuestion = useCallback(() => {
+  //   if (words.length === 0) {
+  //     throw new Error('Массив WORDS пуст. Добавьте слова в массив.')
+  //   }
+  //
+  //   // Фильтрация слов, которые уже использовались
+  //   const availableWords = words.filter(word => !usedQuestions.includes(word))
+  //   if (availableWords.length === 0) {
+  //     throw new Error('Все вопросы уже были заданы.')
+  //   }
+  //
+  //   const currentWord = availableWords[Math.floor(Math.random() * availableWords.length)]
+  //   const incorrectAnswers = shuffleArray(
+  //     words.filter((word) => {
+  //       if (mode === LANGUAGE_MODE.KG) {
+  //         return (word.kg !== currentWord.kg)
+  //       } else {
+  //         return (word.en !== currentWord.en)
+  //       }
+  //     })
+  //   )
+  //     .slice(0, ANSWERS_COUNT - 1)
+  //     .map((word) => mode === LANGUAGE_MODE.KG ? word.kg : word.en)
+  //
+  //   const options = shuffleArray([mode === LANGUAGE_MODE.KG ? currentWord.kg : currentWord.en, ...incorrectAnswers])
+  //   setShuffledOptions(options)
+  //   setUsedQuestions((prev: Word[]) => [...prev, currentWord])
+  //   return currentWord
+  // }, [words, mode, usedQuestions])
 
   useEffect(() => {
     if (words.length === 0) {
@@ -94,7 +124,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     }
     setCurrentQuestion(generateQuestion())
     setTotalSteps(Math.min(MAX_STEPS_COUNT, words.length))
-  }, [words, generateQuestion])
+  }, [words])
 
   const isCorrect = (currentQuestion: Word | null, answer: string): boolean => {
     if (currentQuestion == null) {
@@ -133,7 +163,6 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     setScore(0)
     setHistory([]) // Очистка истории ответов
     setUsedQuestions([]) // Очистка использованных слов
-    // setCurrentQuestion(generateQuestion())
   }
 
   return (
