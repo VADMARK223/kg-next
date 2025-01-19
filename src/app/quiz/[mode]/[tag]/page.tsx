@@ -5,7 +5,7 @@
  * @since 12.01.2025
  */
 'use client'
-import { JSX, use, useEffect, useState } from 'react'
+import { JSX, use, useCallback, useEffect, useState } from 'react'
 import { fetchTagsByIdCommon, fetchWordsLocal } from '@/app/api/api'
 import { Word } from '@/app/lib/model/word'
 import ResultItem from '@/app/ui/quiz/ResultItem'
@@ -58,15 +58,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     setWords(words)
   }, [tag])
 
-  useEffect(() => {
-    if (words.length === 0) {
-      return
-    }
-    setCurrentQuestion(generateQuestion())
-    setTotalSteps(Math.min(MAX_STEPS_COUNT, words.length))
-  }, [words])
-
-  const generateQuestion = () => {
+  const generateQuestion = useCallback(() => {
     if (words.length === 0) {
       throw new Error('Массив WORDS пуст. Добавьте слова в массив.')
     }
@@ -94,7 +86,15 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     setShuffledOptions(options)
     setUsedQuestions((prev: Word[]) => [...prev, currentWord])
     return currentWord
-  }
+  }, [words, mode, usedQuestions])
+
+  useEffect(() => {
+    if (words.length === 0) {
+      return
+    }
+    setCurrentQuestion(generateQuestion())
+    setTotalSteps(Math.min(MAX_STEPS_COUNT, words.length))
+  }, [words, generateQuestion])
 
   const isCorrect = (currentQuestion: Word | null, answer: string): boolean => {
     if (currentQuestion == null) {
@@ -139,7 +139,11 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
       <h1>Опрос по категории: <span>{`"${tagName}".`}</span></h1>
-      <h1>Язык: {mode === LANGUAGE_MODE.KG ? <Image src={`/${LANGUAGE_MODE.KG}.png`} alt="Kyrgyzstan" width={40} height={24} priority style={{ display: 'inline' }}/> : <Image src={`/${LANGUAGE_MODE.EN}.png`} alt="Kyrgyzstan" width={40} height={24} priority style={{ display: 'inline' }}/>}</h1>
+      <h1>Язык: {mode === LANGUAGE_MODE.KG ?
+        <Image src={`/${LANGUAGE_MODE.KG}.png`} alt="Kyrgyzstan" width={40} height={24} priority
+               style={{ display: 'inline' }}/> :
+        <Image src={`/${LANGUAGE_MODE.EN}.png`} alt="Kyrgyzstan" width={40} height={24} priority
+               style={{ display: 'inline' }}/>}</h1>
       <h1>{title}</h1>
       {currentStep === totalSteps
         ? <>

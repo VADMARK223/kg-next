@@ -363,6 +363,7 @@ const food = (tag: number): WordEntity[] => {
     createWord('Сахар', 'Шекер', tag, 'Sugar'),
     createWord('Пряник', 'Пряник', tag, 'Gingerbread'),
     createWord('Имбирь', 'Имбирь', tag, 'Ginger'),
+    createWord('Сок', 'Шире', tag, 'Juice'),
     createWord('Бутылка', 'Бөтөлкө', tag, 'Bottle')
   ]
 }
@@ -519,7 +520,8 @@ const adjectives = (tag: number): WordEntity[] => {
     createWord('Губастый', 'Калың эриндүү', tag, 'Thick-lipped'),
     createWord('Тяжёлый', 'Оор', tag, 'Heavy'),
     createWord('Легкий', 'Оной', tag, 'Easy'),
-    createWord('Святой', 'Олуя, касиеттүү', tag, 'Saint')
+    createWord('Святой', 'Олуя, касиеттүү', tag, 'Saint'),
+    createWord('Ожидающий', 'Күтүүдө', tag, 'Pending'),
   ]
 }
 // Глаголы
