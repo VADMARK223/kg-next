@@ -92,15 +92,19 @@ const common = (tag: number): WordEntity[] => {
     createWord('Музыка', 'Музыка', tag, 'Music'),
     createWord('Народ', 'Эл', tag, 'People'),
     createWord('Стоп', 'Токто', tag, 'Stop'),
+    createWord('Гость', 'Конок', tag, 'Guest'),
     createWord('Качество', 'Сапат', tag, 'Quality'),
     createWord('Свобода', 'Эркиндик, азаттык', tag, 'Freedom'),
     createWord('Очень', 'Абдан, эң', tag, 'Very'),
     createWord('Муж', 'Эр, күйөө', tag, 'Husband'),
     createWord('Жена', 'Аял, катын, зайып', tag, 'Wife'),
+    createWord('Письмо', 'Кат', tag, 'Letter'),
     createWord('Старик', 'Карыя, чал, абышка', tag, 'Old man'),
     createWord('Седло', 'Ээр', tag, 'Saddle'),
+    createWord('Правда', 'Чын, чындык', tag, 'Is it true'),
     createWord('Тоже', 'Да, дагы', tag, 'Same'),
-    createWord('Дружба', 'Достук', tag, 'Friendship')
+    createWord('Дружба', 'Достук', tag, 'Friendship'),
+    createWord('Путь', 'Жол', tag, 'Way')
   ]
 }
 // Числительные
@@ -196,7 +200,7 @@ const vegetables = (tag: number): WordEntity[] => {
     createWord('Помидор', 'Помидор', tag, 'Tomato'),
     createWord('Тыква', 'Ашкабак', tag, 'Pumpkin'),
     createWord('Салат', 'Салат', tag, 'Lettuce'),
-    createWord('Репа', 'Шалгам', tag, 'Turnip'),
+    createWord('Репа', 'Шалкан', tag, 'Turnip'),
     createWord('Редис', 'Чамгыр', tag, 'Radish'),
     createWord('Редька', 'Редька', tag, 'Summer radish'),
     createWord('Баклажан', 'Баклажан', tag, 'Eggplant'),
@@ -210,7 +214,7 @@ const vegetables = (tag: number): WordEntity[] => {
 const house = (tag: number): WordEntity[] => {
   return [
     createWord('Дом', 'Үй', tag, 'House'),
-    createWord('Этаж', 'Кабат', tag, 'Floor'),
+    createWord('Этаж, слой', 'Кабат', tag, 'Floor'),
     createWord('Квартира', 'Батир', tag, 'Apartment'),
     createWord('Дверь', 'Эшик', tag, 'Door'),
     createWord('Окно', 'Терезе', tag, 'Window'),
@@ -231,7 +235,7 @@ const house = (tag: number): WordEntity[] => {
 // Животные
 const animals = (tag: number): WordEntity[] => {
   return [
-    createWord('Животное', 'Айбан', tag, 'Animal'),
+    createWord('Животное, зверь', 'Айбан', tag, 'Animal'),
     createWord('Кошка', 'Мышык', tag, 'Cat'),
     createWord('Собака', 'Ит', tag, 'Dog'),
     createWord('Корова', 'Уй', tag, 'Cow'),
@@ -294,6 +298,8 @@ const buildings = (tag: number): WordEntity[] => {
     createWord('Парикмахерская', 'Чачтарач', tag, 'Salon'),
     createWord('Типография', 'Басманкана', tag, 'Printing house'),
     createWord('Туалет', 'Даараткана', tag, 'Toilet'),
+    createWord('Ломбард', 'Күрөөкана', tag, 'Pawnshop'),
+    createWord('Общежитие', 'Жатакана', tag, 'Pawnshop'),
     createWord('Туалет', 'Ажаткана', tag, 'Toilet')
   ]
 }
@@ -439,6 +445,7 @@ const city = (tag: number): WordEntity[] => {
     createWord('Сад', 'Бак', tag, 'Garden'),
     createWord('Ресторан', 'Ресторан', tag, 'Restaurant'),
     createWord('Кафе', 'Кичине ресторан', tag, 'Cafe'),
+    createWord('Такси', 'Кире', tag, 'Taxi'),
     createWord('Ж/д вокзал', 'Темир жол вокзалы', tag, 'Railway station')
   ]
 }
@@ -456,7 +463,9 @@ const professions = (tag: number): WordEntity[] => {
     createWord('Певец, поэт', 'Ырчы', tag, 'Singer'),
     createWord('Историк', 'Тарыхчы', tag, 'Historian'),
     createWord('Лётчик', 'Учуучу', tag, 'Pilot'),
+    createWord('Продавец', 'Сатуучу', tag, 'Salesman'),
     createWord('Программист', 'Программист', tag, 'Programmer'),
+    createWord('Алкоголик', 'Аракеч', tag, 'Alcoholic'),
     createWord('Стекловар', 'Айнек кайнатуучу', tag, 'Glassmaker')
   ]
 }
@@ -485,6 +494,7 @@ const adjectives = (tag: number): WordEntity[] => {
     createWord('Чистый', 'Таза', tag, 'Clean'),
     createWord('Сладкий', 'Таттуу', tag, 'Sweet'),
     createWord('Горький', 'Ачуу', tag, 'Bitter'),
+    createWord('Горячий', 'Ысык', tag, 'Hot'),
     createWord('Вкусный', 'Даамдуу', tag, 'Delicious'),
     createWord('Кислый', 'Кычкыл', tag, 'Sour'),
     createWord('Острый', 'Өткүр', tag, 'Spicy'),
@@ -509,6 +519,7 @@ const verbs = (tag: number): WordEntity[] => {
     createWord('Быть, становится', 'Бол', tag, 'Be'),
     createWord('Кипятить', 'Кайнатуу', tag, 'Boil'),
     createWord('Пить', 'Ичүү', tag, 'Drink'),
+    createWord('Продавать', 'Сат', tag, 'Sell'),
     createWord('Писать', 'Жазуу', tag, 'Write')
   ]
 }
@@ -548,6 +559,9 @@ const time = (tag: number): WordEntity[] => {
   return [
     createWord('Время', 'Убакыт', tag, 'Time'),
     createWord('Секунда', 'Секунда', tag, 'Second'),
+    createWord('Вчера', 'Кечээ', tag, 'Yesterday'),
+    createWord('Сегодня', 'Бүгүн', tag, 'Today'),
+    createWord('Завтра', 'Эртең', tag, 'Tomorrow'),
     createWord('Минута', 'Минута', tag, 'Minute'),
     createWord('Час', 'Саат', tag, 'Hour'),
     createWord('Месяц', 'Ай', tag, 'Month'),
@@ -555,7 +569,12 @@ const time = (tag: number): WordEntity[] => {
     createWord('Век', 'Кылым', tag, 'Century'),
     createWord('Ночь', 'Түн', tag, 'Night'),
     createWord('Понедельник', 'Дүйшөмбү', tag, 'Monday'),
-    createWord('Пятница', 'Жума', tag, 'Friday')
+    createWord('Вторник', 'Шейшемби', tag, 'Tuesday'),
+    createWord('Среда', 'Шаршемби', tag, 'Wednesday'),
+    createWord('Четверг', 'Бейшемби', tag, 'Thursday'),
+    createWord('Пятница', 'Жума', tag, 'Friday'),
+    createWord('Суббота', 'Ишемби', tag, 'Saturday'),
+    createWord('Воскресенье', 'Жекшемби', tag, 'Sunday')
   ]
 }
 // География

@@ -35,6 +35,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   const [currentQuestion, setCurrentQuestion] = useState<Word | null>(null)
   const [history, setHistory] = useState<QuizHistory[]>([])
   const [title, setTitle] = useState<string>('')
+  const [usedQuestions, setUsedQuestions] = useState<Word[]>([]) // Добавлен массив использованных вопросов
 
   useEffect(() => {
     if (currentStep === totalSteps) {
@@ -69,7 +70,13 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       throw new Error('Массив WORDS пуст. Добавьте слова в массив.')
     }
 
-    const currentWord = words[Math.floor(Math.random() * words.length)]
+    // Фильтрация слов, которые уже использовались
+    const availableWords = words.filter(word => !usedQuestions.includes(word))
+    if (availableWords.length === 0) {
+      throw new Error('Все вопросы уже были заданы.')
+    }
+
+    const currentWord = availableWords[Math.floor(Math.random() * availableWords.length)]
     const incorrectAnswers = shuffleArray(
       words.filter((word) => {
         if (mode === LANGUAGE_MODE.KG) {
@@ -84,6 +91,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
 
     const options = shuffleArray([mode === LANGUAGE_MODE.KG ? currentWord.kg : currentWord.en, ...incorrectAnswers])
     setShuffledOptions(options)
+    setUsedQuestions((prev: Word[]) => [...prev, currentWord])
     return currentWord
   }
 
@@ -114,14 +122,17 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       setCurrentStep(currentStep + 1)
     }
 
-    setCurrentQuestion(generateQuestion())
+    if (usedQuestions.length < totalSteps) {
+      setCurrentQuestion(generateQuestion())
+    }
   }
 
   const handlerDone = (): void => {
     setCurrentStep(0)
     setScore(0)
-    setHistory([])
-    setCurrentQuestion(generateQuestion())
+    setHistory([]) // Очистка истории ответов
+    setUsedQuestions([]) // Очистка использованных слов
+    // setCurrentQuestion(generateQuestion())
   }
 
   return (
