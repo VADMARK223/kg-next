@@ -113,6 +113,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Путь', 'Жол', tag, 'Way'),
     createWord('Корабль', 'Ship', tag, 'Кеме'),
     createWord('Пиршество', 'Той', tag, 'Feast'),
+    createWord('Спорт', 'Спорт', tag, 'Sport'),
     createWord('Звук', 'Тыбыш', tag, 'Sound')
   ]
 }
@@ -365,6 +366,7 @@ const food = (tag: number): WordEntity[] => {
     createWord('Пряник', 'Пряник', tag, 'Gingerbread'),
     createWord('Имбирь', 'Имбирь', tag, 'Ginger'),
     createWord('Сок', 'Шире', tag, 'Juice'),
+    createWord('Шоколад', 'Шоколад', tag, 'Chocolate'),
     createWord('Бутылка', 'Бөтөлкө', tag, 'Bottle')
   ]
 }
