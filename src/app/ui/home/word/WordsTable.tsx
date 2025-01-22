@@ -9,35 +9,13 @@ import { JSX, useEffect } from 'react'
 import { Word } from '@/app/lib/model/word'
 import clsx from 'clsx'
 import { isDevMode } from '@/app/lib/utils'
-import Link from 'next/link'
 import { $searchString, $words, wordsUpdated } from '@/app/lib/effector/word'
 import { useUnit } from 'effector-react'
+import TableRow from '@/app/ui/home/word/TableRow'
 
 interface WordsTableProps {
   initWords: Word[]
 }
-
-interface TableRowProps {
-  id: number
-  value?: number | string
-  word: Word
-  isTag?: boolean
-}
-
-const TableRow = ({ id, value, word, isTag = false }: TableRowProps): JSX.Element => (<th>
-  {!isDevMode()
-    ? <span style={{
-      color: isTag ? word.color : undefined,
-      textDecoration: isTag ? 'underline' : undefined
-    }}>{value}</span>
-    : <Link href={`/word/${id}`}>
-      <span style={{
-        color: isTag ? word.color : undefined,
-        textDecoration: isTag ? 'underline' : undefined
-      }}>{value}</span>
-    </Link>
-  }
-</th>)
 
 const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
   let words = useUnit($words)
@@ -51,6 +29,10 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
   useEffect(() => {
     wordsUpdated(initWords)
   }, [initWords])
+
+  const clickHandler = (tagname:string) => {
+    console.log('click handler:', tagname)
+  }
 
   return (
     <div className={'max-w-full sm:max-w-2xl'}>
@@ -66,10 +48,10 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
         <tbody>
         {words.map((word) => (
           <tr key={word.id} className={clsx({ 'cursor-pointer hover:bg-gray-800': isDevMode() })}>
-            <TableRow id={word.id} value={word.ru} word={word}/>
-            <TableRow id={word.id} value={word.kg} word={word}/>
-            <TableRow id={word.id} value={word.en} word={word}/>
-            <TableRow id={word.id} value={word.tagname} word={word} isTag={true}/>
+            <TableRow id={word.id} callback={clickHandler} value={word.ru} word={word}/>
+            <TableRow id={word.id} callback={clickHandler} value={word.kg} word={word}/>
+            <TableRow id={word.id} callback={clickHandler} value={word.en} word={word}/>
+            <TableRow id={word.id} callback={clickHandler} value={word.tagname} word={word} isTag={true}/>
           </tr>
         ))}
         </tbody>

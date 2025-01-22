@@ -114,6 +114,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Корабль', 'Ship', tag, 'Кеме'),
     createWord('Пиршество', 'Той', tag, 'Feast'),
     createWord('Спорт', 'Спорт', tag, 'Sport'),
+    createWord('Отмена', 'Жокко чыгаруу, токтотуу', tag, 'Cancel'),
     createWord('Звук', 'Тыбыш', tag, 'Sound')
   ]
 }
@@ -295,6 +296,7 @@ const animalsWild = (tag: number): WordEntity[] => {
     createWord('Лиса', 'Түлкү', tag, 'Fox'),
     createWord('Енот', 'Енот', tag, 'Raccoon'),
     createWord('Обезьяна', 'Маймыл', tag, 'Monkey'),
+    createWord('Бобр', 'Кемчет', tag, 'Beaver'),
     createWord('Змея', 'Жылан', tag, 'Snake')
   ]
 }
