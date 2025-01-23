@@ -115,6 +115,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Пиршество', 'Той', tag, 'Feast'),
     createWord('Спорт', 'Спорт', tag, 'Sport'),
     createWord('Коробка', 'Куту', tag, 'Box'),
+    createWord('Успех, удача', 'Береке', tag, 'Success'),
     createWord('Отмена', 'Жокко чыгаруу, токтотуу', tag, 'Cancel'),
     createWord('Звук', 'Тыбыш', tag, 'Sound')
   ]
@@ -521,6 +522,7 @@ const adjectives = (tag: number): WordEntity[] => {
     createWord('Кислый', 'Кычкыл', tag, 'Sour'),
     createWord('Острый', 'Өткүр', tag, 'Spicy'),
     createWord('Новый', 'Жаңы', tag, 'New'),
+    createWord('Хитрый (лукавый)', 'Куу', tag, 'Cunning'),
     createWord('Хитрый (лукавый)', 'Куу', tag, 'Cunning'),
     createWord('Густой, частый', 'Калың', tag, 'Thick, frequent'),
     createWord('Губастый', 'Калың эриндүү', tag, 'Thick-lipped'),
