@@ -34,7 +34,7 @@ const TagsControl = ({ tags }: TagsControlProps): JSX.Element => {
   }, [selectedTag])
 
   return (
-    <div className={'flex flex-wrap items-center gap-3 max-h-[300px]'}>
+    <div className={'flex flex-wrap items-center gap-3 w-full'}>
       <TagSelect data={tags} callback={(value: number) => {
         setSelectedTag(value)
       }}/>
