@@ -7,16 +7,15 @@
 import { JSX } from 'react'
 import { isDevMode } from '@/app/lib/utils'
 import ValueViewer from '@/app/ui/common/ValueViewer'
-import { Word } from '@/app/lib/model/word'
 import { useUnit } from 'effector-react'
-import { $words } from '@/app/lib/effector/word'
+import { $filters, Filters } from '@/app/lib/effector/filter'
 
 const WordsCountViewer = (): JSX.Element => {
-  const words: Word[] = useUnit($words)
+  const filters: Filters = useUnit($filters)
 
   return (
     <div>
-      {(isDevMode() ?? false) && <ValueViewer name={'Слов'} value={words.length}/>}
+      {(isDevMode() ?? false) && <ValueViewer name={'Слов'} value={filters.wordsFilteredCount}/>}
     </div>
   )
 }

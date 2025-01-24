@@ -132,6 +132,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Рукоятка', 'Сап', tag, 'Lever'),
     createWord('Ряд', 'Катар, тизмек', tag, 'Row'),
     createWord('Колесо', 'Дөңгөлөк', tag, 'Wheel'),
+    createWord('Красота (человек)', 'Сулуулук', tag, 'Beauty (human)'),
     createWord('Звук', 'Тыбыш', tag, 'Sound')
   ]
 }
@@ -370,6 +371,7 @@ const nature = (tag: number): WordEntity[] => {
     createWord('Шторм', 'Шамал', tag, 'Storm'),
     createWord('Дождь', 'Жамгыр, жаан', tag, 'Rain'),
     createWord('Воздух', 'Аба', tag, 'Air'),
+    createWord('Красота (природа)', 'Кооздук', tag, 'Beauty (nature)'),
     createWord('Капля', 'Тамчы', tag, 'A drop')
   ]
 }

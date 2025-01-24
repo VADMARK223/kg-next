@@ -12,7 +12,7 @@ import { isDevMode } from '@/app/lib/utils'
 import { $searchString, wordsUpdated } from '@/app/lib/effector/word'
 import { useUnit } from 'effector-react'
 import TableRow from '@/app/ui/home/word/TableRow'
-import { $filters, Filters } from '@/app/lib/effector/filter'
+import { $filters, Filters, wordsFilteredCountUpdated } from '@/app/lib/effector/filter'
 import { fetchWordsByTag, fetchWordsLocal, IS_REMOTE_MODE } from '@/app/api/api'
 
 interface WordsTableProps {
@@ -31,6 +31,10 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
   const fetchWords = async (tagId: number) => {
     return IS_REMOTE_MODE ? await fetchWordsByTag(tagId) : fetchWordsLocal(tagId)
   }
+
+  useEffect(() => {
+    wordsFilteredCountUpdated(words.length)
+  }, [words.length])
 
   useEffect(() => {
     const searchStringLowerCase = searchString.toLowerCase()
