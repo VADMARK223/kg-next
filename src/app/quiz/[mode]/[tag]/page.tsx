@@ -18,16 +18,13 @@ import { $settings } from '@/app/lib/effector/settings'
 interface QuizPageProps {
   params: Promise<{ tag: string, mode: string }>
 }
-
-const MAX_STEPS_COUNT = 5 // Максимальное число вопросов
-
 // Случайное перемешивание массива
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5)
 
 const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
   const settings = useUnit($settings)
-  const [totalSteps, setTotalSteps] = useState<number>(MAX_STEPS_COUNT)
+  const [totalSteps, setTotalSteps] = useState<number>(settings.questionCount)
   const [currentStep, setCurrentStep] = useState(0)
   const [score, setScore] = useState(0)
   const { tag, mode } = use(params)
@@ -95,8 +92,8 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
       return
     }
     setCurrentQuestion(generateQuestion())
-    setTotalSteps(Math.min(MAX_STEPS_COUNT, words.length))
-  }, [words])
+    setTotalSteps(Math.min(settings.questionCount, words.length))
+  }, [words, settings.questionCount])
 
   const isCorrect = (currentQuestion: Word | null, answer: string): boolean => {
     if (currentQuestion == null) {

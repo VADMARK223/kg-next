@@ -325,7 +325,7 @@ const animalsWild = (tag: number): WordEntity[] => {
 // Строения
 const buildings = (tag: number): WordEntity[] => {
   return [
-    createWord('Строение', 'Имарат', tag, 'Building'),
+    createWord('Строение, здание', 'Имарат', tag, 'Building'),
     createWord('План, проект', 'Жобо', tag, 'Plan, project'),
     createWord('Магазин', 'Дүкөн', tag, 'Shop'),
     createWord('Аптека', 'Дарыкана', tag, 'Pharmacy'),
@@ -342,6 +342,7 @@ const buildings = (tag: number): WordEntity[] => {
     createWord('Общежитие', 'Жатакана', tag, 'Pawnshop'),
     createWord('Суд', 'Сот', tag, 'Court'),
     createWord('Двор', 'Короо', tag, 'Yard'),
+    createWord('Крепость', 'Сепил', tag, 'Fortress'),
     createWord('Посольство', 'Элчилик', tag, 'Embassy'),
     createWord('Туалет', 'Ажаткана', tag, 'Toilet')
   ]
