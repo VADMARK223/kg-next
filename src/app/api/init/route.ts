@@ -39,7 +39,7 @@ async function initWords () {
       CREATE TABLE words
       (
           id  SERIAL PRIMARY KEY,
-          ru  VARCHAR(20) NOT NULL,
+          ru  VARCHAR(30) NOT NULL,
           kg  VARCHAR(40) NOT NULL,
           en  VARCHAR(30) NOT NULL,
           tag INTEGER     NOT NULL REFERENCES tags (id)
