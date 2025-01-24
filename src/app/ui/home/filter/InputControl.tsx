@@ -5,14 +5,14 @@
  * @since 23.01.2025
  */
 import { JSX } from 'react'
-import { $searchString, searchStringUpdated } from '@/app/lib/effector/word'
 import { useUnit } from 'effector-react'
+import { $filters, Filters, searchStringUpdated } from '@/app/lib/effector/filter'
 
 const InputControl = (): JSX.Element => {
-  const searchString = useUnit($searchString)
+  const filters: Filters = useUnit($filters)
 
   const handleAddCharacter = (char: string) => {
-    searchStringUpdated(searchString + char)
+    searchStringUpdated(filters.searchString + char)
   }
 
   return (
@@ -26,7 +26,7 @@ const InputControl = (): JSX.Element => {
       <input type="search"
              className="grow"
              placeholder="Поиск"
-             value={searchString}
+             value={filters.searchString}
              onChange={e => {
                searchStringUpdated(e.target.value)
              }}/>

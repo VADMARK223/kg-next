@@ -9,7 +9,7 @@ import { JSX, useEffect, useState } from 'react'
 import { Word } from '@/app/lib/model/word'
 import clsx from 'clsx'
 import { isDevMode } from '@/app/lib/utils'
-import { $searchString, wordsUpdated } from '@/app/lib/effector/word'
+import { wordsUpdated } from '@/app/lib/effector/word'
 import { useUnit } from 'effector-react'
 import TableRow from '@/app/ui/home/word/TableRow'
 import { $filters, Filters, selectedTagUpdated, wordsFilteredCountUpdated } from '@/app/lib/effector/filter'
@@ -28,7 +28,7 @@ interface WordsTableProps {
 
 const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
   const [words, setWords] = useState<Word[]>(initWords)
-  const searchString = useUnit($searchString)
+  // const searchString = useUnit($searchString)
   const filters: Filters = useUnit($filters)
 
   useEffect(() => {
@@ -44,14 +44,14 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
   }, [words.length])
 
   useEffect(() => {
-    const searchStringLowerCase = searchString.toLowerCase()
+    const searchStringLowerCase = filters.searchString.toLowerCase()
     fetchWords(filters.selectedTag).then(value => {
       setWords(value.filter((word) =>
         word.ru.toLowerCase().includes(searchStringLowerCase) || word.kg.toLowerCase().includes(searchStringLowerCase) || word.en?.toLowerCase().includes(searchStringLowerCase)
       ))
     })
 
-  }, [searchString, filters.selectedTag])
+  }, [filters.searchString, filters.selectedTag])
 
   const clickHandler = async (tagName: string) => {
     const tag: Tag = IS_REMOTE_MODE ? await fetchByTagByName(tagName) : fetchByTagByNameLocal(tagName)

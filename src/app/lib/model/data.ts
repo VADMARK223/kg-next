@@ -330,6 +330,7 @@ const buildings = (tag: number): WordEntity[] => {
     createWord('Магазин', 'Дүкөн', tag, 'Shop'),
     createWord('Аптека', 'Дарыкана', tag, 'Pharmacy'),
     createWord('Школа', 'Мектеп', tag, 'School'),
+    createWord('Башня', 'Мурана', tag, 'Tower'),
     createWord('Столовая', 'Ашкана', tag, 'Dining room'),
     createWord('Больница', 'Оорукана', tag, 'Hospital'),
     createWord('Гостиница', 'Мейманкана', tag, 'Hotel'),

@@ -16,7 +16,7 @@ const Page = (): JSX.Element => {
   const words = useUnit($words)
   return (
     <div className={'flex flex-col'}>
-      <ValueViewer name={'Версия'} value={APP_VERSION}/>
+      <ValueViewer name={'Версия'} value={`${APP_VERSION}.${words.length}`}/>
       <ValueViewer name={'Слов в словаре'} value={words.length} />
       <ValueViewer name={'Инстаграм автора'} value={
         <span>

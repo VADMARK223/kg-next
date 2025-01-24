@@ -7,19 +7,26 @@ import { createEvent, createStore } from 'effector'
 export interface Filters {
   selectedTag: number
   wordsFilteredCount: number
+  searchString: string
 }
 
 const defaultFilters: Filters = {
   selectedTag: 0,
-  wordsFilteredCount: 0
+  wordsFilteredCount: 0,
+  searchString: ''
 }
 
 export const selectedTagUpdated = createEvent<number>('Событие изменения выбранного тега.')
 export const wordsFilteredCountUpdated = createEvent<number>('Событие изменения кол-во отфильтрованных слов.')
+export const searchStringUpdated = createEvent<string>('Событие обновления строки поиска.')
+
 export const $filters = createStore<Filters>(defaultFilters)
 $filters.on(selectedTagUpdated, (state, payload) => {
   return { ...state, selectedTag: payload }
 })
 $filters.on(wordsFilteredCountUpdated, (state, payload) => {
   return { ...state, wordsFilteredCount: payload }
+})
+$filters.on(searchStringUpdated, (state, payload) => {
+  return { ...state, searchString: payload }
 })

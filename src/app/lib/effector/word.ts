@@ -10,7 +10,3 @@ export const wordsUpdated = createEvent<Word[]>('Событие обновлен
 
 export const $words = createStore<Word[]>([])
 $words.on(wordsUpdated, (_state, payload) => payload)
-
-export const searchStringUpdated = createEvent<string>('Событие обновления строки поиска.')
-export const $searchString = createStore<string>('')
-$searchString.on(searchStringUpdated, (_state, payload) => payload)
