@@ -5,32 +5,44 @@
  * @since 10.01.2025
  */
 'use client'
-import { JSX, useEffect } from 'react'
+import { JSX, useEffect, useState } from 'react'
 import { Word } from '@/app/lib/model/word'
 import clsx from 'clsx'
 import { isDevMode } from '@/app/lib/utils'
-import { $searchString, $words, wordsUpdated } from '@/app/lib/effector/word'
+import { $searchString, wordsUpdated } from '@/app/lib/effector/word'
 import { useUnit } from 'effector-react'
 import TableRow from '@/app/ui/home/word/TableRow'
+import { $filters, Filters } from '@/app/lib/effector/filter'
+import { fetchWordsByTag, fetchWordsLocal, IS_REMOTE_MODE } from '@/app/api/api'
 
 interface WordsTableProps {
   initWords: Word[]
 }
 
 const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
-  let words = useUnit($words)
+  const [words, setWords] = useState<Word[]>(initWords)
   const searchString = useUnit($searchString)
-
-  const searchStringLowerCase = searchString.toLowerCase()
-  words = words.filter((word) =>
-    word.ru.toLowerCase().includes(searchStringLowerCase) || word.kg.toLowerCase().includes(searchStringLowerCase) || word.en?.toLowerCase().includes(searchStringLowerCase)
-  )
+  const filters: Filters = useUnit($filters)
 
   useEffect(() => {
     wordsUpdated(initWords)
   }, [initWords])
 
-  const clickHandler = (tagname:string) => {
+  const fetchWords = async (tagId: number) => {
+    return IS_REMOTE_MODE ? await fetchWordsByTag(tagId) : fetchWordsLocal(tagId)
+  }
+
+  useEffect(() => {
+    const searchStringLowerCase = searchString.toLowerCase()
+    fetchWords(filters.selectedTag).then(value => {
+      setWords(value.filter((word) =>
+        word.ru.toLowerCase().includes(searchStringLowerCase) || word.kg.toLowerCase().includes(searchStringLowerCase) || word.en?.toLowerCase().includes(searchStringLowerCase)
+      ))
+    })
+
+  }, [searchString, filters.selectedTag])
+
+  const clickHandler = (tagname: string) => {
     console.log('click handler:', tagname)
   }
 

@@ -5,8 +5,10 @@
  * @since 10.01.2025
  */
 'use client'
-import { JSX, useState } from 'react'
+import { JSX } from 'react'
 import { Tag } from '@/app/lib/model/entity/Tag'
+import { $filters, Filters, selectedTagUpdated } from '@/app/lib/effector/filter'
+import { useUnit } from 'effector-react'
 
 interface TagSelectProps {
   data: Tag[]
@@ -14,16 +16,15 @@ interface TagSelectProps {
 }
 
 const TagSelect = ({ data, callback }: TagSelectProps): JSX.Element => {
-  const [value, setValue] = useState<number | null>(null)
+  const filters: Filters = useUnit($filters)
 
   return (
     <select
       className={'select w-40'}
-      defaultValue={''}
-      value={value ?? undefined}
+      value={filters.selectedTag === 0 ? undefined : filters.selectedTag}
       onChange={event => {
         const valueNumber = Number(event.target.value)
-        setValue(valueNumber)
+        selectedTagUpdated(Number(event.target.value))
         if (callback) {
           callback(valueNumber)
         }
