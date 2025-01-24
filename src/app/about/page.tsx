@@ -39,6 +39,20 @@ const Page = (): JSX.Element => {
         </a>
       </span>
       }/>
+      <ValueViewer name={'Телеграм канал'} value={
+        <span>
+        <a
+          href="https://t.me/vadmark_in_kyrgyzstan"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 hover:text-blue-500 transition-colors"
+        >
+            <span className={'inline-flex gap-2'}>
+              <span>@vadmark_in_kyrgyzstan</span>
+            </span>
+        </a>
+      </span>
+      }/>
       <ValueViewer name={'GitHub автора'} value={
         <span>
         <a

@@ -21,12 +21,12 @@ const defaultLinkData: Partial<LinkData> = { available: true }
 
 const links: LinkData[] = [
   { ...defaultLinkData, name: 'Словарь', href: '/' },
+  { ...defaultLinkData, name: 'Настройки', href: '/settings' },
   { ...defaultLinkData, name: 'О программе', href: '/about' },
   { ...defaultLinkData, name: 'Числительные', href: '/numerals', available: false },
   { ...defaultLinkData, name: 'ПДД', href: '/pdd', available: false },
   { ...defaultLinkData, name: 'Пересоздать БД', href: '/api/init' },
-  { ...defaultLinkData, name: 'Тест', href: '/api/test' },
-  { ...defaultLinkData, name: 'Настройки', href: '/settings', available: false }
+  { ...defaultLinkData, name: 'Тест', href: '/api/test' }
 ]
 
 const Menu = (): JSX.Element => {
@@ -36,7 +36,7 @@ const Menu = (): JSX.Element => {
     <div className={'flex flex-wrap gap-3'}>
       {links.map((link) => {
         // if ((link.href === '/api/init' || link.href === '/api/test' || link.href === '/settings' || link.href === '/pdd' || link.href === '/numerals') && isDevMode()) {
-        if (link.href === '/api/init' || link.href === '/api/test' || link.href === '/settings' || link.href === '/pdd' || link.href === '/numerals') {
+        if (link.href === '/api/init' || link.href === '/api/test' || link.href === '/pdd' || link.href === '/numerals') {
           return null
         }
 

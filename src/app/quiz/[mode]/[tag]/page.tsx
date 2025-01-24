@@ -5,26 +5,28 @@
  * @since 12.01.2025
  */
 'use client'
-import { JSX, use, useCallback, useEffect, useState } from 'react'
+import { JSX, use, useEffect, useState } from 'react'
 import { fetchTagsByIdCommon, fetchWordsLocal } from '@/app/api/api'
 import { Word } from '@/app/lib/model/word'
 import ResultItem from '@/app/ui/quiz/ResultItem'
 import { QuizHistory } from '@/app/lib/model/QuizHistory'
 import { LANGUAGE_MODE } from '@/app/lib/utils'
 import Image from 'next/image'
+import { useUnit } from 'effector-react/compat'
+import { $settings } from '@/app/lib/effector/settings'
 
 interface QuizPageProps {
   params: Promise<{ tag: string, mode: string }>
 }
 
 const MAX_STEPS_COUNT = 5 // Максимальное число вопросов
-const ANSWERS_COUNT = 5 // Максимальное число ответов
 
 // Случайное перемешивание массива
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5)
 
 const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
+  const settings = useUnit($settings)
   const [totalSteps, setTotalSteps] = useState<number>(MAX_STEPS_COUNT)
   const [currentStep, setCurrentStep] = useState(0)
   const [score, setScore] = useState(0)
@@ -79,7 +81,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
         }
       })
     )
-      .slice(0, ANSWERS_COUNT - 1)
+      .slice(0, settings.answerCount - 1)
       .map((word) => mode === LANGUAGE_MODE.KG ? word.kg : word.en)
 
     const options = shuffleArray([mode === LANGUAGE_MODE.KG ? currentWord.kg : currentWord.en, ...incorrectAnswers])
@@ -87,36 +89,6 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     setUsedQuestions((prev: Word[]) => [...prev, currentWord])
     return currentWord
   }
-
-  // const generateQuestion = useCallback(() => {
-  //   if (words.length === 0) {
-  //     throw new Error('Массив WORDS пуст. Добавьте слова в массив.')
-  //   }
-  //
-  //   // Фильтрация слов, которые уже использовались
-  //   const availableWords = words.filter(word => !usedQuestions.includes(word))
-  //   if (availableWords.length === 0) {
-  //     throw new Error('Все вопросы уже были заданы.')
-  //   }
-  //
-  //   const currentWord = availableWords[Math.floor(Math.random() * availableWords.length)]
-  //   const incorrectAnswers = shuffleArray(
-  //     words.filter((word) => {
-  //       if (mode === LANGUAGE_MODE.KG) {
-  //         return (word.kg !== currentWord.kg)
-  //       } else {
-  //         return (word.en !== currentWord.en)
-  //       }
-  //     })
-  //   )
-  //     .slice(0, ANSWERS_COUNT - 1)
-  //     .map((word) => mode === LANGUAGE_MODE.KG ? word.kg : word.en)
-  //
-  //   const options = shuffleArray([mode === LANGUAGE_MODE.KG ? currentWord.kg : currentWord.en, ...incorrectAnswers])
-  //   setShuffledOptions(options)
-  //   setUsedQuestions((prev: Word[]) => [...prev, currentWord])
-  //   return currentWord
-  // }, [words, mode, usedQuestions])
 
   useEffect(() => {
     if (words.length === 0) {
