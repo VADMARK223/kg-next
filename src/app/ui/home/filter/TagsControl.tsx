@@ -22,7 +22,7 @@ const TagsControl = ({ tags }: TagsControlProps): JSX.Element => {
   const filters: Filters = useUnit($filters)
 
   return (
-    <div className={'flex flex-wrap items-center gap-3 w-full'}>
+    <div className={'flex items-center gap-3'}>
       <TagSelect data={tags} callback={(value: number) => {
         selectedTagUpdated(value)
       }}/>
@@ -38,7 +38,6 @@ const TagsControl = ({ tags }: TagsControlProps): JSX.Element => {
         }}>
         <LanguageButton isKg={false}/>
       </Link>
-      <WordsCountViewer/>
     </div>
   )
 }
