@@ -88,7 +88,7 @@ export const fetchWordsLocal = (tagId?: number): Word[] => {
     })
   })
 
-  return result.sort((a, b) => a.ru.localeCompare(b.ru));
+  return result.sort((a, b) => a.ru.localeCompare(b.ru))
 }
 
 export const fetchWordsByTag = async (tagId: number): Promise<Word[]> => {
@@ -100,4 +100,17 @@ export const fetchWordsByTag = async (tagId: number): Promise<Word[]> => {
     body: JSON.stringify({ tagId: tagId })
   })
   return await response.json() as Word[]
+}
+
+export const fetchByTagByName = async (tagName: string): Promise<Tag> => {
+  // TODO: доделать
+  return await fetch(`/api/tags/${tagName}`, {}).then()
+}
+
+export const fetchByTagByNameLocal = (tagName: string) => {
+  const tag = TAGS.find(tag => tag.name === tagName)
+  if (tag === undefined) {
+    throw new Error(`Тег '${tagName}' не найденн!`)
+  }
+  return tag
 }

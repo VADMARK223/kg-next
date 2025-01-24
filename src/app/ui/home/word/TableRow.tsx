@@ -12,18 +12,21 @@ interface TableRowProps {
   value?: number | string
   word: Word
   isTag?: boolean
-  callback: (tagname:string) => void
+  callback?: (tagname: string) => void
 }
 
 const TableRow = ({ id, value, word, callback, isTag = false }: TableRowProps): JSX.Element => {
   return (
     <th>
       <span
-        onClick={()=>{
-          callback(word.tagname)
+        onClick={() => {
+          if (callback !== undefined) {
+            callback(word.tagname)
+          }
         }}
         style={{
           color: isTag ? word.color : undefined,
+          cursor: isTag ? 'pointer' : undefined,
           textDecoration: isTag ? 'underline' : undefined
         }}>{value}</span>
       {/*{!isDevMode()*/}
