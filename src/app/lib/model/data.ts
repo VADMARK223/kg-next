@@ -139,6 +139,9 @@ const common = (tag: number): WordEntity[] => {
     createWord('Вещь', 'Нерсе', tag, 'Thing'),
     createWord('Опасность', 'Коркунуч', tag, 'Danger'),
     createWord('Страх, боязнь', 'Кооп', tag, 'Fear'),
+    createWord('Пламя', 'От', tag, 'Flame'),
+    createWord('Огонь (пламя)', 'От', tag, 'Fire (flame)'),
+    createWord('Пожар', 'Өрт', tag, 'Fire'),
     createWord('Предмет', 'Нерсе', tag, 'Item'),
     createWord('Разговорник', 'Сүйлөшмө', tag, 'Phrasebook'),
     createWord('Красота (человек)', 'Сулуулук', tag, 'Beauty (human)'),
@@ -454,6 +457,7 @@ const humanBody = (tag: number): WordEntity[] => {
     createWord('Ноготь', 'Тырмак', tag, 'Nail'),
     createWord('Язык', 'Тил', tag, 'Tongue'),
     createWord('Веко', 'Кабак', tag, 'Eyelid'),
+    createWord('Мозг', 'Мээ', tag, 'Brain'),
     createWord('Попа', 'Кот', tag, 'Ass')
   ]
 }
@@ -509,6 +513,7 @@ const birds = (tag: number): WordEntity[] => {
     createWord('Павлин', 'Тоос', tag, 'Peacock'),
     createWord('Удод', 'Үпүп', tag, 'Hoopoe'),
     createWord('Журавль', 'Турна', tag, 'Crane'),
+    createWord('Чайка', 'Ак чардак', tag, 'Gull'),
     createWord('Цыпленок', 'Жөжө', tag, 'Chicken')
   ]
 }

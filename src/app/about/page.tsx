@@ -5,15 +5,21 @@
  * @since 10.01.2025
  */
 'use client'
-import { JSX } from 'react'
+import { JSX, useEffect, useState } from 'react'
 import ValueViewer from '@/app/ui/common/ValueViewer'
 import { APP_VERSION, isDevMode } from '@/app/lib/utils'
 import { IS_REMOTE_MODE } from '@/app/api/api'
 import { TAGS, WORDS } from '@/app/lib/model/data'
-import { ClipboardIcon } from '@heroicons/react/24/solid';
+import { ClipboardIcon, EyeIcon } from '@heroicons/react/24/solid'
 
 const AboutPage = (): JSX.Element => {
   const version = `${APP_VERSION}.${WORDS.length}`
+  const [isMobile, setIsMobile] = useState<boolean>(false)
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent || ''
+    setIsMobile(/Mobi|Android|iPhone/i.test(userAgent))
+  }, [])
 
   const copyToClipboard = async () => {
     try {
@@ -90,7 +96,16 @@ const AboutPage = (): JSX.Element => {
         </a>
       </span>
       }/>
-      {isDevMode() ? <ValueViewer name={'Режим'} value={IS_REMOTE_MODE ? 'Remote' : 'Local'}/> : null}
+      <div className={'flex items-center gap-3'}>
+        <ValueViewer name={'Устройство пользователя'} value={isMobile ? 'Mobile' : 'Web'}/>
+        <button className={'btn btn-primary btn-sm'} onClick={() => {
+          alert(`Клиент: ${navigator.userAgent}`)
+        }}>
+          <EyeIcon className="h-5 w-5 text-white"/>
+        </button>
+      </div>
+
+      {isDevMode() ? <ValueViewer name={'Режим данных'} value={IS_REMOTE_MODE ? 'Remote' : 'Local'}/> : null}
     </div>
   )
 }
