@@ -9,15 +9,14 @@ import { JSX } from 'react'
 import ValueViewer from '@/app/ui/common/ValueViewer'
 import { APP_VERSION, isDevMode } from '@/app/lib/utils'
 import { IS_REMOTE_MODE } from '@/app/api/api'
-import { useUnit } from 'effector-react'
-import { $words } from '@/app/lib/effector/word'
+import { TAGS, WORDS } from '@/app/lib/model/data'
 
 const Page = (): JSX.Element => {
-  const words = useUnit($words)
   return (
     <div className={'flex flex-col'}>
-      <ValueViewer name={'Версия'} value={`${APP_VERSION}.${words.length}`}/>
-      <ValueViewer name={'Слов в словаре'} value={words.length} />
+      <ValueViewer name={'Версия'} value={`${APP_VERSION}.${WORDS.length}`}/>
+      <ValueViewer name={'Слов в словаре'} value={WORDS.length}/>
+      <ValueViewer name={'Категорий в словаре'} value={TAGS.length}/>
       <ValueViewer name={'Инстаграм автора'} value={
         <span>
         <a

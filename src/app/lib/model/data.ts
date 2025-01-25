@@ -269,6 +269,7 @@ const house = (tag: number): WordEntity[] => {
     createWord('Стул', 'Отурдук', tag, 'Chair'),
     createWord('Стол', 'Үстөл', tag, 'Table'),
     createWord('Полотенце', 'Сүлгү', tag, 'Towel'),
+    createWord('Баня', 'Мончо', tag, 'Bathhouse'),
     createWord('Печка', 'Меш', tag, 'Stove'),
     createWord('Совок', 'Калак', tag, 'Dustpan')
   ]
@@ -523,6 +524,7 @@ const city = (tag: number): WordEntity[] => {
     createWord('Ресторан', 'Ресторан', tag, 'Restaurant'),
     createWord('Кафе', 'Кичине ресторан', tag, 'Cafe'),
     createWord('Такси', 'Кире', tag, 'Taxi'),
+    createWord('Памятник', 'Эстелик', tag, 'Monument'),
     createWord('Ж/д вокзал', 'Темир жол вокзалы', tag, 'Railway station')
   ]
 }

@@ -21,8 +21,8 @@ const defaultLinkData: Partial<LinkData> = { available: true }
 
 const links: LinkData[] = [
   { ...defaultLinkData, name: 'Словарь', href: '/' },
-  { ...defaultLinkData, name: 'Настройки', href: '/settings' },
   { ...defaultLinkData, name: 'О программе', href: '/about' },
+  { ...defaultLinkData, name: 'Настройки', href: '/settings' },
   { ...defaultLinkData, name: 'Числительные', href: '/numerals', available: false },
   { ...defaultLinkData, name: 'ПДД', href: '/pdd', available: false },
   { ...defaultLinkData, name: 'Пересоздать БД', href: '/api/init' },

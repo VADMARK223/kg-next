@@ -37,7 +37,7 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
     }
   }, [filters.selectedTagMode])
 
-  const fetchWords = async (tagId: number) => {
+  const fetchWords = async (tagId: number | undefined) => {
     return IS_REMOTE_MODE ? await fetchWordsByTag(tagId) : fetchWordsLocal(tagId)
   }
 

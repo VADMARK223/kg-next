@@ -91,7 +91,7 @@ export const fetchWordsLocal = (tagId?: number): Word[] => {
   return result.sort((a, b) => a.ru.localeCompare(b.ru))
 }
 
-export const fetchWordsByTag = async (tagId: number): Promise<Word[]> => {
+export const fetchWordsByTag = async (tagId: number|undefined): Promise<Word[]> => {
   const response = await fetch(`/api/word`, {
     method: 'POST',
     headers: {
