@@ -8,7 +8,7 @@ import { JSX } from 'react'
 import { Word } from '@/app/lib/model/word'
 import { Tag } from '@/app/lib/model/entity/Tag'
 import { fetchByTagByName, fetchByTagByNameLocal, IS_REMOTE_MODE } from '@/app/api/api'
-import { selectedTagUpdated } from '@/app/lib/effector/filter'
+import { selectedTagModeUpdated, selectedTagUpdated } from '@/app/lib/effector/filter'
 
 interface TableRowProps {
   value?: number | string
@@ -20,6 +20,7 @@ const TableRow = ({ value, word, isTag = false }: TableRowProps): JSX.Element =>
   const clickHandler = async (tagName: string) => {
     const tag: Tag = IS_REMOTE_MODE ? await fetchByTagByName(tagName) : fetchByTagByNameLocal(tagName)
     selectedTagUpdated(tag.id)
+    selectedTagModeUpdated(true)
   }
 
   return (
@@ -35,18 +36,6 @@ const TableRow = ({ value, word, isTag = false }: TableRowProps): JSX.Element =>
           cursor: isTag ? 'pointer' : undefined,
           textDecoration: isTag ? 'underline' : undefined
         }}>{value}</span>
-      {/*{!isDevMode()*/}
-      {/*  ? <span style={{*/}
-      {/*    color: isTag ? word.color : undefined,*/}
-      {/*    textDecoration: isTag ? 'underline' : undefined*/}
-      {/*  }}>{value}</span>*/}
-      {/*  : <Link href={`/word/${id}`}>*/}
-      {/*<span style={{*/}
-      {/*  color: isTag ? word.color : undefined,*/}
-      {/*  textDecoration: isTag ? 'underline' : undefined*/}
-      {/*}}>{value}</span>*/}
-      {/*  </Link>*/}
-      {/*}*/}
     </th>
   )
 }

@@ -14,6 +14,7 @@ import { useUnit } from 'effector-react'
 import TableRow from '@/app/ui/home/word/TableRow'
 import { $filters, Filters, wordsFilteredCountUpdated } from '@/app/lib/effector/filter'
 import { fetchWordsByTag, fetchWordsLocal, IS_REMOTE_MODE } from '@/app/api/api'
+import BackButton from '@/app/ui/home/word/BackButton'
 
 interface WordsTableProps {
   initWords: Word[]
@@ -21,11 +22,20 @@ interface WordsTableProps {
 
 const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
   const [words, setWords] = useState<Word[]>(initWords)
+  const [nameTagColumn, setNameTagColumn] = useState<string>('Категории')
   const filters: Filters = useUnit($filters)
 
   useEffect(() => {
     wordsUpdated(initWords)
   }, [initWords])
+
+  useEffect(() => {
+    if (filters.selectedTagMode) {
+      setNameTagColumn('Действие')
+    } else {
+      setNameTagColumn('Категории')
+    }
+  }, [filters.selectedTagMode])
 
   const fetchWords = async (tagId: number) => {
     return IS_REMOTE_MODE ? await fetchWordsByTag(tagId) : fetchWordsLocal(tagId)
@@ -53,7 +63,7 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
           <th>Русский</th>
           <th>Кыргызский</th>
           <th>Английский</th>
-          <th>Категория</th>
+          <th>{nameTagColumn}</th>
         </tr>
         </thead>
         <tbody>
@@ -62,7 +72,13 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
             <TableRow value={word.ru} word={word}/>
             <TableRow value={word.kg} word={word}/>
             <TableRow value={word.en} word={word}/>
-            <TableRow value={word.tagname} word={word} isTag={true}/>
+            {filters.selectedTagMode
+              ?
+              <BackButton/>
+              :
+              <TableRow value={word.tagname} word={word} isTag={true}/>
+            }
+
           </tr>
         ))}
         </tbody>
