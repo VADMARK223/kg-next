@@ -12,15 +12,8 @@ import { isDevMode } from '@/app/lib/utils'
 import { wordsUpdated } from '@/app/lib/effector/word'
 import { useUnit } from 'effector-react'
 import TableRow from '@/app/ui/home/word/TableRow'
-import { $filters, Filters, selectedTagUpdated, wordsFilteredCountUpdated } from '@/app/lib/effector/filter'
-import {
-  fetchByTagByName,
-  fetchByTagByNameLocal,
-  fetchWordsByTag,
-  fetchWordsLocal,
-  IS_REMOTE_MODE
-} from '@/app/api/api'
-import { Tag } from '@/app/lib/model/entity/Tag'
+import { $filters, Filters, wordsFilteredCountUpdated } from '@/app/lib/effector/filter'
+import { fetchWordsByTag, fetchWordsLocal, IS_REMOTE_MODE } from '@/app/api/api'
 
 interface WordsTableProps {
   initWords: Word[]
@@ -28,7 +21,6 @@ interface WordsTableProps {
 
 const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
   const [words, setWords] = useState<Word[]>(initWords)
-  // const searchString = useUnit($searchString)
   const filters: Filters = useUnit($filters)
 
   useEffect(() => {
@@ -53,11 +45,6 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
 
   }, [filters.searchString, filters.selectedTag])
 
-  const clickHandler = async (tagName: string) => {
-    const tag: Tag = IS_REMOTE_MODE ? await fetchByTagByName(tagName) : fetchByTagByNameLocal(tagName)
-    selectedTagUpdated(tag.id)
-  }
-
   return (
     <div className={'max-w-full sm:max-w-2xl'}>
       <table className={clsx('table', { 'table-zebra': !isDevMode() })}>
@@ -71,13 +58,11 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
         </thead>
         <tbody>
         {words.map((word) => (
-          <tr key={word.id}
-              // className={clsx({ 'cursor-pointer hover:bg-gray-800': isDevMode() })}
-          >
-            <TableRow id={word.id} value={word.ru} word={word}/>
-            <TableRow id={word.id} value={word.kg} word={word}/>
-            <TableRow id={word.id} value={word.en} word={word}/>
-            <TableRow id={word.id} callback={clickHandler} value={word.tagname} word={word} isTag={true}/>
+          <tr key={word.id}>
+            <TableRow value={word.ru} word={word}/>
+            <TableRow value={word.kg} word={word}/>
+            <TableRow value={word.en} word={word}/>
+            <TableRow value={word.tagname} word={word} isTag={true}/>
           </tr>
         ))}
         </tbody>

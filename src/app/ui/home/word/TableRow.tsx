@@ -6,22 +6,28 @@
  */
 import { JSX } from 'react'
 import { Word } from '@/app/lib/model/word'
+import { Tag } from '@/app/lib/model/entity/Tag'
+import { fetchByTagByName, fetchByTagByNameLocal, IS_REMOTE_MODE } from '@/app/api/api'
+import { selectedTagUpdated } from '@/app/lib/effector/filter'
 
 interface TableRowProps {
-  id: number
   value?: number | string
   word: Word
   isTag?: boolean
-  callback?: (tagname: string) => void
 }
 
-const TableRow = ({ id, value, word, callback, isTag = false }: TableRowProps): JSX.Element => {
+const TableRow = ({ value, word, isTag = false }: TableRowProps): JSX.Element => {
+  const clickHandler = async (tagName: string) => {
+    const tag: Tag = IS_REMOTE_MODE ? await fetchByTagByName(tagName) : fetchByTagByNameLocal(tagName)
+    selectedTagUpdated(tag.id)
+  }
+
   return (
     <th>
       <span
         onClick={() => {
-          if (callback !== undefined) {
-            callback(word.tagname)
+          if (isTag) {
+            clickHandler(word.tagname)
           }
         }}
         style={{
