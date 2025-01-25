@@ -10,11 +10,28 @@ import ValueViewer from '@/app/ui/common/ValueViewer'
 import { APP_VERSION, isDevMode } from '@/app/lib/utils'
 import { IS_REMOTE_MODE } from '@/app/api/api'
 import { TAGS, WORDS } from '@/app/lib/model/data'
+import { ClipboardIcon } from '@heroicons/react/24/solid';
 
-const Page = (): JSX.Element => {
+const AboutPage = (): JSX.Element => {
+  const version = `${APP_VERSION}.${WORDS.length}`
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(version)
+      alert('Версия скопирована.')
+    } catch (err) {
+      alert(`Не удалось скопировать версию. Ошибка: ${err}`)
+    }
+  }
+
   return (
     <div className={'flex flex-col'}>
-      <ValueViewer name={'Версия'} value={`${APP_VERSION}.${WORDS.length}`}/>
+      <div className={'flex items-center gap-3'}>
+        <ValueViewer name={'Версия'} value={version}/>
+        <button className={'btn btn-primary btn-sm'} onClick={copyToClipboard}>
+          <ClipboardIcon className="h-5 w-5 text-white"/>
+        </button>
+      </div>
       <ValueViewer name={'Слов в словаре'} value={WORDS.length}/>
       <ValueViewer name={'Категорий в словаре'} value={TAGS.length}/>
       <ValueViewer name={'Инстаграм автора'} value={
@@ -78,4 +95,4 @@ const Page = (): JSX.Element => {
   )
 }
 
-export default Page
+export default AboutPage

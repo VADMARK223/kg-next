@@ -92,6 +92,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Лекарство', 'Дары', tag, 'Medicine'),
     createWord('Пена', 'Көбүк', tag, 'Foam'),
     createWord('Сон', 'Уйку', tag, 'Dream'),
+    createWord('Рейс', 'Каттам', tag, 'Flight'),
     createWord('Труд', 'Эмгек', tag, 'Work'),
     createWord('Мусор', 'Таштанды, Шыпырынды', tag, 'Garbage'),
     createWord('Друг', 'Дос', tag, 'Friend'),
@@ -136,6 +137,8 @@ const common = (tag: number): WordEntity[] => {
     createWord('Колесо', 'Дөңгөлөк', tag, 'Wheel'),
     createWord('Разговор', 'Сүйлөш', tag, 'Talk'),
     createWord('Вещь', 'Нерсе', tag, 'Thing'),
+    createWord('Опасность', 'Коркунуч', tag, 'Danger'),
+    createWord('Страх, боязнь', 'Кооп', tag, 'Fear'),
     createWord('Предмет', 'Нерсе', tag, 'Item'),
     createWord('Разговорник', 'Сүйлөшмө', tag, 'Phrasebook'),
     createWord('Красота (человек)', 'Сулуулук', tag, 'Beauty (human)'),
@@ -254,6 +257,7 @@ const house = (tag: number): WordEntity[] => {
     createWord('Квартира', 'Батир', tag, 'Apartment'),
     createWord('Дверь', 'Эшик', tag, 'Door'),
     createWord('Окно', 'Терезе', tag, 'Window'),
+    createWord('Кровать', 'Керебет', tag, 'Bed'),
     createWord('Ложка', 'Кашык', tag, 'Spoon'),
     createWord('Вилка', 'Вилка', tag, 'Fork'),
     createWord('Нож', 'Бычак', tag, 'Knife'),
@@ -270,7 +274,9 @@ const house = (tag: number): WordEntity[] => {
     createWord('Стол', 'Үстөл', tag, 'Table'),
     createWord('Полотенце', 'Сүлгү', tag, 'Towel'),
     createWord('Баня', 'Мончо', tag, 'Bathhouse'),
+    createWord('Утюг', 'Үтүк', tag, 'Iron'),
     createWord('Печка', 'Меш', tag, 'Stove'),
+    createWord('Сейф', 'Сейф', tag, 'Safe'),
     createWord('Совок', 'Калак', tag, 'Dustpan')
   ]
 }
@@ -503,7 +509,7 @@ const birds = (tag: number): WordEntity[] => {
     createWord('Павлин', 'Тоос', tag, 'Peacock'),
     createWord('Удод', 'Үпүп', tag, 'Hoopoe'),
     createWord('Журавль', 'Турна', tag, 'Crane'),
-    createWord('Цыплёнок', 'Жөжө', tag, 'Chicken')
+    createWord('Цыпленок', 'Жөжө', tag, 'Chicken')
   ]
 }
 // Город и село
@@ -525,6 +531,7 @@ const city = (tag: number): WordEntity[] => {
     createWord('Кафе', 'Кичине ресторан', tag, 'Cafe'),
     createWord('Такси', 'Кире', tag, 'Taxi'),
     createWord('Памятник', 'Эстелик', tag, 'Monument'),
+    createWord('Аэропорт', 'Аэропорт', tag, 'Airport'),
     createWord('Ж/д вокзал', 'Темир жол вокзалы', tag, 'Railway station')
   ]
 }
@@ -541,13 +548,13 @@ const professions = (tag: number): WordEntity[] => {
     createWord('Плотник', 'Жыгач устасы', tag, 'Carpenter'),
     createWord('Певец, поэт', 'Ырчы', tag, 'Singer'),
     createWord('Историк', 'Тарыхчы', tag, 'Historian'),
-    createWord('Лётчик', 'Учуучу', tag, 'Pilot'),
+    createWord('Летчик, пилот', 'Учкуч', tag, 'Pilot'),
     createWord('Продавец', 'Сатуучу', tag, 'Salesman'),
     createWord('Программист', 'Программист', tag, 'Programmer'),
     createWord('Переводчик', 'Котормочу', tag, 'Translator'),
     createWord('Алкоголик', 'Аракеч', tag, 'Alcoholic'),
     createWord('Военный', 'Аскер', tag, 'Military'),
-    createWord('Пилот', 'Учкуч', tag, 'Pilot'),
+    createWord('Прокурор', 'Прокурор', tag, 'Prosecutor'),
     createWord('Стекловар', 'Айнек кайнатуучу', tag, 'Glassmaker')
   ]
 }
@@ -784,9 +791,10 @@ const family = (tag: number): WordEntity[] => {
     createWord('Мальчик', 'Эркек бала', tag, 'Boy'),
     createWord('Мужчина', 'Эркек', tag, 'Man'),
     createWord('Женщина', 'Аял', tag, 'Woman'),
-    createWord('Сын', 'Уул', tag, 'Son'),
+    createWord('Сын', 'Уул, бала', tag, 'Son'),
     createWord('Дочь', 'Кыз', tag, 'Daughter'),
-    createWord('Сестра (старшая)', 'Эже', tag, 'Sister (elder)')
+    createWord('Сестра (старшая)', 'Эже', tag, 'Sister (elder)'),
+    createWord('Сестра (младшая)', 'Сиңди', tag, 'Sister (younger)')
   ]
 }
 
