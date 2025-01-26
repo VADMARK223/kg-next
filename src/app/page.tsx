@@ -11,16 +11,9 @@ export default async function Home () {
 
   return (
     <div className={'max-w-screen'}>
-      <div className={'flex items-center gap-3'}>
-        <Filter tags={tags}/>
-      </div>
-
-      <div>
-        <WordsTable initWords={words}/>
-      </div>
-
-     <WordsTopButton/>
-
+      <Filter tags={tags}/>
+      <WordsTable initWords={words}/>
+      <WordsTopButton/>
     </div>
   )
 }

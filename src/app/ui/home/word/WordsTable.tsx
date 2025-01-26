@@ -57,10 +57,10 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
 
   return (
     <>
-      {filters.wordsFilteredCount === 0
+      {filters.searchString.length && filters.wordsFilteredCount === 0
         ? <>Слово <span className="text-red-500 font-bold">{filters.searchString}</span> не найдено.😞</>
-        : <div className={'max-w-full sm:max-w-2xl'}>
-          <table className={clsx('table', { 'table-zebra': !isDevMode() })}>
+        : <div className={'max-w-full sm:max-w-2xs'}>
+          <table className={clsx(`table bg-gray-800`, { 'table-zebra': !isDevMode() })}>
             <thead>
             <tr>
               <th>Русский</th>
@@ -86,7 +86,8 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
             ))}
             </tbody>
           </table>
-        </div>}
+        </div>
+      }
     </>
   )
 }

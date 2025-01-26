@@ -110,7 +110,7 @@ export const fetchByTagByName = async (tagName: string): Promise<Tag> => {
 export const fetchByTagByNameLocal = (tagName: string) => {
   const tag = TAGS.find(tag => tag.name === tagName)
   if (tag === undefined) {
-    throw new Error(`Тег '${tagName}' не найденн!`)
+    throw new Error(`Тег '${tagName}' не найден!`)
   }
   return tag
 }

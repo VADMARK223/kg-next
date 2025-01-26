@@ -19,7 +19,7 @@ const InputControl = (): JSX.Element => {
 
   return (
     <label className={clsx(
-      'input w-full',
+      'input min-w-[420px]',
       filters.searchString.length && filters.wordsFilteredCount === 0 ? 'input-error' : 'input-primary'
     )}>
       <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -35,7 +35,7 @@ const InputControl = (): JSX.Element => {
                value={filters.searchString}
                maxLength={MAX_WORD_LENGTH}
                onChange={e => {
-                 searchStringUpdated(e.target.value)
+                 searchStringUpdated(e.target.value.replace(/ё/g, 'е'))
                }}/>
         {filters.searchString && (
           <button

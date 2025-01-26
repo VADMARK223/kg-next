@@ -17,7 +17,7 @@ interface FilterProps {
 
 const Filter = ({ tags }: FilterProps): JSX.Element => {
   return (
-    <div>
+    <div className={'flex-col'}>
       <InputControl/>
       <div style={{ paddingTop: '10px' }}>
         <TagsControl tags={tags}/>

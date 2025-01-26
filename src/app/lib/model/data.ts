@@ -287,6 +287,7 @@ const house = (tag: number): WordEntity[] => {
     createWord('Утюг', 'Үтүк', tag, 'Iron'),
     createWord('Печка', 'Меш', tag, 'Stove'),
     createWord('Сейф', 'Сейф', tag, 'Safe'),
+    createWord('Расческа', 'Тарак', tag, 'Comb'),
     createWord('Совок', 'Калак', tag, 'Dustpan')
   ]
 }

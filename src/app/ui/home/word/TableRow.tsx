@@ -24,7 +24,9 @@ const TableRow = ({ value, word, isTag = false }: TableRowProps): JSX.Element =>
   }
 
   return (
-    <th>
+    <th
+      // className={'w-[500px] w-min-[400px]'}
+    >
       <span
         onClick={() => {
           if (isTag) {
