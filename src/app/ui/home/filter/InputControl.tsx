@@ -23,13 +23,24 @@ const InputControl = (): JSX.Element => {
           <path d="m21 21-4.3-4.3"></path>
         </g>
       </svg>
-      <input type="search"
-             className="grow"
-             placeholder="Поиск"
-             value={filters.searchString}
-             onChange={e => {
-               searchStringUpdated(e.target.value)
-             }}/>
+      <div className="relative w-full">
+        <input type="text"
+               className="grow appearance-none"
+               placeholder="Поиск"
+               value={filters.searchString}
+               onChange={e => {
+                 searchStringUpdated(e.target.value)
+               }}/>
+        {filters.searchString && (
+          <button
+            type="button"
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-50 hover:text-gray-400"
+            onClick={() => searchStringUpdated('')}
+          >
+            ✕
+          </button>
+        )}
+      </div>
       <kbd className="kbd kbd-lg cursor-pointer hover:bg-gray-500 transition-colors"
            onClick={() => handleAddCharacter('ө')}>
         Ө
