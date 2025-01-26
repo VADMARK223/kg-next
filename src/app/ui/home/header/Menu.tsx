@@ -9,7 +9,6 @@ import { JSX } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
-import { isDevMode } from '@/app/lib/utils'
 
 type LinkData = {
   name: string

@@ -11,6 +11,7 @@
 import { db } from '@vercel/postgres'
 import { TAGS, WORDS } from '@/app/lib/model/data'
 import { WordEntity } from '@/app/lib/model/word'
+import { MAX_WORD_LENGTH } from '@/app/lib/utils'
 
 const client = await db.connect()
 
@@ -39,9 +40,9 @@ async function initWords () {
       CREATE TABLE words
       (
           id  SERIAL PRIMARY KEY,
-          ru  VARCHAR(30) NOT NULL,
-          kg  VARCHAR(40) NOT NULL,
-          en  VARCHAR(30) NOT NULL,
+          ru  VARCHAR(${MAX_WORD_LENGTH}) NOT NULL,
+          kg  VARCHAR(${MAX_WORD_LENGTH}) NOT NULL,
+          en  VARCHAR(${MAX_WORD_LENGTH}) NOT NULL,
           tag INTEGER     NOT NULL REFERENCES tags (id)
       );`
 

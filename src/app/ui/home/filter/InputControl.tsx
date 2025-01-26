@@ -7,6 +7,8 @@
 import { JSX } from 'react'
 import { useUnit } from 'effector-react'
 import { $filters, Filters, searchStringUpdated } from '@/app/lib/effector/filter'
+import { MAX_WORD_LENGTH } from '@/app/lib/utils'
+import clsx from 'clsx'
 
 const InputControl = (): JSX.Element => {
   const filters: Filters = useUnit($filters)
@@ -16,7 +18,10 @@ const InputControl = (): JSX.Element => {
   }
 
   return (
-    <label className="input w-full max-w-xs sm:max-w-md lg:max-w-lg mx-auto">
+    <label className={clsx(
+      'input w-full',
+      filters.searchString.length && filters.wordsFilteredCount === 0 ? 'input-error' : 'input-primary'
+    )}>
       <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <g strokeLinejoin={'round'} strokeLinecap="round" strokeWidth="2.5" fill="none" stroke="currentColor">
           <circle cx="11" cy="11" r="8"></circle>
@@ -24,10 +29,11 @@ const InputControl = (): JSX.Element => {
         </g>
       </svg>
       <div className="relative w-full">
-        <input type="text"
-               className="grow appearance-none"
-               placeholder="Поиск"
+        <input type={'text'}
+               className={'grow'}
+               placeholder={'Введите слово для поиска'}
                value={filters.searchString}
+               maxLength={MAX_WORD_LENGTH}
                onChange={e => {
                  searchStringUpdated(e.target.value)
                }}/>

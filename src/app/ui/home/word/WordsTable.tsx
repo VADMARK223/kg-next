@@ -56,34 +56,38 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
   }, [filters.searchString, filters.selectedTag])
 
   return (
-    <div className={'max-w-full sm:max-w-2xl'}>
-      <table className={clsx('table', { 'table-zebra': !isDevMode() })}>
-        <thead>
-        <tr>
-          <th>Русский</th>
-          <th>Кыргызский</th>
-          <th>Английский</th>
-          <th>{nameTagColumn}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {words.map((word) => (
-          <tr key={word.id}>
-            <TableRow value={word.ru} word={word}/>
-            <TableRow value={word.kg} word={word}/>
-            <TableRow value={word.en} word={word}/>
-            {filters.selectedTagMode
-              ?
-              <BackButton/>
-              :
-              <TableRow value={word.tagname} word={word} isTag={true}/>
-            }
+    <>
+      {filters.wordsFilteredCount === 0
+        ? <>Слово <span className="text-red-500 font-bold">{filters.searchString}</span> не найдено.😞</>
+        : <div className={'max-w-full sm:max-w-2xl'}>
+          <table className={clsx('table', { 'table-zebra': !isDevMode() })}>
+            <thead>
+            <tr>
+              <th>Русский</th>
+              <th>Кыргызский</th>
+              <th>Английский</th>
+              <th>{nameTagColumn}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {words.map((word) => (
+              <tr key={word.id}>
+                <TableRow value={word.ru} word={word}/>
+                <TableRow value={word.kg} word={word}/>
+                <TableRow value={word.en} word={word}/>
+                {filters.selectedTagMode
+                  ?
+                  <BackButton/>
+                  :
+                  <TableRow value={word.tagname} word={word} isTag={true}/>
+                }
 
-          </tr>
-        ))}
-        </tbody>
-      </table>
-    </div>
+              </tr>
+            ))}
+            </tbody>
+          </table>
+        </div>}
+    </>
   )
 }
 

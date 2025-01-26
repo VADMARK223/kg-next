@@ -10,3 +10,4 @@ export const enum LANGUAGE_MODE {
   KG = 'kg',
   EN = 'en'
 }
+export const MAX_WORD_LENGTH = 30

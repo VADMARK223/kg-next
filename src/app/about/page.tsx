@@ -24,7 +24,6 @@ const AboutPage = (): JSX.Element => {
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(version)
-      alert('Версия скопирована.')
     } catch (err) {
       alert(`Не удалось скопировать версию. Ошибка: ${err}`)
     }

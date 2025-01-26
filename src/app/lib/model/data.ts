@@ -95,6 +95,8 @@ const common = (tag: number): WordEntity[] => {
     createWord('Пена', 'Көбүк', tag, 'Foam'),
     createWord('Сон', 'Уйку', tag, 'Dream'),
     createWord('Рейс', 'Каттам', tag, 'Flight'),
+    createWord('Обычай, повадка', 'Салт', tag, 'Custom, habit'),
+    createWord('Важность; достоинство', 'Салт', tag, 'Importance; dignity'),
     createWord('Труд', 'Эмгек', tag, 'Work'),
     createWord('Служба', 'Кызмат', tag, 'Service'),
     createWord('Скорость', 'Тездик, ылдамдык', tag, 'Speed'),
@@ -149,6 +151,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Предмет', 'Нерсе', tag, 'Item'),
     createWord('Разговорник', 'Сүйлөшмө', tag, 'Phrasebook'),
     createWord('Красота (человек)', 'Сулуулук', tag, 'Beauty (human)'),
+    createWord('Гид', 'Гид', tag, 'Guide'),
     createWord('Звук', 'Тыбыш', tag, 'Sound')
   ]
 }
@@ -532,6 +535,7 @@ const city = (tag: number): WordEntity[] => {
     createWord('Город', 'Шаар', tag, 'City'),
     createWord('Флаг', 'Желек', tag, 'Flag'),
     createWord('Село, деревня', 'Айыл', tag, 'Village'),
+    createWord('Дворец', 'Сарай', tag, 'Palace, castle, mansion'),
     createWord('Улица', 'Көчө', tag, 'Street'),
     createWord('Площадь', 'Аянт', tag, 'Square'),
     createWord('Мост', 'Көпүрө', tag, 'Bridge'),

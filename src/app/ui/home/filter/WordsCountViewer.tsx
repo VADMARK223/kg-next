@@ -14,9 +14,9 @@ const WordsCountViewer = (): JSX.Element => {
   const filters: Filters = useUnit($filters)
 
   return (
-    <div>
-      {(isDevMode() ?? false) && <ValueViewer name={'Слов'} value={filters.wordsFilteredCount}/>}
-    </div>
+    <>
+      {(isDevMode() ?? false) && <ValueViewer name={'Слов отображается'} value={filters.wordsFilteredCount}/>}
+    </>
   )
 }
 
