@@ -8,7 +8,6 @@
 import { JSX, useEffect, useState } from 'react'
 import { Word } from '@/app/lib/model/word'
 import clsx from 'clsx'
-import { isDevMode } from '@/app/lib/utils'
 import { wordsUpdated } from '@/app/lib/effector/word'
 import { useUnit } from 'effector-react'
 import TableRow from '@/app/ui/home/word/TableRow'
@@ -60,7 +59,7 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
       {filters.searchString.length && filters.wordsFilteredCount === 0
         ? <>Слово <span className="text-red-500 font-bold">{filters.searchString}</span> не найдено.😞</>
         : <div className={'max-w-full sm:max-w-2xs'}>
-          <table className={clsx(`table bg-gray-800`, { 'table-zebra': !isDevMode() })}>
+          <table className={clsx(`table bg-gray-800`, 'table-zebra')}>
             <thead>
             <tr>
               <th>Русский</th>

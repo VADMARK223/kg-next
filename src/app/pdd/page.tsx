@@ -1,17 +1,24 @@
 /**
- * Компонент
+ * Компонент пока тестовый.
  *
  * @author Markitanov Vadim
  * @since 19.01.2025
  */
-import { JSX } from 'react'
 
-const Page = (): JSX.Element => {
+import { headers } from 'next/headers'
+import { UAParser } from 'ua-parser-js'
+
+export async function getData () {
+  const userAgent = (await headers()).get('user-agent')
+  const parser = UAParser(userAgent ?? '')
+  return parser.device.type || 'desktop'
+}
+
+export default async function PddPage () {
+  const deviceType = await getData()
   return (
     <h1>
-      Правила дорожного движения
+      Девайс: {deviceType}
     </h1>
   )
 }
-
-export default Page
