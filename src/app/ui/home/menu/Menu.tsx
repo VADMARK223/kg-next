@@ -54,7 +54,8 @@ const Menu = (): JSX.Element => {
   }
 
   return (
-    <div className={'flex flex-wrap gap-3'}>
+    // <div className={'flex flex-wrap gap-3'}>
+    <div className={'flex gap-3'}>
       {links.map((link) => {
         if (link.href === '/api/init' || link.href === '/api/test' || link.href === '/pdd') {
           return null
