@@ -42,7 +42,7 @@ async function fetchTags (): Promise<Tag[]> {
 }
 
 const fetchTagsLocal = (): Tag[] => {
-  return TAGS
+  return TAGS.sort((a, b) => a.name.localeCompare(b.name))
 }
 
 // Words

@@ -19,7 +19,7 @@ const InputControl = (): JSX.Element => {
 
   return (
     <label className={clsx(
-      'input min-w-[420px]',
+      'input w-full sm:w-[422px]',
       filters.searchString.length && filters.wordsFilteredCount === 0 ? 'input-error' : 'input-primary'
     )}>
       <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

@@ -25,7 +25,7 @@ const TAGS: Tag[] = [
   { id: 8, name: 'Дикие животные', color: '#D2B48C' },
   { id: 9, name: 'Строения', color: '#6B7280' },
   { id: 10, name: 'Природа', color: '#1E3A8A' },
-  { id: 11, name: 'Еда и напитки', color: '#9A3412' },
+  { id: 11, name: 'Еда', color: '#9A3412' },
   { id: 12, name: 'Человеческое тело', color: '#F5D7B6' },
   { id: 13, name: 'Материалы и вещества', color: '#2C3E50' },
   { id: 14, name: 'Птицы', color: '#87CEEB' },
@@ -43,7 +43,8 @@ const TAGS: Tag[] = [
   { id: 26, name: 'География', color: '#00640F' },
   { id: 27, name: 'Семья', color: '#FFC0CB' },
   { id: 28, name: 'Школа', color: '#FFD700' },
-  { id: 29, name: 'Местоимения', color: '#D3D3D3' }
+  { id: 29, name: 'Местоимения', color: '#D3D3D3' },
+  { id: 30, name: 'Напитки', color: '#4682B4' },
 ]
 
 const createWord = (ru: string, kg: string, tag: number, en: string): WordEntity => {
@@ -152,6 +153,8 @@ const common = (tag: number): WordEntity[] => {
     createWord('Разговорник', 'Сүйлөшмө', tag, 'Phrasebook'),
     createWord('Красота (человек)', 'Сулуулук', tag, 'Beauty (human)'),
     createWord('Гид', 'Гид', tag, 'Guide'),
+    createWord('Затем, после, за', 'Соң', tag, 'Then, after'),
+    createWord('Для', 'Үчүн', tag, 'For'),
     createWord('Звук', 'Тыбыш', tag, 'Sound')
   ]
 }
@@ -412,17 +415,11 @@ const food = (tag: number): WordEntity[] => {
     createWord('Вкус', 'Даам', tag, 'Taste'),
     createWord('Аппетит', 'Ичтээк', tag, 'Appetite'),
     createWord('Пища', 'Аш', tag, 'Food'),
-    createWord('Вода', 'Суу', tag, 'Water'),
-    createWord('Молоко', 'Сүт', tag, 'Milk'),
-    createWord('Пиво', 'Сыра', tag, 'Beer'),
-    createWord('Водка', 'Арак', tag, 'Vodka'),
     createWord('Мясо', 'Эт', tag, 'Meat'),
     createWord('Хлеб', 'Нан', tag, 'Bread'),
-    createWord('Чай', 'Чай', tag, 'Tea'),
     createWord('Соль', 'Туз', tag, 'Salt'),
     createWord('Гриб', 'Козу карын', tag, 'Mushroom'),
     createWord('Яд', 'Уу', tag, 'Poison'),
-    createWord('Мёд', 'Бал', tag, 'Honey'),
     createWord('Мороженное', 'Бал муздак', tag, 'Ice cream'),
     createWord('Топленое масло', 'Сары май', tag, 'Butter'),
     createWord('Суп', 'Сорпо', tag, 'Soup'),
@@ -432,15 +429,12 @@ const food = (tag: number): WordEntity[] => {
     createWord('Сахар', 'Шекер', tag, 'Sugar'),
     createWord('Пряник', 'Пряник', tag, 'Gingerbread'),
     createWord('Имбирь', 'Имбирь', tag, 'Ginger'),
-    createWord('Сок', 'Шире', tag, 'Juice'),
     createWord('Рис', 'Күрүч', tag, 'Rice'),
     createWord('Пицца', 'Пицца', tag, 'Pizza'),
     createWord('Мука', 'Ун', tag, 'Flour'),
     createWord('Яйцо (еда)', 'Жумуртка', tag, 'Egg'),
     createWord('Шоколад', 'Шоколад', tag, 'Chocolate'),
-    createWord('Напиток', 'Суусундук, ич', tag, 'Drink'),
-    createWord('Продукт, продукция', 'Азык', tag, 'Product, products'),
-    createWord('Бутылка', 'Бөтөлкө', tag, 'Bottle')
+    createWord('Продукт, продукция', 'Азык', tag, 'Product, products')
   ]
 }
 // Человеческое тело
@@ -628,6 +622,7 @@ const adjectives = (tag: number): WordEntity[] => {
     createWord('Сырой, влажный', 'Өл', tag, 'Wet'),
     createWord('Светлый, лучезарный', 'Жаркын', tag, 'Light, radiant'),
     createWord('Короткий, краткий', 'Кыска', tag, 'Short, brief'),
+    createWord('Последний; последующий', 'Соң', tag, 'Last; next'),
     createWord('Ожидающий', 'Күтүүдө', tag, 'Pending')
   ]
 }
@@ -867,6 +862,23 @@ const pronouns = (tag: number): WordEntity[] => {
   ]
 }
 
+// Напитки
+const drinks = (tag: number): WordEntity[] => {
+  return [
+    createWord('Напиток', 'Суусундук, ич', tag, 'Drink'),
+    createWord('Вода', 'Суу', tag, 'Water'),
+    createWord('Молоко', 'Сүт', tag, 'Milk'),
+    createWord('Пиво', 'Сыра', tag, 'Beer'),
+    createWord('Водка', 'Арак', tag, 'Vodka'),
+    createWord('Чай', 'Чай', tag, 'Tea'),
+    createWord('Мёд', 'Бал', tag, 'Honey'),
+    createWord('Сок', 'Шире', tag, 'Juice'),
+    createWord('Кофе', 'Кофе', tag, 'Coffee'),
+    createWord('Холодный чай', 'Муздак чай', tag, 'Ice tea'),
+    createWord('Бутылка', 'Бөтөлкө', tag, 'Bottle')
+  ]
+}
+
 const WORDS: WordEntity[] = [
   ...common(1),
   ...numerals(2),
@@ -896,7 +908,8 @@ const WORDS: WordEntity[] = [
   ...geography(26),
   ...family(27),
   ...school(28),
-  ...pronouns(29)
+  ...pronouns(29),
+  ...drinks(30)
 ]
 
 export { TAGS, WORDS }
