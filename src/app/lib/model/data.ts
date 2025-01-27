@@ -9,8 +9,6 @@ import { WordEntity } from '@/app/lib/model/word'
 
 /**
  * TODO:
- * Муха
- * Оранжевый
  * При выборе неправильного и правильного сразу загорался красный.
  */
 
@@ -44,7 +42,7 @@ const TAGS: Tag[] = [
   { id: 27, name: 'Семья', color: '#FFC0CB' },
   { id: 28, name: 'Школа', color: '#FFD700' },
   { id: 29, name: 'Местоимения', color: '#D3D3D3' },
-  { id: 30, name: 'Напитки', color: '#4682B4' },
+  { id: 30, name: 'Напитки', color: '#4682B4' }
 ]
 
 const createWord = (ru: string, kg: string, tag: number, en: string): WordEntity => {
@@ -620,6 +618,7 @@ const adjectives = (tag: number): WordEntity[] => {
     createWord('Молодой', 'Жаш', tag, 'Young'),
     createWord('Глупый', 'Акмак', tag, 'Stupid, silly'),
     createWord('Сырой, влажный', 'Өл', tag, 'Wet'),
+    createWord('Холодный, студеный', 'Муздак', tag, 'Cold'),
     createWord('Светлый, лучезарный', 'Жаркын', tag, 'Light, radiant'),
     createWord('Короткий, краткий', 'Кыска', tag, 'Short, brief'),
     createWord('Последний; последующий', 'Соң', tag, 'Last; next'),
@@ -874,7 +873,18 @@ const drinks = (tag: number): WordEntity[] => {
     createWord('Мёд', 'Бал', tag, 'Honey'),
     createWord('Сок', 'Шире', tag, 'Juice'),
     createWord('Кофе', 'Кофе', tag, 'Coffee'),
+    createWord('Лимонад', 'Лимонад', tag, 'Lemonade'),
+    createWord('Какао', 'Какао', tag, 'Cocoa'),
+    createWord('Газировка', 'Газдалган суу', tag, 'Soda'),
+    createWord('Минеральная вода', 'Минералдуу суу', tag, 'Mineral water'),
+    createWord('Коктейль', 'Коктейль', tag, 'Cocktail'),
+    createWord('Энергетик', 'Энергетик', tag, 'Energy drink'),
+    createWord('Компот', 'Компот', tag, 'Compote'),
+    createWord('Кефир', 'Кефир', tag, 'Kefir'),
+    createWord('Йогурт', 'Йогурт', tag, 'Yogurt drink'),
+    createWord('Морс', 'Морс', tag, 'Berry drink'),
     createWord('Холодный чай', 'Муздак чай', tag, 'Ice tea'),
+    createWord('Горячий шоколад', 'Ысык шоколад', tag, 'Hot chocolate'),
     createWord('Бутылка', 'Бөтөлкө', tag, 'Bottle')
   ]
 }

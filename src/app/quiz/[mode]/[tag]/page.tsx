@@ -18,6 +18,7 @@ import { $settings } from '@/app/lib/effector/settings'
 interface QuizPageProps {
   params: Promise<{ tag: string, mode: string }>
 }
+
 // Случайное перемешивание массива
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5)
@@ -54,7 +55,7 @@ const QuizPage = ({ params }: QuizPageProps): JSX.Element => {
     } else {
       fetchTagsByIdCommon(tagId).then(value => setTagName(value.name))
     }
-    setWords(words)
+    setWords(words.filter(word => word.ru !== word.kg))
   }, [tag])
 
   const generateQuestion = () => {
