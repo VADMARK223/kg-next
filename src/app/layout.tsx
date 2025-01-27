@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { inter } from './ui/fonts'
 import './ui/globals.css'
-import Header from '@/app/ui/home/header/Header'
+import React from 'react'
+import Menu from '@/app/ui/home/menu/Menu'
 
 export const metadata: Metadata = {
   title: 'Портал изучения слов',
@@ -12,8 +13,10 @@ export default function RootLayout ({ children }: Readonly<{ children: React.Rea
   return (
     <html lang="en">
     <body className={`${inter.className} antialiased m-3`}>
-    <Header/>
-    <div className={'mt-3'}>
+    <header id={'kg-header'} className={'fixed w-full top-0 left-0 z-50 bg-base-100 shadow-md p-3'}>
+      <Menu/>
+    </header>
+    <div className={'mt-[64px]'}>
       {children}
     </div>
     </body>
