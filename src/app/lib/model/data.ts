@@ -743,6 +743,7 @@ const countries = (tag: number): WordEntity[] => {
     createWord('Армения', 'Армения', tag, 'Armenia'),
     createWord('Таджикистан', 'Тажикстан', tag, 'Tajikistan'),
     createWord('Греция', 'Грекия', tag, 'Greece'),
+    createWord('Польша', 'Польша', tag, 'Poland'),
     createWord('Китай', 'Кытай', tag, 'China')
   ]
 }

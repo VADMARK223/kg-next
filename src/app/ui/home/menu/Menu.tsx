@@ -54,7 +54,6 @@ const Menu = (): JSX.Element => {
   }
 
   return (
-    // <div className={'flex flex-wrap gap-3'}>
     <div className={'flex gap-3'}>
       {links.map((link) => {
         if (link.href === '/api/init' || link.href === '/api/test' || link.href === '/pdd') {
@@ -68,9 +67,11 @@ const Menu = (): JSX.Element => {
             <button className={clsx('btn btn-primary', { 'text-gray-350': pathname !== link.href })}
                     disabled={!link.available}>
               {Icon && <Icon className={'h-5 w-5 text-white'}/>}
-              {getVisibleLabel(link) && <span className={clsx({ 'border-b-3': pathname === link.href })}>
-              {link.name}
-              </span>}
+              {getVisibleLabel(link) && (
+                <span className={clsx({ 'border-b-3': pathname === link.href })} style={{whiteSpace: 'nowrap'}}>
+                  {link.name}
+                </span>
+              )}
             </button>
           </Link>
         )

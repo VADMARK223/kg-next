@@ -13,7 +13,7 @@ export interface Settings {
 const defaultSettings: Settings = {
   answerCount: 5,
   questionCount: 5,
-  isMobile: false
+  isMobile: true
 }
 export const answerCountUpdated = createEvent<number>('Событие изменения кол-ва ответов в вопросе.')
 export const questionCountUpdated = createEvent<number>('Событие изменения кол-ва вопросов в опроснике.')
