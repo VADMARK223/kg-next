@@ -8,12 +8,6 @@
 import { headers } from 'next/headers'
 import { UAParser } from 'ua-parser-js'
 
-export async function getData () {
-  const userAgent = (await headers()).get('user-agent')
-  const parser = UAParser(userAgent ?? '')
-  return parser.device.type || 'desktop'
-}
-
 export default async function PddPage () {
   const deviceType = await getData()
   return (
@@ -21,4 +15,10 @@ export default async function PddPage () {
       Девайс: {deviceType}
     </h1>
   )
+}
+
+async function getData () {
+  const userAgent = (await headers()).get('user-agent')
+  const parser = UAParser(userAgent ?? '')
+  return parser.device.type || 'desktop'
 }
