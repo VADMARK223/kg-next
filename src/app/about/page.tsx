@@ -10,7 +10,13 @@ import ValueViewer from '@/app/ui/common/ValueViewer'
 import { APP_VERSION, isDevMode } from '@/app/lib/utils'
 import { IS_REMOTE_MODE } from '@/app/api/api'
 import { TAGS, WORDS } from '@/app/lib/model/data'
-import { ClipboardIcon, EyeIcon } from '@heroicons/react/24/solid'
+import {
+  ClipboardIcon,
+  ComputerDesktopIcon,
+  DevicePhoneMobileIcon,
+  EyeIcon,
+  QuestionMarkCircleIcon
+} from '@heroicons/react/24/solid'
 import { useUnit } from 'effector-react'
 import { $settings } from '@/app/lib/effector/settings'
 
@@ -24,6 +30,15 @@ const AboutPage = (): JSX.Element => {
     } catch (err) {
       alert(`Не удалось скопировать версию. Ошибка: ${err}`)
     }
+  }
+
+  const getDeviceIcon = () => {
+    if (settings.isMobile == null) {
+      return <QuestionMarkCircleIcon className="h-5 w-5 text-white"/>
+    }
+
+    return settings.isMobile ? <DevicePhoneMobileIcon className="h-5 w-5 text-white"/> :
+      <ComputerDesktopIcon className="h-5 w-5 text-white"/>
   }
 
   return (
@@ -93,7 +108,8 @@ const AboutPage = (): JSX.Element => {
       </span>
       }/>
       <div className={'flex items-center gap-3'}>
-        <ValueViewer name={'Устройство пользователя'} value={settings.isMobile ? 'Mobile' : 'Web'}/>
+        <ValueViewer name={'Устройство пользователя'}
+                     value={getDeviceIcon()}/>
         <button className={'btn btn-primary btn-sm'} onClick={() => {
           alert(`Клиент: ${navigator.userAgent}`)
         }}>

@@ -7,13 +7,13 @@ import { createEvent, createStore } from 'effector'
 export interface Settings {
   answerCount: number,
   questionCount: number
-  isMobile: boolean
+  isMobile: boolean | null
 }
 
 const defaultSettings: Settings = {
   answerCount: 5,
   questionCount: 5,
-  isMobile: true
+  isMobile: null
 }
 export const answerCountUpdated = createEvent<number>('Событие изменения кол-ва ответов в вопросе.')
 export const questionCountUpdated = createEvent<number>('Событие изменения кол-ва вопросов в опроснике.')

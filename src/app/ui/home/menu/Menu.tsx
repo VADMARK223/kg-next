@@ -10,8 +10,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { CalculatorIcon, CogIcon, HomeIcon, InformationCircleIcon } from '@heroicons/react/24/solid'
-import { $settings, isMobileUpdated } from '@/app/lib/effector/settings'
-import { useUnit } from 'effector-react'
+import { isMobileUpdated } from '@/app/lib/effector/settings'
 
 type LinkData = {
   name: string
@@ -36,17 +35,19 @@ const links: LinkData[] = [
   { ...defaultLinkData, name: 'Тест', href: '/api/test' }
 ]
 
-const Menu = (): JSX.Element => {
-  const settings = useUnit($settings)
+interface MenuProps {
+  isMobile: boolean
+}
+
+const Menu = ({ isMobile }: MenuProps): JSX.Element => {
   const pathname = usePathname()
 
   useEffect(() => {
-    const userAgent = navigator.userAgent || ''
-    isMobileUpdated(/Mobi|Android|iPhone/i.test(userAgent))
-  }, [])
+    isMobileUpdated(isMobile)
+  }, [isMobile])
 
   const getVisibleLabel = (link: LinkData): boolean => {
-    if (settings.isMobile) {
+    if (isMobile) {
       return link.showMobileLabel ?? true
     } else {
       return true
@@ -68,7 +69,7 @@ const Menu = (): JSX.Element => {
                     disabled={!link.available}>
               {Icon && <Icon className={'h-5 w-5 text-white'}/>}
               {getVisibleLabel(link) && (
-                <span className={clsx({ 'border-b-3': pathname === link.href })} style={{whiteSpace: 'nowrap'}}>
+                <span className={clsx({ 'border-b-3': pathname === link.href })} style={{ whiteSpace: 'nowrap' }}>
                   {link.name}
                 </span>
               )}

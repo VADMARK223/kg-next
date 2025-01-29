@@ -58,7 +58,7 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
     <>
       {filters.searchString.length && filters.wordsFilteredCount === 0
         ? <>Слово <span className="text-red-500 font-bold">{filters.searchString}</span> не найдено.😞</>
-        : <div className={'max-w-full sm:max-w-2xs'}>
+        : <div className={'w-full sm:w-1/2'}>
           <table className={clsx(`table bg-gray-800`, 'table-zebra')}>
             <thead>
             <tr>

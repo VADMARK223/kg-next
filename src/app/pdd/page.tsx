@@ -4,21 +4,13 @@
  * @author Markitanov Vadim
  * @since 19.01.2025
  */
-
-import { headers } from 'next/headers'
-import { UAParser } from 'ua-parser-js'
+import { isMobile } from '@/app/lib/clientUtils'
 
 export default async function PddPage () {
-  const deviceType = await getData()
+  const isMobileValue = await isMobile()
   return (
     <h1>
-      Девайс: {deviceType}
+      Девайс: {isMobileValue ? 'Мобильный':'Десктом'}
     </h1>
   )
-}
-
-async function getData () {
-  const userAgent = (await headers()).get('user-agent')
-  const parser = UAParser(userAgent ?? '')
-  return parser.device.type || 'desktop'
 }
