@@ -737,6 +737,7 @@ const time = (tag: number): WordEntity[] => {
 const countries = (tag: number): WordEntity[] => {
   return [
     createWord('Страна', 'Өлкө', tag, 'Country'),
+    createWord('Республика', 'Республика', tag, 'Republic'),
     createWord('Государство', 'Мамлекет', tag, 'State'),
     createWord('География', 'География', tag, 'Geography'),
     createWord('Турция', 'Түркия', tag, 'Turkey'),
@@ -814,6 +815,7 @@ const geography = (tag: number): WordEntity[] => {
     createWord('Долина', 'Өрөөн', tag, 'Valley'),
     createWord('Столица', 'Борбор', tag, 'Capital'),
     createWord('Берег', 'Жээк', tag, 'Shore'),
+    createWord('Африка', 'Африка', tag, 'Africa'),
     createWord('Пролив', 'Кысык', tag, 'Strait')
   ]
 }
