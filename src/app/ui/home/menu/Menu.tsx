@@ -27,7 +27,7 @@ const defaultLinkData: Partial<LinkData> = {
 
 const links: LinkData[] = [
   { ...defaultLinkData, name: 'Словарь', href: '/', icon: HomeIcon },
-  { ...defaultLinkData, name: 'Числительные', href: '/numerals', icon: CalculatorIcon, available: false },
+  { ...defaultLinkData, name: 'Числа', href: '/numerals', icon: CalculatorIcon },
   { ...defaultLinkData, name: 'О программе', href: '/about', icon: InformationCircleIcon, showMobileLabel: false },
   { ...defaultLinkData, name: 'Настройки', href: '/settings', icon: CogIcon, showMobileLabel: false },
   { ...defaultLinkData, name: 'ПДД', href: '/pdd', available: false },
