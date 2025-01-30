@@ -8,7 +8,7 @@
 import { JSX, useState } from 'react'
 import SoundButtons from '@/app/ui/numerals/SoundButtons'
 import LanguageSwitcher from '@/app/ui/numerals/LanguageSwitcher'
-import Interactive from '@/app/ui/numerals/Interactive'
+import NumeralsTranslate from '@/app/ui/numerals/translate/NumeralsTranslate'
 
 const NumeralsPage = (): JSX.Element => {
   const [kgMode, setKgMode] = useState<boolean>(true)
@@ -17,7 +17,7 @@ const NumeralsPage = (): JSX.Element => {
     <div className={'flex flex-col gap-3'}>
       <LanguageSwitcher kgMode={kgMode} setKgMode={setKgMode}/>
       <SoundButtons kgMode={kgMode}/>
-      <Interactive/>
+      <NumeralsTranslate kgMode={kgMode}/>
     </div>
   )
 }

@@ -339,6 +339,7 @@ const animals = (tag: number): WordEntity[] => {
 const animalsWild = (tag: number): WordEntity[] => {
   return [
     createWord('Олень', 'Бугу', tag, 'Deer'),
+    createWord('Лапа', 'Таман', tag, 'Paw'),
     createWord('Лось', 'Багыш', tag, 'Elk'),
     createWord('Медведь', 'Аюу', tag, 'Bear'),
     createWord('Слон', 'Пил', tag, 'Elephant'),

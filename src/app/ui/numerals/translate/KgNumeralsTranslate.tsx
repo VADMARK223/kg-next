@@ -6,10 +6,8 @@
  */
 'use client'
 import { JSX, useEffect, useState } from 'react'
-import { countDigitsInNumber, generateRandomInteger } from '@/app/lib/mathUtils'
+import { countDigitsInNumber } from '@/app/lib/mathUtils'
 import ValueViewer from '@/app/ui/common/ValueViewer'
-
-const MAX_TARGET_VALUE: number = 9999
 
 const convertNumberToString = (value: number): string | null => {
   if (value === 0) {
@@ -82,13 +80,13 @@ const convertNumberByCountDigits = (value: number): string | null => {
   return null
 }
 
-const Interactive = (): JSX.Element => {
-  const [targetNumber, setTargetNumber] = useState<number>(0)
-  const [rightAnswer, setRightAnswer] = useState<string>('-')
+interface KgNumeralsTranslateProps {
+  targetNumber: number,
+  setTargetNumber: (newNumber: number) => void
+}
 
-  useEffect(() => {
-    setTargetNumber(generateRandomInteger(MAX_TARGET_VALUE))
-  }, [])
+const KgNumeralsTranslate = ({ targetNumber, setTargetNumber }: KgNumeralsTranslateProps): JSX.Element => {
+  const [rightAnswer, setRightAnswer] = useState<string>('-')
 
   const deepConvert = (value: number): string | null => {
     if (convertNumberToString(value) != null) {
@@ -122,7 +120,6 @@ const Interactive = (): JSX.Element => {
 
   return (
     <div>
-      <h1 className={'text-lg font-bold text-center'}>Интерактивный перевод числа</h1>
       <div className={'flex flex-wrap gap-3 items-center'}>
         <span>Введите число:</span>
         <input type={'text'}
@@ -130,14 +127,14 @@ const Interactive = (): JSX.Element => {
                value={targetNumber.toString()}
                maxLength={4}
                onChange={(event) => {
-                 const value = event.target.value.replace(/\D/g, "")
+                 const value = event.target.value.replace(/\D/g, '')
                  setTargetNumber(Number(value))
                }}
-               />
+        />
         <ValueViewer name={'Перевод'} value={rightAnswer}/>
       </div>
     </div>
   )
 }
 
-export default Interactive
+export default KgNumeralsTranslate
