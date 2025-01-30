@@ -42,7 +42,8 @@ const TAGS: Tag[] = [
   { id: 27, name: 'Семья', color: '#FFC0CB' },
   { id: 28, name: 'Школа', color: '#FFD700' },
   { id: 29, name: 'Местоимения', color: '#D3D3D3' },
-  { id: 30, name: 'Напитки', color: '#4682B4' }
+  { id: 30, name: 'Напитки', color: '#4682B4' },
+  { id: 31, name: 'Чувства и эмоции', color: '#800080' },
 ]
 
 const createWord = (ru: string, kg: string, tag: number, en: string): WordEntity => {
@@ -62,7 +63,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Плюс', 'Кошуу белгиси', tag, 'Plus'),
     createWord('Умножение', 'Көбөйтүү', tag, 'Multiplication'),
     createWord('Деление', 'Бөлүү', tag, 'Division'),
-    createWord('Знак, метка', 'Белги', tag, 'Sing, mark'),
+    createWord('Знак, метка', 'Белги', tag, 'Sign, mark'),
     createWord('Деньги', 'Акча', tag, 'Money'),
     createWord('Лопата', 'Күрөк', tag, 'Shovel'),
     createWord('Хорошо', 'Жакшы', tag, 'Fine'),
@@ -93,9 +94,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Здоровье', 'Саламаттык, ден соолук', tag, 'Health'),
     createWord('Спасибо', 'Рахмат, ыракмат', tag, 'Thank you'),
     createWord('Польза', 'Пайда', tag, 'Benefit'),
-    createWord('Любовь', 'Сүйүү', tag, 'Love'),
     createWord('Память, ум, сознание', 'Эс', tag, 'Memory, mind, consciousness'),
-    createWord('Надежда', 'Үмүт', tag, 'Hope'),
     createWord('Справка', 'Маалымат кат', tag, 'Reference'),
     createWord('До', 'Чейин, дейре', tag, 'Before'),
     createWord('После', 'Кийин, анан, соң', tag, 'After'),
@@ -209,12 +208,13 @@ const colors = (tag: number): WordEntity[] => {
     createWord('Зеленый', 'Жашыл', tag, 'Green'),
     createWord('Синий', 'Көк', tag, 'Blue'),
     createWord('Желтый', 'Сары', tag, 'Yellow'),
-    createWord('Оранжевый', 'Кызгыл сары|Ачык күрөң', tag, 'Orange'),
+    createWord('Оранжевый', 'Кызгыл сары', tag, 'Orange'),
     createWord('Фиолетовый', 'Кызгылт көк', tag, 'Purple'),
     createWord('Розовый', 'Кызыл, кызгылт', tag, 'Pink'),
     createWord('Коричневый', 'Күрөң', tag, 'Brown'),
+    createWord('Светло-коричневый', 'Ачык күрөң', tag, 'Light brown'),
     createWord('Серый', 'Боз, сур, көк', tag, 'Gray'),
-    createWord('Голубой', 'Көк ачык', tag, 'Light Blue'),
+    createWord('Голубой', 'Көк ачык', tag, 'Light Blue'), // TODO: на подумать
     createWord('Бирюзовый', 'Бирюза түстүү', tag, 'Turquoise'),
     createWord('Лиловый', 'Кызгылт көгүш', tag, 'Lilac'),
     createWord('Песочный', 'Кум түстүү', tag, 'Sand'),
@@ -233,7 +233,7 @@ const fruits = (tag: number): WordEntity[] => {
     createWord('Малина', 'Данкуурай', tag, 'Raspberry'),
     createWord('Груша', 'Алмурут', tag, 'Pear'),
     createWord('Виноград', 'Жүзүм', tag, 'Grape'),
-    createWord('Арбуз', 'Дарбыз', tag, 'Water melon'),
+    createWord('Арбуз', 'Дарбыз', tag, 'Watermelon'),
     createWord('Дыня', 'Коон', tag, 'Melon'),
     createWord('Гранат', 'Анар', tag, 'Pomegranate'),
     createWord('Абрикос', 'Өрүк', tag, 'Apricot'),
@@ -242,7 +242,8 @@ const fruits = (tag: number): WordEntity[] => {
     createWord('Хурма', 'Курма', tag, 'Persimmon'),
     createWord('Смородина', 'Карагат', tag, 'Currant'),
     createWord('Ежевика', 'Бүлдүркөн', tag, 'Blackberry'),
-    createWord('Облепиха', 'Чычырканак', tag, 'Guelder-rose'),
+    createWord('Облепиха', 'Чычырканак', tag, 'Sea buckthorn'),
+    createWord('Калина', 'Калина', tag, 'Guelder-rose'),
     createWord('Апельсин', 'Апельсин', tag, 'Orange'),
     createWord('Вишня', 'Чие', tag, 'Cherry')
   ]
@@ -343,7 +344,7 @@ const animalsWild = (tag: number): WordEntity[] => {
     createWord('Слон', 'Пил', tag, 'Elephant'),
     createWord('Лев', 'Арстан', tag, 'Lion'),
     createWord('Волк', 'Карышкыр', tag, 'Wolf'),
-    createWord('Барс', 'Илбирс', tag, 'Leopard'),
+    createWord('Барс', 'Илбирс', tag, 'Snow leopard'),
     createWord('Кабан', 'Каман', tag, 'Boar'),
     createWord('Тигр', 'Жолборс', tag, 'Tiger'),
     createWord('Зебра', 'Зебра', tag, 'Zebra'),
@@ -369,7 +370,7 @@ const buildings = (tag: number): WordEntity[] => {
     createWord('Магазин', 'Дүкөн', tag, 'Shop'),
     createWord('Аптека', 'Дарыкана', tag, 'Pharmacy'),
     createWord('Школа', 'Мектеп', tag, 'School'),
-    createWord('Башня', 'Мурана', tag, 'Tower'),
+    createWord('Башня', 'Мунара', tag, 'Tower'),
     createWord('Столовая', 'Ашкана', tag, 'Dining room'),
     createWord('Больница', 'Оорукана', tag, 'Hospital'),
     createWord('Гостиница', 'Мейманкана', tag, 'Hotel'),
@@ -408,7 +409,7 @@ const nature = (tag: number): WordEntity[] => {
     createWord('Осень', 'Күз', tag, 'Autumn'),
     createWord('Небо', 'Асман', tag, 'Sky'),
     createWord('Скала', 'Аска, зоо', tag, 'Rock'),
-    createWord('Прилив', 'Куюлуш, шыкалыш', tag, 'Tide'),
+    createWord('Прилив', 'Толкун', tag, 'Tide'),
     createWord('Звезда', 'Жылдыз', tag, 'Star'),
     createWord('Земля', 'Жер', tag, 'Earth'),
     createWord('Океан', 'Океан', tag, 'Ocean'),
@@ -429,7 +430,7 @@ const food = (tag: number): WordEntity[] => {
     createWord('Еда', 'Тамак', tag, 'Food'),
     createWord('Вкус', 'Даам', tag, 'Taste'),
     createWord('Аппетит', 'Ичтээк', tag, 'Appetite'),
-    createWord('Пища', 'Аш', tag, 'Food'),
+    createWord('Пища', 'Тамак, аш, оокат', tag, 'Food'),
     createWord('Мясо', 'Эт', tag, 'Meat'),
     createWord('Хлеб', 'Нан', tag, 'Bread'),
     createWord('Соль', 'Туз', tag, 'Salt'),
@@ -480,7 +481,7 @@ const humanBody = (tag: number): WordEntity[] => {
     createWord('Веко', 'Кабак', tag, 'Eyelid'),
     createWord('Мозг', 'Мээ', tag, 'Brain'),
     createWord('Ус', 'Мурут', tag, 'Moustache'),
-    createWord('Попа', 'Кот', tag, 'Ass')
+    createWord('Ягодица', 'Көчук', tag, 'Buttock')
   ]
 }
 
@@ -525,7 +526,7 @@ const birds = (tag: number): WordEntity[] => {
     createWord('Сова', 'Үкү', tag, 'Owl'),
     createWord('Фазан', 'Кыргоол', tag, 'Peacock'),
     createWord('Куропатка', 'Чил', tag, 'Partridge'),
-    createWord('Синица', 'Синица', tag, 'Blue-tit'),
+    createWord('Синица', 'Синица', tag, 'Titmouse'),
     createWord('Индюк', 'Күрп, үндүк', tag, 'Turkey'),
     createWord('Снегирь', 'Снегирь', tag, 'Bullfinch'),
     createWord('Кукушка', 'Күкүк', tag, 'Cuckoo'),
@@ -622,7 +623,7 @@ const adjectives = (tag: number): WordEntity[] => {
     createWord('Горячий', 'Ысык', tag, 'Hot'),
     createWord('Вкусный', 'Даамдуу', tag, 'Delicious'),
     createWord('Кислый', 'Кычкыл', tag, 'Sour'),
-    createWord('Острый', 'Өткүр', tag, 'Spicy'),
+    createWord('Острый (пища)', 'Өткүр (тамак)', tag, 'Spicy (food)'),
     createWord('Новый', 'Жаңы', tag, 'New'),
     createWord('Богатый', 'Бай', tag, 'Rich'),
     createWord('Хитрый (лукавый)', 'Куу', tag, 'Cunning'),
@@ -787,7 +788,7 @@ const fishes = (tag: number): WordEntity[] => {
     createWord('Щука', 'Чортон', tag, 'Pike'),
     createWord('Сом', 'Сом', tag, 'Catfish'),
     createWord('Скат', 'Скат', tag, 'Ray'),
-    createWord('Окунь', 'Балык окунь', tag, 'Perch'),
+    createWord('Окунь', 'Окунь', tag, 'Perch'),
     createWord('Морской конек', 'Деңиз ат', tag, 'Seahorse'),
     createWord('Дорадо', 'Дорадо', tag, 'Dorado'),
     createWord('Барракуда', 'Барракуда', tag, 'Barracuda'),
@@ -829,7 +830,9 @@ const family = (tag: number): WordEntity[] => {
     createWord('Жена', 'Аял, катын, зайып', tag, 'Wife'),
     createWord('Отец, папа', 'Ата', tag, 'Father'),
     createWord('Мать', 'Эне, апа', tag, 'Mother'),
-    createWord('Брат', 'Тууган', tag, 'Brother'),
+    createWord('Родственник', 'Тууган', tag, 'Relative'),
+    createWord('Старший брат', 'Ага', tag, 'Older brother'),
+    createWord('Младший брат', 'Ини', tag, 'Younger brother'),
     createWord('Ребёнок', 'Бала', tag, 'Child'),
     createWord('Девушка', 'Кыз', tag, 'Young woman'),
     createWord('Девочка', 'Жаш кыз', tag, 'Girl'),
@@ -918,6 +921,18 @@ const drinks = (tag: number): WordEntity[] => {
   ]
 }
 
+// Чувства и эмоции
+const feelings = (tag: number): WordEntity[] => {
+  return [
+    createWord('Радость', 'Кубаныч', tag, 'Joy'),
+    createWord('Любовь', 'Сүйүү', tag, 'Love'),
+    createWord('Грусть', 'Кайгы', tag, 'Sadness'),
+    createWord('Надежда', 'Үмүт', tag, 'Hope'),
+    createWord('Обида', 'Таарыныч', tag, 'Offense'),
+    createWord('Стыд', 'Уят', tag, 'Shame'),
+  ]
+}
+
 const WORDS: WordEntity[] = [
   ...common(1),
   ...numerals(2),
@@ -948,7 +963,8 @@ const WORDS: WordEntity[] = [
   ...family(27),
   ...school(28),
   ...pronouns(29),
-  ...drinks(30)
+  ...drinks(30),
+  ...feelings(31)
 ]
 
 export { TAGS, WORDS }
