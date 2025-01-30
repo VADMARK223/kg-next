@@ -930,6 +930,7 @@ const feelings = (tag: number): WordEntity[] => {
     createWord('Грусть', 'Кайгы', tag, 'Sadness'),
     createWord('Надежда', 'Үмүт', tag, 'Hope'),
     createWord('Обида', 'Таарыныч', tag, 'Offense'),
+    createWord('Страх', 'Коркуу, коркунуч', tag, 'Fear'),
     createWord('Стыд', 'Уят', tag, 'Shame'),
   ]
 }

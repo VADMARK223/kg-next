@@ -6,7 +6,7 @@
  */
 'use client'
 import { JSX, useEffect, useState } from 'react'
-import ValueViewer from '@/app/ui/common/ValueViewer'
+import NumeralsTranslateComponent from '@/app/ui/numerals/translate/NumeralsTranslateComponent'
 
 const numberToWords = (value: number): string | null => {
   const ones = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
@@ -35,21 +35,8 @@ const EnNumeralsTranslate = ({ targetNumber, setTargetNumber }: EnNumeralsTransl
   }, [targetNumber])
 
   return (
-    <div>
-      <div className={'flex flex-wrap gap-3 items-center'}>
-        <span>Введите число:</span>
-        <input type={'text'}
-               className={'input input-primary max-w-[60px]'}
-               value={targetNumber.toString()}
-               maxLength={4}
-               onChange={(event) => {
-                 const value = event.target.value.replace(/\D/g, '')
-                 setTargetNumber(Number(value))
-               }}
-        />
-        <ValueViewer name={'Перевод'} value={rightAnswer}/>
-      </div>
-    </div>
+    <NumeralsTranslateComponent targetNumber={targetNumber} setTargetNumber={setTargetNumber}
+                                rightAnswer={rightAnswer}/>
   )
 }
 
