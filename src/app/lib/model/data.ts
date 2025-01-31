@@ -482,6 +482,7 @@ const humanBody = (tag: number): WordEntity[] => {
     createWord('Веко', 'Кабак', tag, 'Eyelid'),
     createWord('Мозг', 'Мээ', tag, 'Brain'),
     createWord('Ус', 'Мурут', tag, 'Moustache'),
+    createWord('Сосок', 'Эмчектин учу', tag, 'Nipple'),
     createWord('Ягодица', 'Көчук', tag, 'Buttock')
   ]
 }
@@ -932,6 +933,18 @@ const feelings = (tag: number): WordEntity[] => {
     createWord('Обида', 'Таарыныч', tag, 'Offense'),
     createWord('Страх', 'Коркуу, коркунуч', tag, 'Fear'),
     createWord('Стыд', 'Уят', tag, 'Shame'),
+    createWord('Злость', 'Ачуу', tag, 'Anger'),
+    createWord('Гордость', 'Сыймык', tag, 'Pride'),
+    createWord('Счастье', 'Бакыт, бакты, бак', tag, 'Happiness'),
+    createWord('Тревога', 'Коркуу, чочулоо', tag, 'Anxiety'),
+    createWord('Восторг', 'Ырахат', tag, 'Delight'),
+    createWord('Зависть', 'Көрө албоо, ичи тардык, кызгануу', tag, 'Envy'), // TODO: разобрать слова (Көрө албастык)
+    createWord('Сожаление', 'Өкүнүч', tag, 'Regret'),
+    createWord('Удивление', 'Таң калуу, таңдануу, таңгалыуу', tag, 'Surprise'),
+    createWord('Тоска', 'Сагынуу', tag, 'Melancholy'),
+    createWord('Симпатия', 'Жагымдуулук', tag, 'Affection'),
+    createWord('Раздражение', 'Кыжырдануу, туталануу', tag, 'Irritation'),
+    createWord('Умиротворение', 'Тынчтык', tag, 'Serenity'),
   ]
 }
 
