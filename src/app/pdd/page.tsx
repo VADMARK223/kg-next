@@ -4,13 +4,22 @@
  * @author Markitanov Vadim
  * @since 19.01.2025
  */
-import { isMobile } from '@/app/lib/clientUtils'
+import { Tag } from '@/app/lib/model/entity/Tag'
+import { fetchTagsCommon, fetchWordsCommon } from '@/app/api/api'
+import { Word } from '@/app/lib/model/word'
+import Filter from '@/app/ui/home/filter/Filter'
+import WordsTopButton from '@/app/ui/home/word/WordsTopButton'
+import WordsTableNew from '@/app/ui/home/word/WordsTableNew'
 
 export default async function PddPage () {
-  const isMobileValue = await isMobile()
+  const tags: Tag[] = await fetchTagsCommon()
+  const words: Word[] = await fetchWordsCommon()
+
   return (
-    <h1>
-      Девайс: {isMobileValue ? 'Мобильный':'Десктом'}
-    </h1>
+    <div className={'max-w-screen'}>
+      <Filter tags={tags}/>
+      <WordsTableNew initWords={words}/>
+      <WordsTopButton/>
+    </div>
   )
 }
