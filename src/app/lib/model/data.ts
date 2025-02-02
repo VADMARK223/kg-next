@@ -665,6 +665,7 @@ const verbs = (tag: number): WordEntity[] => {
     createWord('Уронить', 'Түшүрүү', tag, 'Drop'),
     createWord('Мечтать', 'Кыялдануу', tag, 'To dream'),
     createWord('Держать', 'Кармоо, алуу, жетелөө', tag, 'Hold'),
+    createWord('Говорить', 'Сүйлөө', tag, 'Talk'),
     createWord('Писать', 'Жазуу', tag, 'Write')
   ]
 }

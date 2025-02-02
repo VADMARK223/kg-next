@@ -23,6 +23,8 @@ const WordsTableNew = ({ initWords }: WordsTableProps): JSX.Element | null => {
   const [words, setWords] = useState<Word[]>(initWords)
   const [nameTagColumn, setNameTagColumn] = useState<string>('Категории')
   const filters: Filters = useUnit($filters)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [tableHeight, setTableHeight] = useState('auto')
 
   useEffect(() => {
     wordsUpdated(initWords)
@@ -50,15 +52,12 @@ const WordsTableNew = ({ initWords }: WordsTableProps): JSX.Element | null => {
 
   }, [filters.searchString, filters.selectedTag])
 
-  const containerRef = useRef(null)
-  const [tableHeight, setTableHeight] = useState('auto')
   useEffect(() => {
     const updateTableHeight = () => {
       if (containerRef.current) {
         const containerHeight = window.innerHeight
-        // @ts-ignore
         const offsetTop = containerRef.current.offsetTop
-        setTableHeight(`${containerHeight - offsetTop - 10}px`) // 10px - небольшой отступ
+        setTableHeight(`${containerHeight - offsetTop - 12}px`) // 10px - небольшой отступ
       }
     }
 
@@ -73,12 +72,10 @@ const WordsTableNew = ({ initWords }: WordsTableProps): JSX.Element | null => {
       <button className={'btn btn-primary'}>Button1</button>
       <button className={'btn btn-primary'}>Button2</button>
       {filters.searchString.length && filters.wordsFilteredCount === 0
-        ? <>Слово <span className="text-red-500 font-bold">{filters.searchString}</span> не найдено.😞</>
-        // : <div className="max-h-96 overflow-auto border border-gray-700 rounded-lg">
+        ? <span>Слово <span className="text-red-500 font-bold">{filters.searchString}</span> не найдено.😞</span>
         : <div
           ref={containerRef}
           className="overflow-auto border border-gray-700 rounded-lg"
-          // style={{ maxHeight: 'calc(100vh - 100px)' }}
           style={{ maxHeight: tableHeight }}
         >
           <table className={clsx('table bg-gray-800', 'table-zebra', 'w-full', 'sm:w-1/2')}>
@@ -102,7 +99,6 @@ const WordsTableNew = ({ initWords }: WordsTableProps): JSX.Element | null => {
                   :
                   <TableRow value={word.tagname} word={word} isTag={true}/>
                 }
-
               </tr>
             ))}
             </tbody>
