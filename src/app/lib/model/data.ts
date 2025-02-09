@@ -83,6 +83,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Поиск', 'Издөө', tag, 'Search'),
     createWord('Армия', 'Аскер', tag, 'Army'),
     createWord('Победа', 'Жеңиш', tag, 'Victory'),
+    createWord('Будущее', 'Келечек', tag, 'Future'),
     createWord('Подарок', 'Белек', tag, 'Present'),
     createWord('Фото', 'Сүрөт', tag, 'Photo'),
     createWord('Голос', 'Үн', tag, 'Voice'),
@@ -94,7 +95,7 @@ const common = (tag: number): WordEntity[] => {
     createWord('Здоровье', 'Саламаттык, ден соолук', tag, 'Health'),
     createWord('Спасибо', 'Рахмат, ыракмат', tag, 'Thank you'),
     createWord('Польза', 'Пайда', tag, 'Benefit'),
-    createWord('Память, ум, сознание', 'Эс', tag, 'Memory, mind, consciousness'),
+    createWord('Память, ум, сознание', 'Эс, акыл', tag, 'Memory, mind, consciousness'),
     createWord('Справка', 'Маалымат кат', tag, 'Reference'),
     createWord('До', 'Чейин, дейре', tag, 'Before'),
     createWord('После', 'Кийин, анан, соң', tag, 'After'),
@@ -166,6 +167,8 @@ const common = (tag: number): WordEntity[] => {
     createWord('Затем, после, за', 'Соң', tag, 'Then, after'),
     createWord('Для', 'Үчүн', tag, 'For'),
     createWord('Крем', 'Крем', tag, 'Cream'),
+    createWord('Сосед', 'Кошуна', tag, 'Neighbour'),
+    createWord('Цена', 'Баа', tag, 'Price'),
     createWord('Звук', 'Тыбыш', tag, 'Sound')
   ]
 }
