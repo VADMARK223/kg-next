@@ -612,6 +612,7 @@ const clothes = (tag: number): WordEntity[] => {
     createWord('Кальсоны, штаны', 'Дамбал', tag, 'Trousers'),
     createWord('Майка', 'Майка', tag, 'T-shirt'),
     createWord('Карман', 'Чөнтөк', tag, 'Pocket'),
+    createWord('Кошелек', 'Капчык, намыян', tag, 'Wallet'),
     createWord('Часы', 'Саат', tag, 'Watch')
   ]
 }
