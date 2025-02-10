@@ -83,7 +83,6 @@ const common = (tag: number): WordEntity[] => {
     createWord('Поиск', 'Издөө', tag, 'Search'),
     createWord('Армия', 'Аскер', tag, 'Army'),
     createWord('Победа', 'Жеңиш', tag, 'Victory'),
-    createWord('Будущее', 'Келечек', tag, 'Future'),
     createWord('Подарок', 'Белек', tag, 'Present'),
     createWord('Фото', 'Сүрөт', tag, 'Photo'),
     createWord('Голос', 'Үн', tag, 'Voice'),
@@ -612,6 +611,7 @@ const clothes = (tag: number): WordEntity[] => {
     createWord('Трусы', 'Чолок дамбал', tag, 'Underpants'),
     createWord('Кальсоны, штаны', 'Дамбал', tag, 'Trousers'),
     createWord('Майка', 'Майка', tag, 'T-shirt'),
+    createWord('Карман', 'Чөнтөк', tag, 'Pocket'),
     createWord('Часы', 'Саат', tag, 'Watch')
   ]
 }
@@ -740,6 +740,7 @@ const time = (tag: number): WordEntity[] => {
     createWord('Сентябрь', 'Аяк оона', tag, 'September'),
     createWord('Октябрь', 'Тогуздун айы', tag, 'October'),
     createWord('Ноябрь', 'Жетинин айы', tag, 'November'),
+    createWord('Будущее', 'Келечек', tag, 'Future'),
     createWord('Декабрь', 'Бештин айы', tag, 'December')
   ]
 }
@@ -794,7 +795,7 @@ const fishes = (tag: number): WordEntity[] => {
     createWord('Сельдь', 'Сельдь', tag, 'Herring'),
     createWord('Карп', 'Карп', tag, 'Carp'),
     createWord('Щука', 'Чортон', tag, 'Pike'),
-    createWord('Сом', 'Сом', tag, 'Catfish'),
+    createWord('Сом', 'Жаян', tag, 'Catfish'),
     createWord('Скат', 'Скат', tag, 'Ray'),
     createWord('Окунь', 'Окунь', tag, 'Perch'),
     createWord('Морской конек', 'Деңиз ат', tag, 'Seahorse'),

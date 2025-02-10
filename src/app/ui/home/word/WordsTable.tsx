@@ -104,7 +104,7 @@ const WordsTable = ({ initWords }: WordsTableProps): JSX.Element | null => {
           className="overflow-auto border border-gray-700 rounded-lg"
           style={{ maxHeight: tableHeight }}
         >
-          <table className={clsx('table bg-gray-800', 'table-zebra', 'w-full', 'sm:w-1/2')}>
+          <table className={clsx('table bg-gray-800', 'w-full', 'sm:w-1/2')}>
             <thead>
             <tr>
               <th>Русский</th>
