@@ -357,7 +357,7 @@ const animalsWild = (tag: number): WordEntity[] => {
     createWord('Носорог', 'Керик', tag, 'Rhinoceros'),
     createWord('Заяц', 'Коён', tag, 'Hare'),
     createWord('Белка', 'Тыйын чычкан', tag, 'Squirrel'),
-    createWord('Мышь', 'Чычкан', tag, 'Squirrel'),
+    createWord('Мышь', 'Чычкан', tag, 'Mouse'),
     createWord('Ёж', 'Кирпи', tag, 'Hedgehog'),
     createWord('Лиса', 'Түлкү', tag, 'Fox'),
     createWord('Енот', 'Енот', tag, 'Raccoon'),
@@ -944,6 +944,7 @@ const feelings = (tag: number): WordEntity[] => {
     createWord('Злость', 'Ачуу', tag, 'Anger'),
     createWord('Гордость', 'Сыймык', tag, 'Pride'),
     createWord('Счастье', 'Бакыт, бакты, бак', tag, 'Happiness'),
+    createWord('Справедливость', 'Адилет', tag, 'Justice'),
     createWord('Тревога', 'Коркуу, чочулоо', tag, 'Anxiety'),
     createWord('Восторг', 'Ырахат', tag, 'Delight'),
     createWord('Зависть', 'Көрө албоо, ичи тардык, кызгануу', tag, 'Envy'), // TODO: разобрать слова (Көрө албастык)
