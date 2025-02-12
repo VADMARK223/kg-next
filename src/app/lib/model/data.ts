@@ -53,6 +53,7 @@ const createWord = (ru: string, kg: string, tag: number, en: string): WordEntity
 // Разное
 const common = (tag: number): WordEntity[] => {
   return [
+    createWord('Сторона', 'Жак', tag, 'Side'),
     createWord('Работа', 'Иш, жумуш', tag, 'Job, work'),
     createWord('Игра', 'Оюн', tag, 'Game'),
     createWord('Начальник, сумка', 'Баштык', tag, 'Boss, bag'),

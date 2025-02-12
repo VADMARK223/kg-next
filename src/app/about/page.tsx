@@ -10,15 +10,12 @@ import ValueViewer from '@/app/ui/common/ValueViewer'
 import { APP_VERSION, isDevMode } from '@/app/lib/utils'
 import { IS_REMOTE_MODE } from '@/app/api/api'
 import { TAGS, WORDS } from '@/app/lib/model/data'
-import {
-  ClipboardIcon,
-  ComputerDesktopIcon,
-  DevicePhoneMobileIcon,
-  EyeIcon,
-  QuestionMarkCircleIcon
-} from '@heroicons/react/24/solid'
+import { ComputerDesktopIcon, DevicePhoneMobileIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/solid'
 import { useUnit } from 'effector-react'
 import { $settings } from '@/app/lib/effector/settings'
+import { Button } from 'antd'
+import '@ant-design/v5-patch-for-react-19'
+import { CopyOutlined, EyeOutlined } from '@ant-design/icons'
 
 const AboutPage = (): JSX.Element => {
   const settings = useUnit($settings)
@@ -45,9 +42,8 @@ const AboutPage = (): JSX.Element => {
     <div className={'flex flex-col'}>
       <div className={'flex items-center gap-3'}>
         <ValueViewer name={'Версия'} value={version}/>
-        <button className={'btn btn-primary btn-sm'} onClick={copyToClipboard}>
-          <ClipboardIcon className="h-5 w-5 text-white"/>
-        </button>
+        <Button type={'primary'} onClick={copyToClipboard}
+                icon={<CopyOutlined/>}/>
       </div>
       <ValueViewer name={'Слов в словаре'} value={WORDS.length}/>
       <ValueViewer name={'Категорий в словаре'} value={TAGS.length}/>
@@ -110,11 +106,10 @@ const AboutPage = (): JSX.Element => {
       <div className={'flex items-center gap-3'}>
         <ValueViewer name={'Устройство пользователя'}
                      value={getDeviceIcon()}/>
-        <button className={'btn btn-primary btn-sm'} onClick={() => {
+        <Button type={'primary'} onClick={() => {
           alert(`Клиент: ${navigator.userAgent}`)
-        }}>
-          <EyeIcon className="h-5 w-5 text-white"/>
-        </button>
+        }}
+                icon={<EyeOutlined/>}/>
       </div>
 
       {isDevMode() ? <ValueViewer name={'Режим данных'} value={IS_REMOTE_MODE ? 'Remote' : 'Local'}/> : null}
