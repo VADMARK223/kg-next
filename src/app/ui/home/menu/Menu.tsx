@@ -5,12 +5,16 @@
  * @since 09.01.2025
  */
 'use client'
-import { JSX, useEffect } from 'react'
+import React, { JSX, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import clsx from 'clsx'
 import { CalculatorIcon, CogIcon, HomeIcon, InformationCircleIcon } from '@heroicons/react/24/solid'
 import { isMobileUpdated } from '@/app/lib/effector/settings'
+import { Button } from 'antd'
+import '@ant-design/v5-patch-for-react-19'
+import clsx from 'clsx'
+
+const SHOW_OLD_MENU: boolean = true
 
 type LinkData = {
   name: string
@@ -65,15 +69,21 @@ const Menu = ({ isMobile }: MenuProps): JSX.Element => {
 
         return (
           <Link key={link.name} href={link.href}>
-            <button className={clsx('btn btn-primary', { 'text-gray-350': pathname !== link.href })}
-                    disabled={!link.available}>
-              {Icon && <Icon className={'h-5 w-5 text-white'}/>}
-              {getVisibleLabel(link) && (
-                <span className={clsx({ 'border-b-3': pathname === link.href })} style={{ whiteSpace: 'nowrap' }}>
+            {SHOW_OLD_MENU ? <button className={clsx('btn btn-primary', { 'text-gray-350': pathname !== link.href })}
+                                     disabled={!link.available}>
+                {Icon && <Icon className={'h-5 w-5 text-white'}/>}
+                {getVisibleLabel(link) && (
+                  <span className={clsx({ 'border-b-3': pathname === link.href })} style={{ whiteSpace: 'nowrap' }}>
                   {link.name}
                 </span>
-              )}
-            </button>
+                )}
+              </button>
+              : <Button
+                icon={Icon && <Icon className={'h-5 w-5 text-white'}/>}
+                type={'primary'}
+              >
+                {link.name}
+              </Button>}
           </Link>
         )
       })}

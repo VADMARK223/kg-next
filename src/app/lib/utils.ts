@@ -5,7 +5,7 @@
  * @since 10.01.2025
  */
 
-export const APP_VERSION = '5.0'
+export const APP_VERSION = '5.1'
 export const isDevMode = (): boolean => process.env.NODE_ENV === 'development'
 export const enum LANGUAGE_MODE {
   KG = 'kg',

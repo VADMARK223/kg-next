@@ -456,6 +456,7 @@ const food = (tag: number): WordEntity[] => {
     createWord('Мука', 'Ун', tag, 'Flour'),
     createWord('Яйцо (еда)', 'Жумуртка', tag, 'Egg'),
     createWord('Шоколад', 'Шоколад', tag, 'Chocolate'),
+    createWord('Майонез', 'Майонез', tag, 'Mayonnaise'),
     createWord('Продукт, продукция', 'Азык', tag, 'Product, products')
   ]
 }
